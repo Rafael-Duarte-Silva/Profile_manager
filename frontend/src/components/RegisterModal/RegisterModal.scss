@@ -1,0 +1,35 @@
+.RegisterModal-background {
+    z-index: 1;
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #00000050;
+}
+
+.RegisterModal {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--base-size-28);
+
+    width: 26.25rem;
+    height: 100%;
+
+    padding: var(--base-size-24) var(--base-size-28);
+
+    background-color: var(--color-zero);
+
+    border-radius: var(--borderRadius-lg) 0 0 var(--borderRadius-lg);
+}
+
+.RegisterModal-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--base-size-8);
+}
+

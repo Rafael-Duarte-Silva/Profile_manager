@@ -1,0 +1,30 @@
+.Typography {
+    font-size: var(--size-sm);
+    font-weight: var(--text-weight-normal);
+    line-height: 1.5;
+    color: var(--color-negative);
+
+    &--primary {
+        font-weight: var(--text-weight-semibold);
+    }
+    &--second {
+        font-size: var(--size-md);
+    }
+    &--third {
+        font-size: var(--size-xs);
+    }
+    &--fourth {
+        font-size: var(--size-xl);
+        font-weight: var(--text-weight-semibold);
+    }
+
+    &--color-light {
+        color: var(--color-zero);
+    }
+    &--color-medium {
+        color: var(--color-fourth);
+    }
+    &--color-darkMedium {
+        color: var(--color-third);
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "HomePage": {
+        "title": "Profile manager",
+        "create": "Create",
+        "generate": "Generate",
+        "select": "Select all",
+
+        "user": "User",
+        "name": "Name",
+        "nickName": "Nick name",
+        "status": "Status",
+        "email": "E-mail",
+        "phone": "Phone",
+        "job": "Job",
+        "date": "Date"
+    }
+}

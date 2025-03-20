@@ -1,0 +1,17 @@
+body {
+    line-height: 1;
+    background-color: var(--color-zero-light);
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+}

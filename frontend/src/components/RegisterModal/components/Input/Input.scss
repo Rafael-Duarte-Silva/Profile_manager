@@ -1,0 +1,19 @@
+.Input-wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--base-size-8);
+}
+
+.Input {
+    height: var(--base-size-48);
+
+    padding: var(--base-size-10);
+
+    border: var(--borderWidth-sm) solid var(--color-zero-dark);
+    border-radius: var(--borderRadius-lg);
+}
+
+.Input::placeholder {
+    color: var(--color-fourth);
+}
+

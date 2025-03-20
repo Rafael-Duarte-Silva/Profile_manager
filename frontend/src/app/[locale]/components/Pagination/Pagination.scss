@@ -1,0 +1,25 @@
+.Pagination {
+    display: flex;
+    justify-content: center;
+    column-gap: var(--base-size-12);
+
+    margin-block: var(--base-size-16);
+}
+
+.Pagination-item {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--base-size-10);
+
+    &.is-valid {
+        background-color: var(--color-zero-light);
+
+        border: var(--borderWidth-md) solid var(--color-zero-dark);
+        border-radius: var(--borderRadius-md);
+    }
+}
+
