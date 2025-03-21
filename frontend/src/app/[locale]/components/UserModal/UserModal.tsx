@@ -1,36 +1,38 @@
-import "./RegisterModal.scss";
+import "./UserModal.scss";
 
-import { Button } from "../ui/Button";
-import { Typography } from "../ui/Typography";
 import { Input } from "./components/Input";
+import { IconSend } from "@/components/icons/IconSend";
+import { Button } from "@/components/ui/Button";
+import { Typography } from "@/components/ui/Typography";
 
-import { useRegisterModal } from "./hooks/useRegisterModal";
+import { useUserModalContext } from "../../context/UserModalContext";
 
-type RegisterModalProps = {
-    handleModalOpen(): void;
-};
+export const UserModal = () => {
+    const { isModalOpen, handelIsModalOpen, register, handleSubmit, handelSendUserData, isEdit } =
+        useUserModalContext();
 
-export const RegisterModal = ({ handleModalOpen }: RegisterModalProps) => {
-    const { register, handleSubmit, errors, handleRegisterModal } = useRegisterModal(handleModalOpen);
+    if (!isModalOpen) {
+        return;
+    }
 
     return (
-        <div className="RegisterModal-background">
-            <div className="RegisterModal">
+        <div className="UserModal-background">
+            <div className="UserModal">
                 <Typography
                     asChild
                     variant="fourth"
                 >
-                    <h1>Create a User</h1>
+                    <h1>{isEdit ? "Edit a User" : "Create a User"}</h1>
                 </Typography>
 
                 <form
-                    className="RegisterModal-form"
-                    onSubmit={handleSubmit(handleRegisterModal)}
+                    className="UserModal-form"
+                    onSubmit={handleSubmit(handelSendUserData)}
                 >
                     <Input
                         {...register("email")}
                         label="Email"
-                        id="register-email"
+                        id="user-email"
                         autoComplete="email"
                         placeholder="example@fictitious.unreal"
                         type="email"
@@ -38,15 +40,15 @@ export const RegisterModal = ({ handleModalOpen }: RegisterModalProps) => {
                     <Input
                         {...register("login")}
                         label="Login"
-                        id="register-login"
+                        id="user-login"
                         autoComplete="name"
                         placeholder="@Barry"
                         type="text"
                     />
                     <Input
-                        {...register("full_name")}
+                        {...register("fullName")}
                         label="Full Name"
-                        id="register-full_name"
+                        id="user-fullName"
                         autoComplete="name"
                         placeholder="Barry Allen"
                         type="text"
@@ -54,7 +56,7 @@ export const RegisterModal = ({ handleModalOpen }: RegisterModalProps) => {
                     <Input
                         {...register("password")}
                         label="Password"
-                        id="register-password"
+                        id="user-password"
                         autoComplete="new-password"
                         placeholder="********"
                         type="password"
@@ -62,7 +64,7 @@ export const RegisterModal = ({ handleModalOpen }: RegisterModalProps) => {
                     <Input
                         {...register("phone")}
                         label="Phone"
-                        id="register-phone"
+                        id="user-phone"
                         autoComplete="tel"
                         placeholder="+55 (11) 29979-2458"
                         type="tel"
@@ -70,18 +72,30 @@ export const RegisterModal = ({ handleModalOpen }: RegisterModalProps) => {
                     <Input
                         {...register("job")}
                         label="Job"
-                        id="register-job"
+                        id="user-job"
                         placeholder="Runner"
                         type="text"
                     />
 
-                    <Button
-                        variant="primary"
-                        size="maxMd"
-                        type="submit"
-                    >
-                        Send
-                    </Button>
+                    <div className="UserModal-containerButton">
+                        <Button
+                            variant="primary"
+                            size="maxMd"
+                            type="submit"
+                        >
+                            {isEdit ? "Edit" : "Send"}
+                            <IconSend />
+                        </Button>
+                        <Button
+                            variant="primary"
+                            size="maxMd"
+                            type="button"
+                            onClick={() => handelIsModalOpen(false)}
+                        >
+                            Cancel
+                            <IconSend />
+                        </Button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -3,8 +3,9 @@ export const fullNameInitials = (fullName: string | undefined): string => {
         return "";
     }
 
-    const initials = fullName.split(" ");
-
-    return `${initials[0][0]}${initials[1][0]}`;
+    return fullName
+        .split(" ")
+        .map((word) => word.charAt(0).toLowerCase())
+        .join("");
 };
 

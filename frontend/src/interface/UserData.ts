@@ -1,10 +1,11 @@
 export interface UserData {
+    id: string;
     login: string;
-    full_name: string;
+    fullName: string;
     email: string;
     phone: string;
     job: string;
     status: string;
-    date_created: string;
+    dateCreated: string;
 }
 

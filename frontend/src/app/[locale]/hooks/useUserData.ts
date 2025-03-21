@@ -17,7 +17,7 @@ const fetchData = (page: string): AxiosPromise<UserData[]> => {
 export const useUserData = (page: string = "") => {
     const query = useQuery({
         queryFn: () => fetchData(page),
-        queryKey: ["food-data"],
+        queryKey: ["users"],
         retry: 2,
     });
 

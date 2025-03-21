@@ -9,7 +9,7 @@ interface LoginPromise {
     token: string;
 }
 
-const postData = async (data: LoginData): AxiosPromise<LoginPromise> => {
+const postData = (data: LoginData): AxiosPromise<LoginPromise> => {
     const response = axios.post(process.env.NEXT_PUBLIC_API_URL + "/auth/login", data);
     return response;
 };
@@ -22,7 +22,7 @@ export const useLoginMutate = () => {
         retry: 2,
         onSuccess: (data) => {
             setCookie("jwt", data.data.token, 2);
-            router.push("/");
+            router.push("/?page=1");
         },
     });
 

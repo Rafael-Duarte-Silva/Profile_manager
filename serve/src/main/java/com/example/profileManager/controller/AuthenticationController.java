@@ -58,7 +58,7 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.login(), encryptedPassword, UserRole.USER, data.full_name(), data.email(),
+        User newUser = new User(data.login(), encryptedPassword, UserRole.USER, data.fullName(), data.email(),
                 data.phone(), data.job(), "manually");
 
         this.repository.save(newUser);
@@ -93,7 +93,7 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.login(), encryptedPassword, UserRole.ADMIN, data.full_name(), data.email(),
+        User newUser = new User(data.login(), encryptedPassword, UserRole.ADMIN, data.fullName(), data.email(),
                 data.phone(), data.job(), "manually");
 
         this.repository.save(newUser);

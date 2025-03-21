@@ -15,12 +15,12 @@ type TableContextProps = {
 export const TableContext = createContext<TableContextProps | undefined>(undefined);
 
 export const TableProvider = ({ children }: { children: ReactNode }) => {
-    const [page, setPage] = useState<string>(useSearchParams().get("page") || "");
-    const { data, refetch } = useUserData(page);
-
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+
+    const [page, setPage] = useState<string>(searchParams.get("page") || "");
+    const { data, refetch } = useUserData(page);
 
     const createQueryString = useCallback(
         (name: string, value: string) => {
@@ -41,6 +41,10 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         refetch();
     }, [page]);
+
+    useEffect(() => {
+        setPage(searchParams.get("page") || "");
+    }, [searchParams.get("page")]);
 
     return <TableContext.Provider value={{ data, page, handlePage }}>{children}</TableContext.Provider>;
 };

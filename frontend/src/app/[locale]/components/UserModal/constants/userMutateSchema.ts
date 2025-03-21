@@ -6,7 +6,7 @@ export const userMutateSchema = z.object({
         .string()
         .min(1, { message: "This field has to be filled." })
         .max(15, { message: "the max of characters are 15" }),
-    full_name: z
+    fullName: z
         .string()
         .min(1, { message: "This field has to be filled." })
         .max(30, { message: "the max of characters are 30" }),

@@ -12,13 +12,16 @@ import { IconDelete } from "@/components/icons/IconDelete";
 import { IconEdit } from "@/components/icons/IconEdit";
 import { Typography } from "@/components/ui/Typography";
 
-import { useUserData } from "../../hooks/useUserData";
 import { useTable } from "./hooks/useTable";
+import { useUserDelete } from "./hooks/useUserDelete";
+import { useUserEdit } from "./hooks/useUserEdit";
 
 import { fullNameInitials } from "./utils/fullNameInitials";
 
 export const Table = () => {
     const { data } = useTableContext();
+    const { handleEdit } = useUserEdit();
+    const { mutate } = useUserDelete();
     const { initializeIsChecked, allIsChecked, handleAllIsChecked, isChecked, handleIsChecked } = useTable();
     const t = useTranslations("HomePage");
 
@@ -101,14 +104,14 @@ export const Table = () => {
                             <Typography asChild>
                                 <td className="Table-cell Table-cell--user">
                                     <div className="Table-profile-wrape">
-                                        <div className="Table-avatar">{fullNameInitials(userData.full_name)}</div>
+                                        <div className="Table-avatar">{fullNameInitials(userData.fullName)}</div>
 
                                         <div className="Table-profile-body">
                                             <Typography
                                                 asChild
                                                 variant="primary"
                                             >
-                                                <div className="Table-profile-name">{userData.full_name}</div>
+                                                <div className="Table-profile-name">{userData.fullName}</div>
                                             </Typography>
 
                                             <Typography
@@ -194,15 +197,21 @@ export const Table = () => {
                                     >
                                         <span>{t("date")}</span>
                                     </Typography>
-                                    {userData.date_created}
+                                    {userData.dateCreated}
                                 </td>
                             </Typography>
                             <Typography asChild>
                                 <td className="Table-cell Table-cell--icons">
-                                    <button type="button">
+                                    <button
+                                        type="button"
+                                        onClick={() => handleEdit(userData)}
+                                    >
                                         <IconEdit />
                                     </button>
-                                    <button type="button">
+                                    <button
+                                        type="button"
+                                        onClick={() => mutate(userData.id)}
+                                    >
                                         <IconDelete />
                                     </button>
                                 </td>

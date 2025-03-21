@@ -1,4 +1,4 @@
-.RegisterModal-background {
+.UserModal-background {
     z-index: 1;
     position: fixed;
     inset: 0;
@@ -12,7 +12,7 @@
     background-color: #00000050;
 }
 
-.RegisterModal {
+.UserModal {
     display: flex;
     flex-direction: column;
     row-gap: var(--base-size-28);
@@ -27,9 +27,18 @@
     border-radius: var(--borderRadius-lg) 0 0 var(--borderRadius-lg);
 }
 
-.RegisterModal-form {
+.UserModal-form {
     display: flex;
     flex-direction: column;
     row-gap: var(--base-size-8);
+}
+
+.UserModal-containerButton {
+    align-self: center;
+
+    display: flex;
+    column-gap: var(--base-size-36);
+
+    margin-top: var(--base-size-24);
 }
 
