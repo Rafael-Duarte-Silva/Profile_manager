@@ -34,9 +34,7 @@ export const useUserDelete = () => {
         const ids: string[] = [];
 
         for (let i: number = 0; i < isChecked.length; i++) {
-            if (isChecked[i].checked) {
-                ids.push(isChecked[i].id);
-            } else if (position === i) {
+            if (isChecked[i].checked || position === i) {
                 ids.push(isChecked[i].id);
             } else {
                 continue;
