@@ -20,13 +20,13 @@ import { fullNameInitials } from "./utils/fullNameInitials";
 
 export const Table = () => {
     const { data } = useTableContext();
-    const { handleEdit } = useUserEdit();
-    const { mutate } = useUserDelete();
+    const { handleUserEdit } = useUserEdit();
+    const { handleUserDelete } = useUserDelete();
     const { initializeIsChecked, allIsChecked, handleAllIsChecked, isChecked, handleIsChecked } = useTable();
     const t = useTranslations("HomePage");
 
     useEffect(() => {
-        if (data?.length) initializeIsChecked(data?.length);
+        if (data) initializeIsChecked(data);
     }, [data]);
 
     return (
@@ -128,7 +128,7 @@ export const Table = () => {
                                             className="Table-profile-input"
                                             id={`profileInput${index}`}
                                             type="checkbox"
-                                            checked={isChecked[index] ?? false}
+                                            checked={isChecked[index] ? isChecked[index].checked : false}
                                             onChange={() => handleIsChecked(index)}
                                         />
                                         <label
@@ -204,13 +204,13 @@ export const Table = () => {
                                 <td className="Table-cell Table-cell--icons">
                                     <button
                                         type="button"
-                                        onClick={() => handleEdit(userData)}
+                                        onClick={() => handleUserEdit(userData)}
                                     >
                                         <IconEdit />
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={() => mutate(userData.id)}
+                                        onClick={() => handleUserDelete(index, isChecked)}
                                     >
                                         <IconDelete />
                                     </button>

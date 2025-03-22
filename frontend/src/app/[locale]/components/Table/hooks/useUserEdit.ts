@@ -4,7 +4,7 @@ import { UserData } from "@/interface/UserData";
 export const useUserEdit = () => {
     const { setValue, handelIsModalOpen } = useUserModalContext();
 
-    const handleEdit = (userData: UserData) => {
+    const handleUserEdit = (userData: UserData) => {
         handelIsModalOpen(true);
 
         setValue("email", userData.email);
@@ -14,6 +14,6 @@ export const useUserEdit = () => {
         setValue("job", userData.job);
     };
 
-    return { handleEdit };
+    return { handleUserEdit };
 };
 

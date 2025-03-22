@@ -1,22 +1,33 @@
 import { useState } from "react";
 
+import { UserData } from "@/interface/UserData";
+
+export type IsChecked = {
+    checked: boolean;
+    id: string;
+};
+
 export const useTable = () => {
     const [allIsChecked, setAllIsChecked] = useState<boolean>(false);
-    const [isChecked, setIsChecked] = useState<boolean[]>([false]);
+    const [isChecked, setIsChecked] = useState<IsChecked[]>([{ checked: false, id: "" }]);
 
-    const initializeIsChecked = (length: number = 0) => {
-        setIsChecked(new Array(length).fill(false));
+    const initializeIsChecked = (data: UserData[]) => {
+        const updatedIsChecked = data.map((userData) => ({ checked: false, id: userData.id }));
+        setIsChecked(updatedIsChecked);
     };
 
     const handleAllIsChecked = () => {
-        const updatedIsChecked = isChecked.map(() => !allIsChecked);
+        const updatedIsChecked = isChecked.map((item) => ({ checked: !allIsChecked, id: item.id }));
         setIsChecked(updatedIsChecked);
 
         setAllIsChecked(!allIsChecked);
     };
 
     const handleIsChecked = (position: number) => {
-        const updatedIsChecked = isChecked.map((item, index) => (index === position ? !item : item));
+        const updatedIsChecked = isChecked.map((item, index) => ({
+            checked: index === position ? !item.checked : item.checked,
+            id: item.id,
+        }));
         setIsChecked(updatedIsChecked);
     };
 

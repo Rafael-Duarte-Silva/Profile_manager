@@ -15,10 +15,9 @@ import com.example.profileManager.domain.user.UserRepository;
 import com.example.profileManager.domain.user.UserResponseDTO;
 import com.example.profileManager.domain.user.UserRole;
 
-import jakarta.persistence.EntityNotFoundException;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("user")
@@ -37,12 +36,8 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> login(@RequestParam String id) {
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
-        } else {
-            throw new EntityNotFoundException("User not found");
-        }
+    public ResponseEntity<Void> login(@RequestBody List<String> ids) {
+        repository.deleteAllById(ids);
 
         return ResponseEntity.ok().build();
     }

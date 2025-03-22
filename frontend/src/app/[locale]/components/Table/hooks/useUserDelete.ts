@@ -3,12 +3,15 @@ import axios, { AxiosPromise } from "axios";
 
 import { getCookie } from "@/utils/getCookie";
 
-const deleteData = (id: string): AxiosPromise<void> => {
+import { IsChecked } from "./useTable";
+
+const deleteData = (ids: string[]): AxiosPromise<void> => {
     const token = getCookie("jwt");
-    const response = axios.delete(process.env.NEXT_PUBLIC_API_URL + `/user?id=${id}`, {
+    const response = axios.delete(process.env.NEXT_PUBLIC_API_URL + "/user", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
+        data: ids,
     });
     return response;
 };
@@ -16,7 +19,7 @@ const deleteData = (id: string): AxiosPromise<void> => {
 export const useUserDelete = () => {
     const queryClient = useQueryClient();
 
-    const mutate = useMutation({
+    const { mutate } = useMutation({
         mutationFn: deleteData,
         retry: 2,
         onSuccess: () => {
@@ -27,6 +30,22 @@ export const useUserDelete = () => {
         },
     });
 
-    return mutate;
+    const handleUserDelete = (position: number, isChecked: IsChecked[]) => {
+        const ids: string[] = [];
+
+        for (let i: number = 0; i < isChecked.length; i++) {
+            if (isChecked[i].checked) {
+                ids.push(isChecked[i].id);
+            } else if (position === i) {
+                ids.push(isChecked[i].id);
+            } else {
+                continue;
+            }
+        }
+
+        mutate(ids);
+    };
+
+    return { handleUserDelete };
 };
 
