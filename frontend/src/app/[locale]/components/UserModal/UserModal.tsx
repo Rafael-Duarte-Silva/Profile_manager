@@ -8,8 +8,14 @@ import { Typography } from "@/components/ui/Typography";
 import { useUserModalContext } from "../../context/UserModalContext";
 
 export const UserModal = () => {
-    const { isModalOpen, handelIsModalOpen, register, handleSubmit, handelSendUserData, isEdit } =
-        useUserModalContext();
+    const {
+        isModalOpen,
+        handleIsModalOpen,
+        register,
+        handleSubmit,
+        handleSendUserData,
+        isEdit,
+    } = useUserModalContext();
 
     if (!isModalOpen) {
         return;
@@ -27,7 +33,7 @@ export const UserModal = () => {
 
                 <form
                     className="UserModal-form"
-                    onSubmit={handleSubmit(handelSendUserData)}
+                    onSubmit={handleSubmit(handleSendUserData)}
                 >
                     <Input
                         {...register("email")}
@@ -90,7 +96,7 @@ export const UserModal = () => {
                             variant="primary"
                             size="maxMd"
                             type="button"
-                            onClick={() => handelIsModalOpen(false)}
+                            onClick={() => handleIsModalOpen(false)}
                         >
                             Cancel
                             <IconSend />
@@ -101,4 +107,3 @@ export const UserModal = () => {
         </div>
     );
 };
-

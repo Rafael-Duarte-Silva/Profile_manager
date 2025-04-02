@@ -17,7 +17,7 @@ import { useUserModalContext } from "../../context/UserModalContext";
 import { SearchBar } from "../SearchBar";
 
 export const Heading = () => {
-    const { handelIsModalOpen } = useUserModalContext();
+    const { handleIsModalOpen } = useUserModalContext();
     const { mutate } = useGenerate();
 
     const t = useTranslations("HomePage");
@@ -93,7 +93,7 @@ export const Heading = () => {
                     size="maxMd"
                     type="button"
                     variant="primary"
-                    onClick={() => handelIsModalOpen(false)}
+                    onClick={() => handleIsModalOpen(false)}
                 >
                     {t("create")}
                     <IconCreate />
@@ -135,4 +135,3 @@ export const Heading = () => {
         </div>
     );
 };
-

@@ -18,4 +18,3 @@ export const IconSend = ({ className = "" }: { className?: string }) => {
         </svg>
     );
 };
-

@@ -1,2 +1,1 @@
 export { UserModal } from "./UserModal";
-

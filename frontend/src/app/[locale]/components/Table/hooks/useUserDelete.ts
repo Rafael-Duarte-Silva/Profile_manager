@@ -36,8 +36,6 @@ export const useUserDelete = () => {
         for (let i: number = 0; i < isChecked.length; i++) {
             if (isChecked[i].checked || position === i) {
                 ids.push(isChecked[i].id);
-            } else {
-                continue;
             }
         }
 
@@ -46,4 +44,3 @@ export const useUserDelete = () => {
 
     return { handleUserDelete };
 };
-

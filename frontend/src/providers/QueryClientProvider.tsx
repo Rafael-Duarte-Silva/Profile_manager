@@ -9,8 +9,13 @@ interface Props {
 }
 
 export function ReactQueryProvider({ children }: Props) {
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+        defaultOptions: { queries: { refetchOnWindowFocus: false } },
+    });
 
-    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+    return (
+        <QueryClientProvider client={queryClient}>
+            {children}
+        </QueryClientProvider>
+    );
 }
-

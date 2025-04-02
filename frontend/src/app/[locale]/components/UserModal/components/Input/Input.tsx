@@ -35,4 +35,3 @@ export const Input = ({ label = "", id = "", ...rest }: InputProps) => {
         </div>
     );
 };
-

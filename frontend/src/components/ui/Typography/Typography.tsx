@@ -21,7 +21,9 @@ const typography = cva("Typography", {
     },
 });
 
-interface TypographyProps extends HTMLAttributes<HTMLParagraphElement>, VariantProps<typeof typography> {
+interface TypographyProps
+    extends HTMLAttributes<HTMLParagraphElement>,
+        VariantProps<typeof typography> {
     asChild?: boolean;
     children?: ReactNode;
 }

@@ -8,4 +8,3 @@ export const fullNameInitials = (fullName: string | undefined): string => {
         .map((word) => word.charAt(0).toLowerCase())
         .join("");
 };
-

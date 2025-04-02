@@ -22,7 +22,13 @@ export const Table = () => {
     const { data } = useTableContext();
     const { handleUserEdit } = useUserEdit();
     const { handleUserDelete } = useUserDelete();
-    const { initializeIsChecked, allIsChecked, handleAllIsChecked, isChecked, handleIsChecked } = useTable();
+    const {
+        initializeIsChecked,
+        allIsChecked,
+        handleAllIsChecked,
+        isChecked,
+        handleIsChecked,
+    } = useTable();
     const t = useTranslations("HomePage");
 
     useEffect(() => {
@@ -96,131 +102,156 @@ export const Table = () => {
                     </tr>
                 </thead>
                 <tbody className="Table-body">
-                    {data?.map((userData, index) => (
-                        <tr
-                            className="Table-row"
-                            key={index}
-                        >
-                            <Typography asChild>
-                                <td className="Table-cell Table-cell--user">
-                                    <div className="Table-profile-wrape">
-                                        <div className="Table-avatar">{fullNameInitials(userData.fullName)}</div>
+                    {data ? (
+                        data?.map((userData, index) => (
+                            <tr
+                                className={`Table-row${isChecked[index] ? (isChecked[index].checked ? " is-checked" : "") : ""}`}
+                                key={index}
+                            >
+                                <Typography asChild>
+                                    <td className="Table-cell Table-cell--user">
+                                        <div className="Table-profile-wrape">
+                                            <div className="Table-avatar">
+                                                {fullNameInitials(
+                                                    userData.fullName,
+                                                )}
+                                            </div>
 
-                                        <div className="Table-profile-body">
-                                            <Typography
-                                                asChild
-                                                variant="primary"
-                                            >
-                                                <div className="Table-profile-name">{userData.fullName}</div>
-                                            </Typography>
+                                            <div className="Table-profile-body">
+                                                <Typography
+                                                    asChild
+                                                    variant="primary"
+                                                >
+                                                    <div className="Table-profile-name">
+                                                        {userData.fullName}
+                                                    </div>
+                                                </Typography>
 
-                                            <Typography
-                                                asChild
-                                                colors="Medium"
-                                            >
-                                                <div>{userData.login}</div>
-                                            </Typography>
+                                                <Typography
+                                                    asChild
+                                                    colors="Medium"
+                                                >
+                                                    <div>{userData.login}</div>
+                                                </Typography>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div>
-                                        <input
-                                            className="Table-profile-input"
-                                            id={`profileInput${index}`}
-                                            type="checkbox"
-                                            checked={isChecked[index] ? isChecked[index].checked : false}
-                                            onChange={() => handleIsChecked(index)}
-                                        />
-                                        <label
-                                            className="Table-profile-label"
-                                            htmlFor={`profileInput${index}`}
+                                        <div>
+                                            <input
+                                                className="Table-profile-input"
+                                                id={`profileInput${index}`}
+                                                type="checkbox"
+                                                checked={
+                                                    isChecked[index]
+                                                        ? isChecked[index]
+                                                              .checked
+                                                        : false
+                                                }
+                                                onChange={() =>
+                                                    handleIsChecked(index)
+                                                }
+                                            />
+                                            <label
+                                                className="Table-profile-label"
+                                                htmlFor={`profileInput${index}`}
+                                            >
+                                                <IconCheckbox className="Table-iconProfile" />
+                                            </label>
+                                        </div>
+                                    </td>
+                                </Typography>
+                                <Typography asChild>
+                                    <td className="Table-cell">
+                                        <Typography
+                                            asChild
+                                            colors="Medium"
+                                            className="Table-label"
                                         >
-                                            <IconCheckbox className="Table-iconProfile" />
-                                        </label>
-                                    </div>
-                                </td>
-                            </Typography>
-                            <Typography asChild>
-                                <td className="Table-cell">
-                                    <Typography
-                                        asChild
-                                        colors="Medium"
-                                        className="Table-label"
-                                    >
-                                        <span>{t("status")}</span>
-                                    </Typography>
-                                    {userData.status}
-                                </td>
-                            </Typography>
-                            <Typography asChild>
-                                <td className="Table-cell">
-                                    <Typography
-                                        asChild
-                                        colors="Medium"
-                                        className="Table-label"
-                                    >
-                                        <span>{t("email")}</span>
-                                    </Typography>
-                                    {userData.email}
-                                </td>
-                            </Typography>
-                            <Typography asChild>
-                                <td className="Table-cell">
-                                    <Typography
-                                        asChild
-                                        colors="Medium"
-                                        className="Table-label"
-                                    >
-                                        <span>{t("phone")}</span>
-                                    </Typography>
-                                    {userData.phone}
-                                </td>
-                            </Typography>
-                            <Typography asChild>
-                                <td className="Table-cell">
-                                    <Typography
-                                        asChild
-                                        colors="Medium"
-                                        className="Table-label"
-                                    >
-                                        <span>{t("job")}</span>
-                                    </Typography>
-                                    {userData.job}
-                                </td>
-                            </Typography>
-                            <Typography asChild>
-                                <td className="Table-cell">
-                                    <Typography
-                                        asChild
-                                        colors="Medium"
-                                        className="Table-label"
-                                    >
-                                        <span>{t("date")}</span>
-                                    </Typography>
-                                    {userData.dateCreated}
-                                </td>
-                            </Typography>
-                            <Typography asChild>
-                                <td className="Table-cell Table-cell--icons">
-                                    <button
-                                        type="button"
-                                        onClick={() => handleUserEdit(userData)}
-                                    >
-                                        <IconEdit />
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => handleUserDelete(index, isChecked)}
-                                    >
-                                        <IconDelete />
-                                    </button>
-                                </td>
-                            </Typography>
+                                            <span>{t("status")}</span>
+                                        </Typography>
+                                        {userData.status}
+                                    </td>
+                                </Typography>
+                                <Typography asChild>
+                                    <td className="Table-cell">
+                                        <Typography
+                                            asChild
+                                            colors="Medium"
+                                            className="Table-label"
+                                        >
+                                            <span>{t("email")}</span>
+                                        </Typography>
+                                        {userData.email}
+                                    </td>
+                                </Typography>
+                                <Typography asChild>
+                                    <td className="Table-cell">
+                                        <Typography
+                                            asChild
+                                            colors="Medium"
+                                            className="Table-label"
+                                        >
+                                            <span>{t("phone")}</span>
+                                        </Typography>
+                                        {userData.phone}
+                                    </td>
+                                </Typography>
+                                <Typography asChild>
+                                    <td className="Table-cell">
+                                        <Typography
+                                            asChild
+                                            colors="Medium"
+                                            className="Table-label"
+                                        >
+                                            <span>{t("job")}</span>
+                                        </Typography>
+                                        {userData.job}
+                                    </td>
+                                </Typography>
+                                <Typography asChild>
+                                    <td className="Table-cell">
+                                        <Typography
+                                            asChild
+                                            colors="Medium"
+                                            className="Table-label"
+                                        >
+                                            <span>{t("date")}</span>
+                                        </Typography>
+                                        {userData.dateCreated}
+                                    </td>
+                                </Typography>
+                                <Typography asChild>
+                                    <td className="Table-cell Table-cell--icons">
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                handleUserEdit(userData)
+                                            }
+                                        >
+                                            <IconEdit />
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                handleUserDelete(
+                                                    index,
+                                                    isChecked,
+                                                )
+                                            }
+                                        >
+                                            <IconDelete />
+                                        </button>
+                                    </td>
+                                </Typography>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td>Not found</td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </div>
     );
 };
-

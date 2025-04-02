@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 export const userMutateSchema = z.object({
-    email: z.string().min(1, { message: "This field has to be filled." }).email("Whoops, make sure it's an email"),
+    email: z
+        .string()
+        .min(1, { message: "This field has to be filled." })
+        .email("Whoops, make sure it's an email"),
     login: z
         .string()
         .min(1, { message: "This field has to be filled." })
@@ -23,4 +26,3 @@ export const userMutateSchema = z.object({
         .min(1, { message: "This field has to be filled." })
         .max(30, { message: "the max of characters are 30" }),
 });
-

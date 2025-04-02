@@ -14,6 +14,7 @@ const eslintConfig = [
     {
         rules: {
             "react/react-in-jsx-scope": "off",
+            "react-hooks/exhaustive-deps": "off",
             "no-restricted-imports": [
                 "error",
                 {
@@ -22,7 +23,12 @@ const eslintConfig = [
                 },
                 {
                     name: "next/navigation",
-                    importNames: ["redirect", "permanentRedirect", "useRouter", "usePathname"],
+                    importNames: [
+                        "redirect",
+                        "permanentRedirect",
+                        "useRouter",
+                        "usePathname",
+                    ],
                     message: "Please import from `@/i18n/routing` instead.",
                 },
             ],
@@ -31,4 +37,3 @@ const eslintConfig = [
 ];
 
 export default eslintConfig;
-

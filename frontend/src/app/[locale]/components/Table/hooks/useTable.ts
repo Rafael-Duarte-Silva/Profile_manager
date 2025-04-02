@@ -9,15 +9,23 @@ export type IsChecked = {
 
 export const useTable = () => {
     const [allIsChecked, setAllIsChecked] = useState<boolean>(false);
-    const [isChecked, setIsChecked] = useState<IsChecked[]>([{ checked: false, id: "" }]);
+    const [isChecked, setIsChecked] = useState<IsChecked[]>([
+        { checked: false, id: "" },
+    ]);
 
     const initializeIsChecked = (data: UserData[]) => {
-        const updatedIsChecked = data.map((userData) => ({ checked: false, id: userData.id }));
+        const updatedIsChecked = data.map((userData) => ({
+            checked: false,
+            id: userData.id,
+        }));
         setIsChecked(updatedIsChecked);
     };
 
     const handleAllIsChecked = () => {
-        const updatedIsChecked = isChecked.map((item) => ({ checked: !allIsChecked, id: item.id }));
+        const updatedIsChecked = isChecked.map((item) => ({
+            checked: !allIsChecked,
+            id: item.id,
+        }));
         setIsChecked(updatedIsChecked);
 
         setAllIsChecked(!allIsChecked);
@@ -31,6 +39,11 @@ export const useTable = () => {
         setIsChecked(updatedIsChecked);
     };
 
-    return { initializeIsChecked, allIsChecked, handleAllIsChecked, isChecked, handleIsChecked };
+    return {
+        initializeIsChecked,
+        allIsChecked,
+        handleAllIsChecked,
+        isChecked,
+        handleIsChecked,
+    };
 };
-

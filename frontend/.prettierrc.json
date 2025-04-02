@@ -1,9 +1,11 @@
 {
-    "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-css-order"],
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports",
+        "prettier-plugin-css-order"
+    ],
     "endOfLine": "crlf",
     "semi": true,
     "singleAttributePerLine": true,
-    "printWidth": 120,
     "tabWidth": 4,
     "importOrder": [
         "\\.(css|scss)$",

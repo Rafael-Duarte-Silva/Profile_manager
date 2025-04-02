@@ -71,6 +71,10 @@
         border-top: var(--borderWidth-sm) solid var(--color-zero-dark);
 
         border-radius: 0;
+
+        &.is-checked {
+            background-color: var(--color-zero-light);
+        }
     }
 }
 
@@ -191,4 +195,3 @@
 .Table-iconProfile {
     display: none;
 }
-

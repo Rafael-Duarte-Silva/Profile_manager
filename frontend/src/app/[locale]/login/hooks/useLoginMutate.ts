@@ -10,7 +10,10 @@ interface LoginPromise {
 }
 
 const postData = (data: LoginData): AxiosPromise<LoginPromise> => {
-    const response = axios.post(process.env.NEXT_PUBLIC_API_URL + "/auth/login", data);
+    const response = axios.post(
+        process.env.NEXT_PUBLIC_API_URL + "/auth/login",
+        data,
+    );
     return response;
 };
 
@@ -28,4 +31,3 @@ export const useLoginMutate = () => {
 
     return mutate;
 };
-

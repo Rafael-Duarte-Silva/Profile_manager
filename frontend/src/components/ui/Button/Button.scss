@@ -1,4 +1,6 @@
 .Button {
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +14,7 @@
 
     padding-inline: var(--base-size-12);
 
-    border: var(--borderWidth-sm) solid var(--color-zero-dark);
+    border: var(--borderWidth-md) solid var(--color-zero-dark);
     border-radius: 10px;
 
     &--primary {
@@ -45,4 +47,3 @@
         }
     }
 }
-

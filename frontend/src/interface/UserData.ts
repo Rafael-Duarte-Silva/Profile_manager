@@ -8,4 +8,3 @@ export interface UserData {
     status: string;
     dateCreated: string;
 }
-

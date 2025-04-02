@@ -35,8 +35,22 @@ public class UserController {
         return userList;
     }
 
+    @GetMapping("search")
+    public ResponseEntity<?> search(@RequestParam int page, @RequestParam String search) {
+        Pageable pageable = PageRequest.of(page - 1, 8, Sort.by("dateCreated").descending());
+
+        List<UserResponseDTO> userList = repository.searchByLogin(search, pageable).stream()
+                .map(UserResponseDTO::new).toList();
+
+        if (search == "" || userList.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(userList);
+    }
+
     @DeleteMapping
-    public ResponseEntity<Void> login(@RequestBody List<String> ids) {
+    public ResponseEntity<Void> delete(@RequestBody List<String> ids) {
         repository.deleteAllById(ids);
 
         return ResponseEntity.ok().build();

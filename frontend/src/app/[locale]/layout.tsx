@@ -42,10 +42,11 @@ export default async function LocaleLayout({
         <html lang={locale}>
             <body className={inter.className}>
                 <ReactQueryProvider>
-                    <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+                    <NextIntlClientProvider messages={messages}>
+                        {children}
+                    </NextIntlClientProvider>
                 </ReactQueryProvider>
             </body>
         </html>
     );
 }
-

@@ -7,14 +7,15 @@ export const Pagination = () => {
     const { page, handlePage } = useTableContext();
 
     const length: number = 7;
+    const pageNumber: number = parseInt(page);
+    const mid = Math.floor(length / 2);
 
     return (
         <ul className="Pagination">
             {new Array(length).fill(0).map((value, index) => {
-                const pageNumber: number = parseInt(page);
-                const mid = Math.floor(length / 2);
-
-                value = (pageNumber <= mid ? index + 1 : index - mid + pageNumber).toString();
+                value = (
+                    pageNumber <= mid ? index + 1 : index - mid + pageNumber
+                ).toString();
 
                 return (
                     <li
@@ -34,4 +35,3 @@ export const Pagination = () => {
         </ul>
     );
 };
-

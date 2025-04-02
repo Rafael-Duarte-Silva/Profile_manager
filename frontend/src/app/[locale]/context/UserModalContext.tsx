@@ -17,15 +17,17 @@ import { UserMutateSchema } from "../components/UserModal/types/UserMutateSchema
 type UserModalContextProps = {
     isEdit: boolean;
     isModalOpen: boolean;
-    handelIsModalOpen(isEdit: boolean): void;
+    handleIsModalOpen(isEdit: boolean): void;
     errors: FieldErrors<UserMutateSchema>;
-    handelSendUserData: SubmitHandler<UserMutateSchema>;
+    handleSendUserData: SubmitHandler<UserMutateSchema>;
     handleSubmit: UseFormHandleSubmit<UserMutateSchema>;
     register: UseFormRegister<UserMutateSchema>;
     setValue: UseFormSetValue<UserMutateSchema>;
 };
 
-export const UserModalContext = createContext<UserModalContextProps | undefined>(undefined);
+export const UserModalContext = createContext<
+    UserModalContextProps | undefined
+>(undefined);
 
 export const UserModalProvider = ({ children }: { children: ReactNode }) => {
     const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -36,16 +38,19 @@ export const UserModalProvider = ({ children }: { children: ReactNode }) => {
         handleSubmit,
         setValue,
         formState: { errors },
-    } = useForm<UserMutateSchema>({ resolver: zodResolver(userMutateSchema), mode: "onBlur" });
+    } = useForm<UserMutateSchema>({
+        resolver: zodResolver(userMutateSchema),
+        mode: "onBlur",
+    });
 
-    const handelSendUserData: SubmitHandler<UserMutateSchema> = (data) => {
+    const handleSendUserData: SubmitHandler<UserMutateSchema> = (data) => {
         mutate(data);
-        handelIsModalOpen(false);
+        handleIsModalOpen(false);
     };
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-    const handelIsModalOpen = (isEdit: boolean) => {
+    const handleIsModalOpen = (isEdit: boolean) => {
         setIsEdit(isEdit);
         setIsModalOpen(!isModalOpen);
     };
@@ -55,9 +60,9 @@ export const UserModalProvider = ({ children }: { children: ReactNode }) => {
             value={{
                 isEdit,
                 isModalOpen,
-                handelIsModalOpen,
+                handleIsModalOpen,
                 register,
-                handelSendUserData,
+                handleSendUserData,
                 handleSubmit,
                 errors,
                 setValue,
@@ -77,4 +82,3 @@ export const useUserModalContext = () => {
 
     return userModalContext;
 };
-

@@ -2,10 +2,10 @@ import { useUserModalContext } from "@/app/[locale]/context/UserModalContext";
 import { UserData } from "@/interface/UserData";
 
 export const useUserEdit = () => {
-    const { setValue, handelIsModalOpen } = useUserModalContext();
+    const { setValue, handleIsModalOpen } = useUserModalContext();
 
     const handleUserEdit = (userData: UserData) => {
-        handelIsModalOpen(true);
+        handleIsModalOpen(true);
 
         setValue("email", userData.email);
         setValue("login", userData.login);
@@ -16,4 +16,3 @@ export const useUserEdit = () => {
 
     return { handleUserEdit };
 };
-
