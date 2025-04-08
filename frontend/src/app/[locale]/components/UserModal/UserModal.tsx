@@ -1,7 +1,7 @@
 import "./UserModal.scss";
 
-import { Input } from "./components/Input";
 import { IconSend } from "@/components/icons/IconSend";
+import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 

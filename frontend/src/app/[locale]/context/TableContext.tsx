@@ -52,7 +52,7 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
         isEnable: false,
     });
     const [sort, setSort] = useState<QueryParam>({
-        value: searchParams.get("sort") || "",
+        value: searchParams.get("sort") || "dateCreated",
         isEnable: false,
     });
     const { data, refetch: refetchPage } = useUserData(

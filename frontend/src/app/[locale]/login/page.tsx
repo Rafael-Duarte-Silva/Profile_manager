@@ -1,52 +1,54 @@
 "use client";
 
-import "./page.css";
+import "./page.scss";
 
-import { useState } from "react";
+import { Input } from "@/components/Input";
+import { Button } from "@/components/ui/Button";
+import { Typography } from "@/components/ui/Typography";
 
-import { useLoginMutate } from "./hooks/useLoginMutate";
-
-import { Input } from "./Input";
+import { useLoginForm } from "./hooks/useLoginForm";
 
 export default function Login() {
-    const [login, setLogin] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const { mutate, isPending } = useLoginMutate();
-
-    const submit = () => {
-        mutate({ login, password });
-    };
+    const { handleSubmit, handleSendLoginData, isPending, register } =
+        useLoginForm();
 
     return (
         <div className="Login">
-            <div className="Login-wrap">
-                <form>
-                    <ul className="Login-listForm">
-                        <li className="Login-itemForm">
-                            <Input
-                                id="login"
-                                label="login"
-                                value={login}
-                                updateValue={setLogin}
-                            />
-                        </li>
-                        <li className="Login-itemForm">
-                            <Input
-                                id="password"
-                                label="password"
-                                value={password}
-                                updateValue={setPassword}
-                            />
-                        </li>
-                    </ul>
-                </form>
-                <button
-                    className="Login-button"
-                    onClick={submit}
+            <form
+                className="Login-wrap"
+                onSubmit={handleSubmit(handleSendLoginData)}
+            >
+                <Typography
+                    asChild
+                    variant="fourth"
                 >
-                    {isPending ? "sending..." : "submit"}
-                </button>
-            </div>
+                    <h1>login</h1>
+                </Typography>
+
+                <Input
+                    {...register("login")}
+                    label="login"
+                    id="loginInput"
+                    autoComplete="name"
+                    placeholder="@Barry"
+                    type="text"
+                />
+                <Input
+                    {...register("password")}
+                    label="password"
+                    id="passwordInput"
+                    autoComplete="new-password"
+                    placeholder="********"
+                    type="password"
+                />
+                <Button
+                    className="Login-button"
+                    variant="primary"
+                    type="submit"
+                >
+                    {isPending ? "sending..." : "login"}
+                </Button>
+            </form>
         </div>
     );
 }

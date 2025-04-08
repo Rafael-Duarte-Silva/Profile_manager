@@ -1,0 +1,40 @@
+.Login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Login-wrap {
+    gap: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: var(--base-size-320);
+    height: var(--base-size-384);
+    padding-inline: var(--base-size-32);
+
+    background-color: var(--color-zero);
+    border-radius: var(--borderRadius-lg);
+
+    @media screen and (min-width: 75rem) {
+        width: var(--base-size-384);
+    }
+}
+
+.Login-button {
+    &.Button {
+        align-self: center;
+
+        width: 100%;
+        height: var(--base-size-36);
+
+        font-size: var(--size-md);
+
+        @media screen and (min-width: 75rem) {
+            height: var(--base-size-44);
+        }
+    }
+}
