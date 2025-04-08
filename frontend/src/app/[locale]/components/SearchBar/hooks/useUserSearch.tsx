@@ -25,7 +25,7 @@ export const useUserSearch = (
 ) => {
     const { refetch } = useQuery({
         queryFn: () => fetchData(search, page),
-        queryKey: ["users"],
+        queryKey: ["users", { filter: `${search ? "deactivate" : "active"}` }],
         retry: 2,
         enabled: enabled,
     });

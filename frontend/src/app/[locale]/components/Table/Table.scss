@@ -36,7 +36,7 @@
 
             column-gap: var(--base-size-40);
 
-            padding-inline-start: var(--base-size-20);
+            padding-inline: var(--base-size-20);
         }
     }
 }
@@ -194,4 +194,10 @@
 
 .Table-iconProfile {
     display: none;
+}
+
+.Table-sort {
+    &.Heading-details {
+        margin-left: auto;
+    }
 }

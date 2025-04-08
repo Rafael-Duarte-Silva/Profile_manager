@@ -7,16 +7,18 @@ import { IconCheckbox } from "@/components/icons/IconCheckbox";
 import { IconCreate } from "@/components/icons/IconCreate";
 import { IconGenerate } from "@/components/icons/IconGenerate";
 import { IconLanguages } from "@/components/icons/IconLanguages";
-import { IconSort } from "@/components/icons/IconSort";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
 import { useGenerate } from "./hooks/useGenerate";
 
+import { useTableContext } from "../../context/TableContext";
 import { useUserModalContext } from "../../context/UserModalContext";
 import { SearchBar } from "../SearchBar";
+import { Sort } from "../Sort";
 
 export const Heading = () => {
+    const { allIsChecked, handleAllIsChecked } = useTableContext();
     const { handleIsModalOpen } = useUserModalContext();
     const { mutate } = useGenerate();
 
@@ -33,7 +35,7 @@ export const Heading = () => {
 
                 <div className="Heading-containerButton">
                     <SearchBar />
-                    <details className="Heading-containerLanguage">
+                    <details className="Heading-details">
                         <Button
                             asChild
                             size="maxMd"
@@ -53,7 +55,7 @@ export const Heading = () => {
 
                         <Button
                             asChild
-                            className="Heading-languageModal"
+                            className="Heading-Modal"
                         >
                             <div>
                                 <Typography
@@ -116,6 +118,8 @@ export const Heading = () => {
                             className="Table-profile-input"
                             id="profileInputAll"
                             type="checkbox"
+                            checked={allIsChecked}
+                            onChange={handleAllIsChecked}
                         />
                         <label
                             className="Table-profile-label"
@@ -127,10 +131,7 @@ export const Heading = () => {
                     <Typography colors="DarkMedium">{t("select")}</Typography>
                 </div>
 
-                <div className="Heading-row Heading-row--filter">
-                    <Typography colors="DarkMedium">{t("date")}</Typography>
-                    <IconSort />
-                </div>
+                <Sort />
             </div>
         </div>
     );

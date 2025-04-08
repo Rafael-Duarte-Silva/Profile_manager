@@ -26,8 +26,9 @@ public class UserController {
     UserRepository repository;
 
     @GetMapping
-    public List<UserResponseDTO> getAll(@RequestParam int page) {
-        Pageable pageable = PageRequest.of(page - 1, 8, Sort.by("dateCreated").descending());
+    public List<UserResponseDTO> getAll(@RequestParam int page,
+            @RequestParam(defaultValue = "dateCreated") String sort) {
+        Pageable pageable = PageRequest.of(page - 1, 8, Sort.by(sort).descending());
 
         List<UserResponseDTO> userList = repository.findByRole(UserRole.USER, pageable).stream()
                 .map(UserResponseDTO::new).toList();
@@ -36,8 +37,9 @@ public class UserController {
     }
 
     @GetMapping("search")
-    public ResponseEntity<?> search(@RequestParam int page, @RequestParam String search) {
-        Pageable pageable = PageRequest.of(page - 1, 8, Sort.by("dateCreated").descending());
+    public ResponseEntity<?> search(@RequestParam int page, @RequestParam String search,
+            @RequestParam(defaultValue = "dateCreated") String sort) {
+        Pageable pageable = PageRequest.of(page - 1, 8, Sort.by(sort).descending());
 
         List<UserResponseDTO> userList = repository.searchByLogin(search, pageable).stream()
                 .map(UserResponseDTO::new).toList();

@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosPromise } from "axios";
 
-import { getCookie } from "@/utils/getCookie";
+import { IsChecked } from "../../../hooks/useTable";
 
-import { IsChecked } from "./useTable";
+import { getCookie } from "@/utils/getCookie";
 
 const deleteData = (ids: string[]): AxiosPromise<void> => {
     const token = getCookie("jwt");
@@ -23,7 +23,9 @@ export const useUserDelete = () => {
         mutationFn: deleteData,
         retry: 2,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["users"] });
+            queryClient.invalidateQueries({
+                queryKey: ["users", { filter: "deactivate" }],
+            });
         },
         onError: (error) => {
             console.error("Error delete user:", error);

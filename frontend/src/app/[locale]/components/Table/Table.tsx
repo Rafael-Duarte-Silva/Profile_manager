@@ -12,11 +12,12 @@ import { IconDelete } from "@/components/icons/IconDelete";
 import { IconEdit } from "@/components/icons/IconEdit";
 import { Typography } from "@/components/ui/Typography";
 
-import { useTable } from "./hooks/useTable";
 import { useUserDelete } from "./hooks/useUserDelete";
 import { useUserEdit } from "./hooks/useUserEdit";
 
 import { fullNameInitials } from "./utils/fullNameInitials";
+
+import { Sort } from "../Sort";
 
 export const Table = () => {
     const { data } = useTableContext();
@@ -28,7 +29,7 @@ export const Table = () => {
         handleAllIsChecked,
         isChecked,
         handleIsChecked,
-    } = useTable();
+    } = useTableContext();
     const t = useTranslations("HomePage");
 
     useEffect(() => {
@@ -62,6 +63,7 @@ export const Table = () => {
                                     </label>
                                 </div>
                                 {t("user")}
+                                <Sort className="Table-sort" />
                             </th>
                         </Typography>
                         <Typography

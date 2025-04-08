@@ -14,6 +14,7 @@ import { useSearchParams } from "next/navigation";
 
 import { useUserSearch } from "../components/SearchBar/hooks/useUserSearch";
 
+import { IsChecked, useTable } from "../hooks/useTable";
 import { useUserData } from "../hooks/useUserData";
 
 type QueryParam = {
@@ -22,7 +23,14 @@ type QueryParam = {
 };
 
 type TableContextProps = {
+    initializeIsChecked: (data: UserData[]) => void;
+    allIsChecked: boolean;
+    handleAllIsChecked: () => void;
+    isChecked: IsChecked[];
+    handleIsChecked: (position: number) => void;
     page: string;
+    sort: string;
+    handleSort(e: React.MouseEvent<HTMLAnchorElement>, sort: string): void;
     handlePage(page: string): void;
     data: UserData[] | undefined;
     search: QueryParam;
@@ -43,8 +51,13 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
         value: searchParams.get("page") || "",
         isEnable: false,
     });
+    const [sort, setSort] = useState<QueryParam>({
+        value: searchParams.get("sort") || "",
+        isEnable: false,
+    });
     const { data, refetch: refetchPage } = useUserData(
         page.value,
+        sort.value,
         !searchParams.has("search"),
     );
 
@@ -58,9 +71,29 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
         searchParams.has("search"),
     );
 
+    const mappingSort: { [key: string]: string } = {
+        user: "login",
+        status: "status",
+        email: "email",
+        phone: "phone",
+        job: "job",
+        date: "dateCreated",
+    };
+
+    const handleSort = (
+        e: React.MouseEvent<HTMLAnchorElement>,
+        sort: string,
+    ) => {
+        e.preventDefault();
+
+        router.push(
+            `/?${searchParams.get("search") ? `search=${search.value}&` : ""}sort=${mappingSort[sort]}&page=1`,
+        );
+    };
+
     const handlePage = (page: string) => {
         router.push(
-            `/?${searchParams.get("search") ? `search=${search.value}&` : ""}page=${page}`,
+            `/?${searchParams.get("search") ? `search=${search.value}&` : ""}sort=${sort.value}&page=${page}`,
         );
     };
 
@@ -72,39 +105,47 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
 
     const handleSearch = () => {
         if (search.value && search.value !== searchParams.get("search")) {
-            router.push(`/?search=${search.value}&page=1`);
+            router.push(`/?search=${search.value}&sort=${sort.value}&page=1`);
         }
     };
 
     useEffect(() => {
         const searchParam = searchParams.get("search") || "";
+        const sortParam = searchParams.get("sort") || "";
         const pageParam = searchParams.get("page") || "";
 
         if (searchParams.has("search")) {
             setSearch({ value: searchParam, isEnable: true });
             setPage({ ...page, value: pageParam });
-        } else if (pageParam) {
+        } else if (pageParam && sortParam) {
+            setSort({ value: sortParam, isEnable: true });
             setPage({ value: pageParam, isEnable: true });
         }
     }, [searchParams.toString()]);
 
     useEffect(() => {
-        if (page.isEnable || search.isEnable) {
-            if (page.isEnable) {
+        if (page.isEnable || search.isEnable || sort.isEnable) {
+            if (page.isEnable || sort.isEnable) {
                 refetchPage();
             } else {
                 refetchSearch();
             }
             setPage({ ...page, isEnable: false });
+            setSort({ ...sort, isEnable: false });
             setSearch({ ...search, isEnable: false });
         }
-    }, [page.isEnable, search.isEnable]);
+    }, [page.isEnable, search.isEnable, sort.isEnable]);
+
+    const table = useTable();
 
     return (
         <TableContext.Provider
             value={{
+                ...table,
                 data,
                 page: page.value,
+                sort: sort.value,
+                handleSort,
                 handlePage,
                 handleSarchKeyboard,
                 handleSearch,
