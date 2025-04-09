@@ -1,17 +1,25 @@
 {
     "HomePage": {
-        "title": "Gerenciador de perfil",
-        "create": "Criar",
-        "generate": "Gerar",
-        "select": "Selecionar Tudo",
+        "title": "gerenciador de perfil",
+        "create": "criar",
+        "generate": "gerar",
+        "select": "selecionar tudo",
+        "search": "buscar",
+        "language": "idioma",
 
-        "user": "Usuário",
-        "name": "Nome",
-        "nickName": "Nick name",
-        "status": "Status",
-        "email": "E-mail",
-        "phone": "Telefone",
-        "job": "Cargo",
-        "date": "Data"
+        "user": "usuário",
+        "fullName": "nome completo",
+        "name": "nome",
+        "login": "login",
+        "password": "senha",
+        "status": "status",
+        "email": "e-mail",
+        "phone": "telefone",
+        "job": "cargo",
+        "date": "data",
+
+        "send": "enviar",
+        "edit": "editar",
+        "cancel": "cancelar"
     }
 }

@@ -174,7 +174,10 @@ export const Table = () => {
                                         {userData.status}
                                     </td>
                                 </Typography>
-                                <Typography asChild>
+                                <Typography
+                                    asChild
+                                    text="lowerCase"
+                                >
                                     <td className="Table-cell">
                                         <Typography
                                             asChild

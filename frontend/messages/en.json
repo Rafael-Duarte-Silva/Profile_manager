@@ -1,17 +1,25 @@
 {
     "HomePage": {
-        "title": "Profile manager",
-        "create": "Create",
-        "generate": "Generate",
-        "select": "Select all",
+        "title": "profile manager",
+        "create": "create",
+        "generate": "generate",
+        "select": "select all",
+        "search": "search",
+        "language": "language",
 
-        "user": "User",
-        "name": "Name",
-        "nickName": "Nick name",
-        "status": "Status",
-        "email": "E-mail",
-        "phone": "Phone",
-        "job": "Job",
-        "date": "Date"
+        "user": "user",
+        "fullName": "full name",
+        "name": "name",
+        "login": "login",
+        "password": "password",
+        "status": "status",
+        "email": "e-mail",
+        "phone": "phone",
+        "job": "job",
+        "date": "date",
+
+        "send": "send",
+        "edit": "edit",
+        "cancel": "cancel"
     }
 }

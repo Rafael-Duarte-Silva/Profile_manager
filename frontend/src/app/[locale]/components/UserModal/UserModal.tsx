@@ -1,5 +1,7 @@
 import "./UserModal.scss";
 
+import { useTranslations } from "next-intl";
+
 import { IconSend } from "@/components/icons/IconSend";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/Button";
@@ -16,6 +18,7 @@ export const UserModal = () => {
         handleSendUserData,
         isEdit,
     } = useUserModalContext();
+    const t = useTranslations("HomePage");
 
     if (!isModalOpen) {
         return;
@@ -37,7 +40,7 @@ export const UserModal = () => {
                 >
                     <Input
                         {...register("email")}
-                        label="Email"
+                        label={t("email")}
                         id="user-email"
                         autoComplete="email"
                         placeholder="example@fictitious.unreal"
@@ -45,7 +48,7 @@ export const UserModal = () => {
                     />
                     <Input
                         {...register("login")}
-                        label="Login"
+                        label={t("login")}
                         id="user-login"
                         autoComplete="name"
                         placeholder="@Barry"
@@ -53,7 +56,7 @@ export const UserModal = () => {
                     />
                     <Input
                         {...register("fullName")}
-                        label="Full Name"
+                        label={t("fullName")}
                         id="user-fullName"
                         autoComplete="name"
                         placeholder="Barry Allen"
@@ -61,7 +64,7 @@ export const UserModal = () => {
                     />
                     <Input
                         {...register("password")}
-                        label="Password"
+                        label={t("password")}
                         id="user-password"
                         autoComplete="new-password"
                         placeholder="********"
@@ -69,7 +72,7 @@ export const UserModal = () => {
                     />
                     <Input
                         {...register("phone")}
-                        label="Phone"
+                        label={t("phone")}
                         id="user-phone"
                         autoComplete="tel"
                         placeholder="+55 (11) 29979-2458"
@@ -77,7 +80,7 @@ export const UserModal = () => {
                     />
                     <Input
                         {...register("job")}
-                        label="Job"
+                        label={t("job")}
                         id="user-job"
                         placeholder="Runner"
                         type="text"
@@ -89,7 +92,7 @@ export const UserModal = () => {
                             size="maxMd"
                             type="submit"
                         >
-                            {isEdit ? "Edit" : "Send"}
+                            {isEdit ? t("edit") : t("send")}
                             <IconSend />
                         </Button>
                         <Button
@@ -98,7 +101,7 @@ export const UserModal = () => {
                             type="button"
                             onClick={() => handleIsModalOpen(false)}
                         >
-                            Cancel
+                            {t("cancel")}
                             <IconSend />
                         </Button>
                     </div>

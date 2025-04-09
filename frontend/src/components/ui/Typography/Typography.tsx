@@ -18,6 +18,9 @@ const typography = cva("Typography", {
             Medium: "Typography--color-medium",
             DarkMedium: "Typography--color-darkMedium",
         },
+        text: {
+            lowerCase: "Typography--lowerCase",
+        },
     },
 });
 
@@ -31,6 +34,7 @@ interface TypographyProps
 export const Typography = ({
     variant,
     colors,
+    text,
     asChild = false,
     className = "",
     children,
@@ -40,7 +44,7 @@ export const Typography = ({
 
     return (
         <Comp
-            className={typography({ variant, colors, className })}
+            className={typography({ variant, colors, text, className })}
             {...props}
         >
             {children}

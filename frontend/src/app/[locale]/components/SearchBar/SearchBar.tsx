@@ -1,5 +1,7 @@
 import "./SearchBar.scss";
 
+import { useTranslations } from "next-intl";
+
 import { IconSearch } from "@/components/icons/IconSearch";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
@@ -9,6 +11,7 @@ import { useTableContext } from "../../context/TableContext";
 export const SearchBar = () => {
     const { handleSarchKeyboard, handleSearch, search, setSearch } =
         useTableContext();
+    const t = useTranslations("HomePage");
 
     return (
         <Button
@@ -28,7 +31,7 @@ export const SearchBar = () => {
                 >
                     <input
                         type="search"
-                        placeholder="Search"
+                        placeholder={t("search")}
                         onChange={(e) =>
                             setSearch({
                                 ...search,

@@ -48,21 +48,22 @@ export const Heading = () => {
                                     variant="second"
                                     colors="DarkMedium"
                                 >
-                                    <span>Language</span>
+                                    <span>{t("language")}</span>
                                 </Typography>
                             </summary>
                         </Button>
 
                         <Button
                             asChild
-                            className="Heading-Modal"
+                            className="Heading-modal"
                         >
                             <div>
                                 <Typography
                                     asChild
                                     variant="second"
                                     colors="DarkMedium"
-                                    className="Heading-Link"
+                                    text="lowerCase"
+                                    className="Heading-link"
                                 >
                                     <Link
                                         href="/?page=1"
@@ -75,7 +76,8 @@ export const Heading = () => {
                                     asChild
                                     variant="second"
                                     colors="DarkMedium"
-                                    className="Heading-Link"
+                                    text="lowerCase"
+                                    className="Heading-link"
                                 >
                                     <Link
                                         href="/?page=1"

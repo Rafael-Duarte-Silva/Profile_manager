@@ -43,7 +43,7 @@ export const Sort = ({ className = "" }: { className?: string }) => {
 
             <Button
                 asChild
-                className="Heading-Modal"
+                className="Heading-modal"
             >
                 <div>
                     {labelList.map((value, index) => (
@@ -52,7 +52,7 @@ export const Sort = ({ className = "" }: { className?: string }) => {
                             asChild
                             variant="second"
                             colors="DarkMedium"
-                            className="Heading-Link"
+                            className="Heading-link"
                         >
                             <Link
                                 href={`/?sort=${value}&page=1`}
