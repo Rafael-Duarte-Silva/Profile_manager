@@ -7,6 +7,8 @@
 .Input {
     height: var(--base-size-48);
 
+    text-transform: lowercase;
+
     padding: var(--base-size-10);
 
     border: var(--borderWidth-sm) solid var(--color-zero-dark);

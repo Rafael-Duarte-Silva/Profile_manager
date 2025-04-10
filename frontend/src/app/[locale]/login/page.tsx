@@ -30,14 +30,14 @@ export default function Login() {
                     label="login"
                     id="loginInput"
                     autoComplete="name"
-                    placeholder="@Barry"
+                    placeholder="admin"
                     type="text"
                 />
                 <Input
                     {...register("password")}
                     label="password"
                     id="passwordInput"
-                    autoComplete="new-password"
+                    autoComplete="current-password"
                     placeholder="********"
                     type="password"
                 />

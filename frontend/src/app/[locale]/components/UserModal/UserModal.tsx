@@ -31,7 +31,7 @@ export const UserModal = () => {
                     asChild
                     variant="fourth"
                 >
-                    <h1>{isEdit ? "Edit a User" : "Create a User"}</h1>
+                    <h1>{isEdit ? t("editUser") : t("createUser")}</h1>
                 </Typography>
 
                 <form
@@ -51,7 +51,7 @@ export const UserModal = () => {
                         label={t("login")}
                         id="user-login"
                         autoComplete="name"
-                        placeholder="@Barry"
+                        placeholder="@barry"
                         type="text"
                     />
                     <Input
@@ -59,7 +59,7 @@ export const UserModal = () => {
                         label={t("fullName")}
                         id="user-fullName"
                         autoComplete="name"
-                        placeholder="Barry Allen"
+                        placeholder="barry Allen"
                         type="text"
                     />
                     <Input
@@ -82,7 +82,7 @@ export const UserModal = () => {
                         {...register("job")}
                         label={t("job")}
                         id="user-job"
-                        placeholder="Runner"
+                        placeholder="runner"
                         type="text"
                     />
 

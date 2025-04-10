@@ -41,31 +41,31 @@ export const Table = () => {
             <table className="Table">
                 <thead className="Table-head">
                     <tr>
-                        <Typography
-                            asChild
-                            colors="DarkMedium"
-                            className="Table-head-row Table-head-row--user"
-                        >
-                            <th>
-                                <div>
-                                    <input
-                                        className="Table-profile-input"
-                                        id={`profileAllInput`}
-                                        type="checkbox"
-                                        checked={allIsChecked}
-                                        onChange={handleAllIsChecked}
-                                    />
-                                    <label
-                                        className="Table-profile-label"
-                                        htmlFor={`profileAllInput`}
-                                    >
-                                        <IconCheckbox className="Table-iconProfile" />
-                                    </label>
-                                </div>
-                                {t("user")}
-                                <Sort className="Table-sort" />
-                            </th>
-                        </Typography>
+                        <th className="Table-head-row Table-head-row--user">
+                            <div>
+                                <input
+                                    className="Table-profile-input"
+                                    id={`profileAllInput`}
+                                    type="checkbox"
+                                    checked={allIsChecked}
+                                    onChange={handleAllIsChecked}
+                                />
+                                <label
+                                    className="Table-profile-label"
+                                    htmlFor={`profileAllInput`}
+                                >
+                                    <IconCheckbox className="Table-iconProfile" />
+                                </label>
+                            </div>
+                            <Typography
+                                asChild
+                                colors="DarkMedium"
+                            >
+                                <span>{t("user")}</span>
+                            </Typography>
+
+                            <Sort className="Table-sort" />
+                        </th>
                         <Typography
                             asChild
                             colors="DarkMedium"

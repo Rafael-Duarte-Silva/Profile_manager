@@ -7,6 +7,9 @@
         "search": "search",
         "language": "language",
 
+        "createUser": "create a user",
+        "editUser": "edit a user",
+
         "user": "user",
         "fullName": "full name",
         "name": "name",
