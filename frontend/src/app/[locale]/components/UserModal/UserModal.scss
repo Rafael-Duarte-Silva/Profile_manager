@@ -1,4 +1,6 @@
-.UserModal-background {
+@use "@/styles/settings/breakpoint" as *;
+
+.UserModal-wrap {
     z-index: 1;
     position: fixed;
     inset: 0;
@@ -15,7 +17,7 @@
 .UserModal {
     display: flex;
     flex-direction: column;
-    row-gap: var(--base-size-28);
+    row-gap: var(--base-size-20);
 
     width: 26.25rem;
     height: 100%;
@@ -24,13 +26,21 @@
 
     background-color: var(--color-zero);
 
-    border-radius: var(--borderRadius-lg) 0 0 var(--borderRadius-lg);
+    @media screen and (min-width: $breakpoint-xl) {
+        row-gap: var(--base-size-28);
+
+        border-radius: var(--borderRadius-lg) 0 0 var(--borderRadius-lg);
+    }
 }
 
 .UserModal-form {
     display: flex;
     flex-direction: column;
-    row-gap: var(--base-size-8);
+    row-gap: var(--base-size-4);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        row-gap: var(--base-size-8);
+    }
 }
 
 .UserModal-containerButton {
@@ -39,5 +49,9 @@
     display: flex;
     column-gap: var(--base-size-36);
 
-    margin-top: var(--base-size-24);
+    margin-top: var(--base-size-20);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        margin-top: var(--base-size-24);
+    }
 }

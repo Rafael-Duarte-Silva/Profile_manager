@@ -1,3 +1,5 @@
+@use "@/styles/settings/breakpoint" as *;
+
 .Heading {
     display: flex;
     justify-content: space-between;
@@ -7,20 +9,18 @@
         column-gap: var(--base-size-12);
 
         margin-block-start: var(--base-size-20);
-    }
 
-    &--filter {
-        margin-block-start: var(--base-size-28);
-    }
-
-    @media screen and (min-width: 75rem) {
-        &--button {
+        @media screen and (min-width: $breakpoint-xl) {
             justify-content: flex-end;
 
             margin-block-start: var(--base-size-16);
         }
+    }
 
-        &--filter {
+    &--filter {
+        margin-block-start: var(--base-size-28);
+
+        @media screen and (min-width: $breakpoint-xl) {
             display: none;
         }
     }
@@ -75,7 +75,7 @@
 .Heading-button {
     flex: 1 1 0;
 
-    @media screen and (min-width: 75rem) {
+    @media screen and (min-width: $breakpoint-xl) {
         flex: 0 1 0;
     }
 }

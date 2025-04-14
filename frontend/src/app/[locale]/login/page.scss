@@ -1,3 +1,5 @@
+@use "@/styles/settings/breakpoint" as *;
+
 .Login {
     display: flex;
     align-items: center;
@@ -19,7 +21,7 @@
     background-color: var(--color-zero);
     border-radius: var(--borderRadius-lg);
 
-    @media screen and (min-width: 75rem) {
+    @media screen and (min-width: $breakpoint-xl) {
         width: var(--base-size-384);
     }
 }
@@ -33,7 +35,7 @@
 
         font-size: var(--size-md);
 
-        @media screen and (min-width: 75rem) {
+        @media screen and (min-width: $breakpoint-xl) {
             height: var(--base-size-44);
         }
     }

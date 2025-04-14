@@ -1,3 +1,5 @@
+@use "@/styles/settings/breakpoint" as *;
+
 .Button {
     cursor: pointer;
 
@@ -28,10 +30,8 @@
     &--text {
         & .Typography {
             display: none;
-        }
 
-        @media screen and (min-width: 75rem) {
-            & .Typography {
+            @media screen and (min-width: $breakpoint-xl) {
                 display: inline;
             }
         }
@@ -41,7 +41,7 @@
         width: max-content;
         height: var(--base-size-48);
 
-        @media screen and (min-width: 75rem) {
+        @media screen and (min-width: $breakpoint-xl) {
             height: max-content;
 
             padding: var(--base-size-16) var(--base-size-12);

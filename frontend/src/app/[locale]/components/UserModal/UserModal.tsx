@@ -25,7 +25,7 @@ export const UserModal = () => {
     }
 
     return (
-        <div className="UserModal-background">
+        <div className="UserModal-wrap">
             <div className="UserModal">
                 <Typography
                     asChild

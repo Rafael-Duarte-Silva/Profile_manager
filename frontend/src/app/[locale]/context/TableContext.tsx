@@ -35,8 +35,10 @@ type TableContextProps = {
     data: UserData[] | undefined;
     search: QueryParam;
     handleSarchKeyboard(event: React.KeyboardEvent): void;
-    handleSearch(): void;
+    handleSearch(e: React.MouseEvent): void;
     setSearch: Dispatch<SetStateAction<QueryParam>>;
+    isOpenSearchBar: boolean;
+    handleIsOpenSearchBar(): void;
 };
 
 export const TableContext = createContext<TableContextProps | undefined>(
@@ -71,6 +73,8 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
         searchParams.has("search"),
     );
 
+    const [isOpenSearchBar, setIsOpenSearchBar] = useState<boolean>(false);
+
     const mappingSort: { [key: string]: string } = {
         user: "login",
         status: "status",
@@ -103,9 +107,29 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
-    const handleSearch = () => {
-        if (search.value && search.value !== searchParams.get("search")) {
-            router.push(`/?search=${search.value}&sort=${sort.value}&page=1`);
+    const handleSearch = (e?: React.MouseEvent) => {
+        if (e) {
+            e.stopPropagation();
+        }
+
+        if (window.screen.width <= 375 && isOpenSearchBar) {
+            if (search.value && search.value !== searchParams.get("search")) {
+                router.push(
+                    `/?search=${search.value}&sort=${sort.value}&page=1`,
+                );
+            }
+        } else if (!(window.screen.width <= 375)) {
+            if (search.value && search.value !== searchParams.get("search")) {
+                router.push(
+                    `/?search=${search.value}&sort=${sort.value}&page=1`,
+                );
+            }
+        }
+    };
+
+    const handleIsOpenSearchBar = () => {
+        if (!isOpenSearchBar && window.screen.width <= 375) {
+            setIsOpenSearchBar(true);
         }
     };
 
@@ -128,6 +152,7 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
             if (page.isEnable || sort.isEnable) {
                 refetchPage();
             } else {
+                setIsOpenSearchBar(false);
                 refetchSearch();
             }
             setPage({ ...page, isEnable: false });
@@ -151,6 +176,8 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
                 handleSearch,
                 search,
                 setSearch,
+                isOpenSearchBar,
+                handleIsOpenSearchBar,
             }}
         >
             {children}

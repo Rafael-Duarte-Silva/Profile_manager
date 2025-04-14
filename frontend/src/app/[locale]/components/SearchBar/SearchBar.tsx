@@ -9,8 +9,14 @@ import { Typography } from "@/components/ui/Typography";
 import { useTableContext } from "../../context/TableContext";
 
 export const SearchBar = () => {
-    const { handleSarchKeyboard, handleSearch, search, setSearch } =
-        useTableContext();
+    const {
+        handleSarchKeyboard,
+        handleSearch,
+        search,
+        setSearch,
+        isOpenSearchBar,
+        handleIsOpenSearchBar,
+    } = useTableContext();
     const t = useTranslations("HomePage");
 
     return (
@@ -19,10 +25,12 @@ export const SearchBar = () => {
             size="maxMd"
             type="button"
             variant="text"
+            className={isOpenSearchBar ? "SearchBar is-open" : ""}
+            onClick={handleIsOpenSearchBar}
             onKeyDown={handleSarchKeyboard}
         >
             <label>
-                <IconSearch onClick={() => handleSearch()} />
+                <IconSearch onClick={handleSearch} />
                 <Typography
                     asChild
                     variant="second"

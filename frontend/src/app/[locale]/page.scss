@@ -1,9 +1,11 @@
+@use "@/styles/settings/breakpoint" as *;
+
 .Main-home {
     padding-inline: var(--base-size-24);
 
     margin-block-start: var(--base-size-48);
 
-    @media screen and (min-width: 75rem) {
+    @media screen and (min-width: $breakpoint-xl) {
         padding-inline: var(--base-size-28);
     }
 }

@@ -3,7 +3,7 @@ export const IconSearch = ({
     onClick = () => {},
 }: {
     className?: string;
-    onClick(): void;
+    onClick(event: React.MouseEvent): void;
 }) => {
     return (
         <svg
