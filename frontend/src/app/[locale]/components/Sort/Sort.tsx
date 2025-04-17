@@ -5,34 +5,19 @@ import { IconSort } from "@/components/icons/IconSort";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
-import { useTableContext } from "../../context/TableContext";
+import { labelList } from "./constants/labelList";
+import { mappingLabel } from "./constants/mappingLabel";
+
+import { useTableContext } from "../../context/table/TableContext";
 
 export const Sort = ({ className = "" }: { className?: string }) => {
     const { handleSort, sort } = useTableContext();
-
-    const labelList: string[] = [
-        "user",
-        "status",
-        "email",
-        "phone",
-        "job",
-        "date",
-    ];
-
-    const mappingLabel: { [key: string]: string } = {
-        login: "user",
-        status: "status",
-        email: "email",
-        phone: "phone",
-        job: "job",
-        dateCreated: "date",
-    };
 
     const t = useTranslations("HomePage");
 
     return (
         <details
-            className={`Heading-details${className ? " " + className : ""}`}
+            className={`Heading-details${className ? ` ${className}` : ""}`}
         >
             <summary className="Heading-row Heading-row--filter">
                 <Typography colors="DarkMedium">

@@ -7,7 +7,7 @@ import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
-import { useUserModalContext } from "../../context/UserModalContext";
+import { useUserModalContext } from "../../context/userModal/UserModalContext";
 
 export const UserModal = () => {
     const {

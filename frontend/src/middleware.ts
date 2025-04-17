@@ -1,13 +1,13 @@
-import axios from "axios";
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 import { routing } from "./i18n/routing";
+import api from "./services/api";
 
 export const intlMiddleware = createMiddleware(routing);
 
 const fetchData = async (token: string) => {
-    return await axios.get(process.env.NEXT_PUBLIC_API_URL + "/auth", {
+    return await api.get("/auth", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -16,11 +16,12 @@ const fetchData = async (token: string) => {
 
 export default async function middleware(request: NextRequest) {
     const token = request.cookies.get("jwt")?.value;
+    const locale = request.nextUrl.pathname.split("/")[1];
 
     if (request.nextUrl.pathname.endsWith("/login")) {
         return intlMiddleware(request);
     } else if (!token) {
-        return NextResponse.redirect(new URL("/en/login", request.url));
+        return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
     }
 
     try {
@@ -33,7 +34,7 @@ export default async function middleware(request: NextRequest) {
         throw new Error("invalid token");
     } catch (error: unknown) {
         console.log(error);
-        return NextResponse.redirect(new URL("/en/login", request.url));
+        return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
     }
 }
 

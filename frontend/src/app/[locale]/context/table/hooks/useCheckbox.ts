@@ -7,7 +7,7 @@ export type IsChecked = {
     id: string;
 };
 
-export const useTable = () => {
+export const useCheckbox = () => {
     const [allIsChecked, setAllIsChecked] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<IsChecked[]>([
         { checked: false, id: "" },

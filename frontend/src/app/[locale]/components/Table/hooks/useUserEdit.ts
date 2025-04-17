@@ -1,4 +1,4 @@
-import { useUserModalContext } from "@/app/[locale]/context/UserModalContext";
+import { useUserModalContext } from "@/app/[locale]/context/userModal/UserModalContext";
 import { UserData } from "@/interface/UserData";
 
 export const useUserEdit = () => {

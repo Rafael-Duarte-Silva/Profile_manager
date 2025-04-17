@@ -2,14 +2,13 @@
 
 import "./page.scss";
 
-import { TableProvider } from "@/app/[locale]/context/TableContext";
-
 import { Heading } from "./components/Heading";
 import { Pagination } from "./components/Pagination";
 import { Table } from "./components/Table";
 import { UserModal } from "./components/UserModal";
 
-import { UserModalProvider } from "./context/UserModalContext";
+import { TableProvider } from "./context/table/TableProvider";
+import { UserModalProvider } from "./context/userModal/UserModalProvider";
 
 export default function Home() {
     return (
@@ -17,9 +16,7 @@ export default function Home() {
             <TableProvider>
                 <UserModalProvider>
                     <UserModal />
-
                     <Heading />
-
                     <Table />
                 </UserModalProvider>
                 <Pagination />

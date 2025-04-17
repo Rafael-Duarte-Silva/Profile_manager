@@ -1,27 +1,24 @@
 import "./Pagination.scss";
 
-import { useTableContext } from "@/app/[locale]/context/TableContext";
+import { useTableContext } from "@/app/[locale]/context/table/TableContext";
 import { Link } from "@/i18n/routing";
 
-export const Pagination = () => {
-    const { page, handlePage } = useTableContext();
+import { usePagination } from "./hooks/usePagination";
 
-    const length: number = 7;
-    const pageNumber: number = parseInt(page);
-    const mid = Math.floor(length / 2);
+export const Pagination = () => {
+    const { handlePage } = useTableContext();
+    const { length, calculateValue, classNameIsValid } = usePagination();
 
     return (
         <ul className="Pagination">
             {new Array(length).fill(0).map((value, index) => {
-                value = (
-                    pageNumber <= mid ? index + 1 : index - mid + pageNumber
-                ).toString();
+                value = calculateValue(index);
 
                 return (
                     <li
                         key={value}
                         onClick={() => handlePage(value)}
-                        className={`Pagination-item${value === page ? " is-valid" : ""}`}
+                        className={`Pagination-item${classNameIsValid(value)}`}
                     >
                         <Link
                             href={`/?page${value}`}

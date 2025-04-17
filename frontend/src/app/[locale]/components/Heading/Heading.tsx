@@ -3,6 +3,7 @@ import "./Heading.scss";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
+import { SearchBar } from "./components/SearchBar";
 import { IconCheckbox } from "@/components/icons/IconCheckbox";
 import { IconCreate } from "@/components/icons/IconCreate";
 import { IconGenerate } from "@/components/icons/IconGenerate";
@@ -11,18 +12,19 @@ import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
 import { useGenerate } from "./hooks/useGenerate";
+import { useHeading } from "./hooks/useHeading";
 
-import { useTableContext } from "../../context/TableContext";
-import { useUserModalContext } from "../../context/UserModalContext";
-import { SearchBar } from "../SearchBar";
+import { useTableContext } from "../../context/table/TableContext";
+import { useUserModalContext } from "../../context/userModal/UserModalContext";
 import { Sort } from "../Sort";
 
 export const Heading = () => {
     const { allIsChecked, handleAllIsChecked } = useTableContext();
+    const { hrefWithoutLocale } = useHeading();
     const { handleIsModalOpen } = useUserModalContext();
     const { mutate } = useGenerate();
-
     const t = useTranslations("HomePage");
+
     return (
         <div>
             <div className="Heading">
@@ -66,7 +68,7 @@ export const Heading = () => {
                                     className="Heading-link"
                                 >
                                     <Link
-                                        href="/?page=1"
+                                        href={hrefWithoutLocale()}
                                         locale="en"
                                     >
                                         en
@@ -80,7 +82,7 @@ export const Heading = () => {
                                     className="Heading-link"
                                 >
                                     <Link
-                                        href="/?page=1"
+                                        href={hrefWithoutLocale()}
                                         locale="pt-BR"
                                     >
                                         pt-BR

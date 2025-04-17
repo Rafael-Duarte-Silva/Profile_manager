@@ -4,7 +4,7 @@ import "./Table.scss";
 
 import { useEffect } from "react";
 
-import { useTableContext } from "@/app/[locale]/context/TableContext";
+import { useTableContext } from "@/app/[locale]/context/table/TableContext";
 import { useTranslations } from "next-intl";
 
 import { IconCheckbox } from "@/components/icons/IconCheckbox";
@@ -12,6 +12,7 @@ import { IconDelete } from "@/components/icons/IconDelete";
 import { IconEdit } from "@/components/icons/IconEdit";
 import { Typography } from "@/components/ui/Typography";
 
+import { useTable } from "./hooks/useTable";
 import { useUserDelete } from "./hooks/useUserDelete";
 import { useUserEdit } from "./hooks/useUserEdit";
 
@@ -30,6 +31,8 @@ export const Table = () => {
         isChecked,
         handleIsChecked,
     } = useTableContext();
+    const { classNameIsChecked, inputIsChecked, formatDateToShort } =
+        useTable();
     const t = useTranslations("HomePage");
 
     useEffect(() => {
@@ -107,7 +110,7 @@ export const Table = () => {
                     {data ? (
                         data?.map((userData, index) => (
                             <tr
-                                className={`Table-row${isChecked[index] ? (isChecked[index].checked ? " is-checked" : "") : ""}`}
+                                className={`Table-row${classNameIsChecked(index)}`}
                                 key={index}
                             >
                                 <Typography asChild>
@@ -143,12 +146,7 @@ export const Table = () => {
                                                 className="Table-profile-input"
                                                 id={`profileInput${index}`}
                                                 type="checkbox"
-                                                checked={
-                                                    isChecked[index]
-                                                        ? isChecked[index]
-                                                              .checked
-                                                        : false
-                                                }
+                                                checked={inputIsChecked(index)}
                                                 onChange={() =>
                                                     handleIsChecked(index)
                                                 }
@@ -222,7 +220,9 @@ export const Table = () => {
                                         >
                                             <span>{t("date")}</span>
                                         </Typography>
-                                        {userData.dateCreated}
+                                        {formatDateToShort(
+                                            userData.dateCreated,
+                                        )}
                                     </td>
                                 </Typography>
                                 <Typography asChild>

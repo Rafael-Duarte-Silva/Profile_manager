@@ -1,15 +1,15 @@
+import api from "@/services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios, { AxiosPromise } from "axios";
-
-import { IsChecked } from "../../../hooks/useTable";
+import { AxiosPromise } from "axios";
 
 import { getCookie } from "@/utils/getCookie";
 
+import { IsChecked } from "../../../context/table/hooks/useCheckbox";
+
 const deleteData = (ids: string[]): AxiosPromise<void> => {
-    const token = getCookie("jwt");
-    const response = axios.delete(process.env.NEXT_PUBLIC_API_URL + "/user", {
+    const response = api.delete<void>("/user", {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${getCookie("jwt")}`,
         },
         data: ids,
     });

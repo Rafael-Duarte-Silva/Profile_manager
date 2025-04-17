@@ -1,19 +1,18 @@
 import "./SearchBar.scss";
 
+import { useTableContext } from "@/app/[locale]/context/table/TableContext";
 import { useTranslations } from "next-intl";
 
 import { IconSearch } from "@/components/icons/IconSearch";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
-import { useTableContext } from "../../context/TableContext";
-
 export const SearchBar = () => {
     const {
+        deferredSearch,
         handleSarchKeyboard,
         handleSearch,
-        search,
-        setSearch,
+        updateSearch,
         isOpenSearchBar,
         handleIsOpenSearchBar,
     } = useTableContext();
@@ -40,13 +39,8 @@ export const SearchBar = () => {
                     <input
                         type="search"
                         placeholder={t("search")}
-                        onChange={(e) =>
-                            setSearch({
-                                ...search,
-                                value: e.target.value,
-                            })
-                        }
-                        value={search.value}
+                        onChange={updateSearch}
+                        defaultValue={deferredSearch}
                     />
                 </Typography>
             </label>

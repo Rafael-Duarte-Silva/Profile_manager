@@ -26,29 +26,19 @@ public class UserController {
     UserRepository repository;
 
     @GetMapping
-    public List<UserResponseDTO> getAll(@RequestParam int page,
-            @RequestParam(defaultValue = "dateCreated") String sort) {
+    public ResponseEntity<?> getAll(@RequestParam int page,
+            @RequestParam(defaultValue = "dateCreated") String sort, @RequestParam(defaultValue = "") String search) {
         Pageable pageable = PageRequest.of(page - 1, 8, Sort.by(sort).descending());
 
-        List<UserResponseDTO> userList = repository.findByRole(UserRole.USER, pageable).stream()
+        List<UserResponseDTO> userList = repository.searchByLogin(search, UserRole.USER, pageable).stream()
                 .map(UserResponseDTO::new).toList();
 
-        return userList;
-    }
-
-    @GetMapping("search")
-    public ResponseEntity<?> search(@RequestParam int page, @RequestParam String search,
-            @RequestParam(defaultValue = "dateCreated") String sort) {
-        Pageable pageable = PageRequest.of(page - 1, 8, Sort.by(sort).descending());
-
-        List<UserResponseDTO> userList = repository.searchByLogin(search, pageable).stream()
-                .map(UserResponseDTO::new).toList();
-
-        if (search == "" || userList.isEmpty()) {
+        if (userList.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
 
         return ResponseEntity.ok(userList);
+
     }
 
     @DeleteMapping

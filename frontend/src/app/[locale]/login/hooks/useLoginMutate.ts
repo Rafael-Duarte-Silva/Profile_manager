@@ -1,7 +1,8 @@
 import { useRouter } from "@/i18n/routing";
 import { LoginData } from "@/interface/LoginData";
+import api from "@/services/api";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosPromise } from "axios";
+import { AxiosPromise } from "axios";
 
 import { setCookie } from "@/utils/setCookie";
 
@@ -10,10 +11,7 @@ interface LoginPromise {
 }
 
 const postData = (data: LoginData): AxiosPromise<LoginPromise> => {
-    const response = axios.post(
-        process.env.NEXT_PUBLIC_API_URL + "/auth/login",
-        data,
-    );
+    const response = api.post<LoginPromise, LoginData>("/auth/login", data);
     return response;
 };
 

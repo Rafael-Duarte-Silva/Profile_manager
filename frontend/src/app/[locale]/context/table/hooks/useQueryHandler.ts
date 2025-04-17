@@ -8,17 +8,24 @@ export const useQueryHandler = () => {
     const searchParams = useSearchParams();
 
     const createQueryString = useCallback(
-        (name: string, value: string) => {
+        (queryList: string[][]) => {
             const params = new URLSearchParams(searchParams.toString());
-            params.set(name, value);
+
+            queryList.forEach((query) => {
+                const name: string = query[0];
+                const value: string = query[1];
+
+                return value ? params.set(name, value) : params.delete(name);
+            });
 
             return params.toString();
         },
         [searchParams],
     );
 
-    const createPath = (name: string, value: string) =>
-        `${pathname}?${createQueryString(name, value)}`;
+    const createPath = (queryList: string[][]) => {
+        return `${pathname}?${createQueryString(queryList)}`;
+    };
 
-    return { createPath, searchParams };
+    return { createPath };
 };

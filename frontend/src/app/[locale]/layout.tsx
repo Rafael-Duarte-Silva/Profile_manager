@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-    return [{ lang: "en" }, { lang: "pt-BR" }];
+    return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
