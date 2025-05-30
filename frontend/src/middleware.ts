@@ -16,7 +16,9 @@ const fetchData = async (token: string) => {
 
 export default async function middleware(request: NextRequest) {
     const token = request.cookies.get("jwt")?.value;
-    const locale = request.nextUrl.pathname.split("/")[1];
+    const locale =
+        request.nextUrl.pathname.split("/")[1] ||
+        request.cookies.get("NEXT_LOCALE")?.value;
 
     if (request.nextUrl.pathname.endsWith("/login")) {
         return intlMiddleware(request);

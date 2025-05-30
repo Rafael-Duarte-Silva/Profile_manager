@@ -1,15 +1,12 @@
 import { useState } from "react";
 
-import { useRouter } from "@/i18n/routing";
-
 import { useQueryHandler } from "./useQueryHandler";
 
 export const useSearch = (
     searchParams: URLSearchParams,
     isOpenSearchBar: boolean,
 ) => {
-    const router = useRouter();
-    const { createPath } = useQueryHandler();
+    const { pathPush } = useQueryHandler();
 
     let search = searchParams.get("search") || "";
     const [deferredSearch, setDeferredSearch] = useState<string>(search);
@@ -34,12 +31,10 @@ export const useSearch = (
                 (window.screen.width <= 375 && isOpenSearchBar) ||
                 !(window.screen.width <= 375)
             ) {
-                router.push(
-                    createPath([
-                        ["search", search],
-                        ["page", "1"],
-                    ]),
-                );
+                pathPush([
+                    ["search", search],
+                    ["page", "1"],
+                ]);
             }
         }
     };

@@ -13,6 +13,7 @@ export const usePagination = () => {
     const classNameIsValid = (value: string): string =>
         value === page ? " is-valid" : "";
 
-    return { length, calculateValue, classNameIsValid };
-};
+    const formatToTwoDigits = (value: string): string => value.padStart(2, "0");
 
+    return { length, calculateValue, classNameIsValid, formatToTwoDigits };
+};

@@ -24,7 +24,7 @@ export const SearchBar = () => {
             size="maxMd"
             type="button"
             variant="text"
-            className={isOpenSearchBar ? "SearchBar is-open" : ""}
+            className={isOpenSearchBar ? "Heading-searchBar is-open" : ""}
             onClick={handleIsOpenSearchBar}
             onKeyDown={handleSarchKeyboard}
         >
@@ -34,7 +34,7 @@ export const SearchBar = () => {
                     asChild
                     variant="second"
                     colors="Medium"
-                    className="SearchBar-input"
+                    className="Heading-input"
                 >
                     <input
                         type="search"

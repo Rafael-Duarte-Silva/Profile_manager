@@ -24,7 +24,7 @@ export const useUserDelete = () => {
         retry: 2,
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ["users", { filter: "deactivate" }],
+                queryKey: ["users"],
             });
         },
         onError: (error) => {

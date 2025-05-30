@@ -13,6 +13,7 @@ export const UserModal = () => {
     const {
         isModalOpen,
         handleIsModalOpen,
+        handleUserEdit,
         register,
         handleSubmit,
         handleSendUserData,
@@ -99,7 +100,11 @@ export const UserModal = () => {
                             variant="primary"
                             size="maxMd"
                             type="button"
-                            onClick={() => handleIsModalOpen(false)}
+                            onClick={
+                                isEdit
+                                    ? () => handleUserEdit(false)
+                                    : handleIsModalOpen
+                            }
                         >
                             {t("cancel")}
                             <IconSend />

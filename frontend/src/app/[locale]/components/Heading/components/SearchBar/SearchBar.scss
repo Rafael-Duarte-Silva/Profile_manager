@@ -1,6 +1,6 @@
 @use "@/styles/settings/breakpoint" as *;
 
-.SearchBar {
+.Heading-searchBar {
     @media screen and (max-width: $breakpoint-xl) {
         &.is-open {
             position: absolute;
@@ -19,7 +19,7 @@
     }
 }
 
-.SearchBar-input {
+.Heading-input {
     height: max-content;
 
     text-transform: capitalize;

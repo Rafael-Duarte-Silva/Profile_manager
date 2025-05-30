@@ -1,7 +1,7 @@
 import { usePathname } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 
-export const useHeading = () => {
+export const useToggleLanguage = () => {
     const pathname = usePathname();
     const searchParams = useSearchParams().toString();
 

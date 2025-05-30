@@ -7,10 +7,11 @@ import { usePagination } from "./hooks/usePagination";
 
 export const Pagination = () => {
     const { handlePage } = useTableContext();
-    const { length, calculateValue, classNameIsValid } = usePagination();
+    const { length, calculateValue, classNameIsValid, formatToTwoDigits } =
+        usePagination();
 
     return (
-        <ul className="Pagination">
+        <ol className="Pagination">
             {new Array(length).fill(0).map((value, index) => {
                 value = calculateValue(index);
 
@@ -24,11 +25,11 @@ export const Pagination = () => {
                             href={`/?page${value}`}
                             className="Pagination-link"
                         >
-                            {value.padStart(2, "0")}
+                            {formatToTwoDigits(value)}
                         </Link>
                     </li>
                 );
             })}
-        </ul>
+        </ol>
     );
 };

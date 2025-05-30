@@ -30,25 +30,28 @@ export const Sort = ({ className = "" }: { className?: string }) => {
                 asChild
                 className="Heading-modal"
             >
-                <div>
+                <ul>
                     {labelList.map((value, index) => (
-                        <Typography
+                        <li
                             key={index}
-                            asChild
-                            variant="second"
-                            colors="DarkMedium"
-                            className="Heading-link"
+                            className="Heading-item"
                         >
-                            <Link
-                                href={`/?sort=${value}&page=1`}
-                                locale="en"
-                                onClick={(e) => handleSort(e, value)}
+                            <Typography
+                                asChild
+                                variant="second"
+                                colors="DarkMedium"
                             >
-                                {t(value)}
-                            </Link>
-                        </Typography>
+                                <Link
+                                    href={`/?sort=${value}&page=1`}
+                                    locale="en"
+                                    onClick={(e) => handleSort(e, value)}
+                                >
+                                    {t(value)}
+                                </Link>
+                            </Typography>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </Button>
         </details>
     );

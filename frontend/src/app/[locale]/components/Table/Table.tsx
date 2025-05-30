@@ -7,22 +7,24 @@ import { useEffect } from "react";
 import { useTableContext } from "@/app/[locale]/context/table/TableContext";
 import { useTranslations } from "next-intl";
 
+import { Cell } from "./components/Cell";
+import { Label } from "./components/Label";
 import { IconCheckbox } from "@/components/icons/IconCheckbox";
 import { IconDelete } from "@/components/icons/IconDelete";
 import { IconEdit } from "@/components/icons/IconEdit";
 import { Typography } from "@/components/ui/Typography";
 
+import { useAccessibilityKeyboard } from "../../hooks/useAccessibilityKeyboard";
 import { useTable } from "./hooks/useTable";
 import { useUserDelete } from "./hooks/useUserDelete";
-import { useUserEdit } from "./hooks/useUserEdit";
 
 import { fullNameInitials } from "./utils/fullNameInitials";
 
+import { useUserModalContext } from "../../context/userModal/UserModalContext";
 import { Sort } from "../Sort";
 
 export const Table = () => {
     const { data } = useTableContext();
-    const { handleUserEdit } = useUserEdit();
     const { handleUserDelete } = useUserDelete();
     const {
         initializeIsChecked,
@@ -31,8 +33,10 @@ export const Table = () => {
         isChecked,
         handleIsChecked,
     } = useTableContext();
+    const { handleUserEdit } = useUserModalContext();
     const { classNameIsChecked, inputIsChecked, formatDateToShort } =
         useTable();
+    const { accessibilityKeyDown } = useAccessibilityKeyboard();
     const t = useTranslations("HomePage");
 
     useEffect(() => {
@@ -44,7 +48,7 @@ export const Table = () => {
             <table className="Table">
                 <thead className="Table-head">
                     <tr>
-                        <th className="Table-head-row Table-head-row--user">
+                        <th className="Table-head-cell Table-head-cell--user">
                             <div>
                                 <input
                                     className="Table-profile-input"
@@ -56,6 +60,8 @@ export const Table = () => {
                                 <label
                                     className="Table-profile-label"
                                     htmlFor={`profileAllInput`}
+                                    tabIndex={0}
+                                    onKeyDown={accessibilityKeyDown}
                                 >
                                     <IconCheckbox className="Table-iconProfile" />
                                 </label>
@@ -69,41 +75,11 @@ export const Table = () => {
 
                             <Sort className="Table-sort" />
                         </th>
-                        <Typography
-                            asChild
-                            colors="DarkMedium"
-                            className="Table-head-row"
-                        >
-                            <th>{t("status")}</th>
-                        </Typography>
-                        <Typography
-                            asChild
-                            colors="DarkMedium"
-                            className="Table-head-row"
-                        >
-                            <th>{t("email")}</th>
-                        </Typography>
-                        <Typography
-                            asChild
-                            colors="DarkMedium"
-                            className="Table-head-row"
-                        >
-                            <th>{t("phone")}</th>
-                        </Typography>
-                        <Typography
-                            asChild
-                            colors="DarkMedium"
-                            className="Table-head-row"
-                        >
-                            <th>{t("job")}</th>
-                        </Typography>
-                        <Typography
-                            asChild
-                            colors="DarkMedium"
-                            className="Table-head-row"
-                        >
-                            <th>{t("date")}</th>
-                        </Typography>
+                        <Label label="status" />
+                        <Label label="email" />
+                        <Label label="phone" />
+                        <Label label="job" />
+                        <Label label="date" />
                     </tr>
                 </thead>
                 <tbody className="Table-body">
@@ -154,83 +130,43 @@ export const Table = () => {
                                             <label
                                                 className="Table-profile-label"
                                                 htmlFor={`profileInput${index}`}
+                                                tabIndex={0}
+                                                onKeyDown={accessibilityKeyDown}
                                             >
                                                 <IconCheckbox className="Table-iconProfile" />
                                             </label>
                                         </div>
                                     </td>
                                 </Typography>
-                                <Typography asChild>
-                                    <td className="Table-cell">
-                                        <Typography
-                                            asChild
-                                            colors="Medium"
-                                            className="Table-label"
-                                        >
-                                            <span>{t("status")}</span>
-                                        </Typography>
-                                        {userData.status}
-                                    </td>
-                                </Typography>
-                                <Typography
-                                    asChild
-                                    text="lowerCase"
-                                >
-                                    <td className="Table-cell">
-                                        <Typography
-                                            asChild
-                                            colors="Medium"
-                                            className="Table-label"
-                                        >
-                                            <span>{t("email")}</span>
-                                        </Typography>
-                                        {userData.email}
-                                    </td>
-                                </Typography>
-                                <Typography asChild>
-                                    <td className="Table-cell">
-                                        <Typography
-                                            asChild
-                                            colors="Medium"
-                                            className="Table-label"
-                                        >
-                                            <span>{t("phone")}</span>
-                                        </Typography>
-                                        {userData.phone}
-                                    </td>
-                                </Typography>
-                                <Typography asChild>
-                                    <td className="Table-cell">
-                                        <Typography
-                                            asChild
-                                            colors="Medium"
-                                            className="Table-label"
-                                        >
-                                            <span>{t("job")}</span>
-                                        </Typography>
-                                        {userData.job}
-                                    </td>
-                                </Typography>
-                                <Typography asChild>
-                                    <td className="Table-cell">
-                                        <Typography
-                                            asChild
-                                            colors="Medium"
-                                            className="Table-label"
-                                        >
-                                            <span>{t("date")}</span>
-                                        </Typography>
-                                        {formatDateToShort(
-                                            userData.dateCreated,
-                                        )}
-                                    </td>
-                                </Typography>
+                                <Cell
+                                    label="status"
+                                    text={userData.status}
+                                />
+                                <Cell
+                                    label="email"
+                                    text={userData.email}
+                                    lowerCase
+                                />
+                                <Cell
+                                    label="phone"
+                                    text={userData.phone}
+                                />
+                                <Cell
+                                    label="job"
+                                    text={userData.job}
+                                />
+                                <Cell
+                                    label="date"
+                                    text={formatDateToShort(
+                                        userData.dateCreated,
+                                    )}
+                                />
                                 <Typography asChild>
                                     <td className="Table-cell Table-cell--icons">
                                         <button
                                             type="button"
                                             onClick={() =>
-                                                handleUserEdit(userData)
+                                                handleUserEdit(true, userData)
                                             }
                                         >
                                             <IconEdit />

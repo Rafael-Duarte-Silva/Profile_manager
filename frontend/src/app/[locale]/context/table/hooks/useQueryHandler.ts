@@ -1,11 +1,13 @@
 import { useCallback } from "react";
 
 import { usePathname } from "@/i18n/routing";
+import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 
 export const useQueryHandler = () => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
+    const router = useRouter();
 
     const createQueryString = useCallback(
         (queryList: string[][]) => {
@@ -23,9 +25,9 @@ export const useQueryHandler = () => {
         [searchParams],
     );
 
-    const createPath = (queryList: string[][]) => {
-        return `${pathname}?${createQueryString(queryList)}`;
+    const pathPush = (queryList: string[][]): void => {
+        router.push(`${pathname}?${createQueryString(queryList)}`);
     };
 
-    return { createPath };
+    return { pathPush };
 };

@@ -1,3 +1,4 @@
+import { UserData } from "@/interface/UserData";
 import {
     FieldErrors,
     SubmitHandler,
@@ -11,7 +12,8 @@ import { UserMutateSchema } from "../../components/UserModal/types/UserMutateSch
 export type UserModalContextProps = {
     isEdit: boolean;
     isModalOpen: boolean;
-    handleIsModalOpen(isEdit: boolean): void;
+    handleIsModalOpen(): void;
+    handleUserEdit(isEdit: boolean, userData?: UserData): void;
     errors: FieldErrors<UserMutateSchema>;
     handleSendUserData: SubmitHandler<UserMutateSchema>;
     handleSubmit: UseFormHandleSubmit<UserMutateSchema>;

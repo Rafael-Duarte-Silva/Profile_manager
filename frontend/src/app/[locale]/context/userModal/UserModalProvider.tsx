@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react";
 
+import { UserData } from "@/interface/UserData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -25,14 +26,25 @@ export const UserModalProvider = ({ children }: { children: ReactNode }) => {
 
     const handleSendUserData: SubmitHandler<UserMutateSchema> = (data) => {
         mutate(data);
-        handleIsModalOpen(false);
+        handleIsModalOpen();
     };
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-    const handleIsModalOpen = (isEdit: boolean) => {
-        setIsEdit(isEdit);
+    const handleIsModalOpen = () => {
         setIsModalOpen(!isModalOpen);
+    };
+
+    const handleUserEdit = (isEdit: boolean, userData?: UserData) => {
+        setIsEdit(isEdit);
+        handleIsModalOpen();
+
+        ["email", "login", "fullName", "phone", "job"].forEach((key) => {
+            setValue(
+                key as keyof UserMutateSchema,
+                isEdit ? (userData ? userData[key as keyof UserData] : "") : "",
+            );
+        });
     };
 
     return (
@@ -41,6 +53,7 @@ export const UserModalProvider = ({ children }: { children: ReactNode }) => {
                 isEdit,
                 isModalOpen,
                 handleIsModalOpen,
+                handleUserEdit,
                 register,
                 handleSendUserData,
                 handleSubmit,
@@ -52,3 +65,4 @@ export const UserModalProvider = ({ children }: { children: ReactNode }) => {
         </UserModalContext.Provider>
     );
 };
+
