@@ -52,9 +52,9 @@
   │   │   │   │           └── profileManager/
   │   │   │   │               ├── controller/
   │   │   │   │               ├── domain/
-  │   │   │   │               |   ├── user/
+  │   │   │   │               │   └── user/
   │   │   │   │               ├── infra/
-  │   │   │   │               |   ├── security/
+  │   │   │   │               │   └── security/
   │   │   │   │               └── services/
   │   │   │   └── resources/
   │   │   └── test/
@@ -63,16 +63,14 @@
   │   │               └── example/
   │   │                   └── profileManager/
   ├── frontend/
-  |   ├── messages/
+  │   ├── messages/
   │   ├── src/
   │   │   ├── app/
-  |   |       ├──[locale]
-  |   |          └──.../
+  │   │   │   └── [locale]/
+  │   │   │       └── .../
   │   │   ├── components/
   │   │   ├── i18n/
   │   │   ├── interface/
   │   │   ├── providers/
   │   │   ├── services/
-  │   │   ├── styles/
-  └── └── └── utils/
   ```
