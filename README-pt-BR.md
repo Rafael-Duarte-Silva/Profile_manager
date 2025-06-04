@@ -2,9 +2,9 @@
 
 # Profile Manager
 
-  This project implements a CRUD system with authentication, internationalization (i18n), serverless architecture, and JWT-based authorization.
+  Este projeto implementa um sistema CRUD com autenticação, internacionalização (i18n), arquitetura serverless e autorização baseada em JWT.
   
-## Technologies
+## Tecnologias
   ### Front-end
 
   ![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white)
@@ -26,7 +26,7 @@
   ![PostgresSQL](https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white)
   ![Maven](https://img.shields.io/badge/Apache%20Maven-C71A36.svg?style=for-the-badge&logo=Apache-Maven&logoColor=white)
   
-## Screenshots
+## Capturas de Tela
 
 ### Desktop
   <img src="https://github.com/user-attachments/assets/45f79728-3fa0-423e-980e-e7c786101072" alt="profileManager - login" width="450"/>
@@ -40,7 +40,7 @@
   <img src="https://github.com/user-attachments/assets/be7efcbf-6298-4569-9761-62c3ec1b8504" alt="profileManager - createModal - mobile" width="250"/>
   <img src="https://github.com/user-attachments/assets/4807d456-6b42-4972-ad31-a8fd9d3e17f5" alt="profileManager - allActive - mobile" width="250"/>
 
-## 📁 Folder Struct
+## 📁 Estrutura de Pastas
   ```
   Profile_manager/
   ├── serve/
