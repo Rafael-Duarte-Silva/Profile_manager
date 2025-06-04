@@ -40,7 +40,7 @@
   <img src="https://github.com/user-attachments/assets/be7efcbf-6298-4569-9761-62c3ec1b8504" alt="profileManager - createModal - mobile" width="250"/>
   <img src="https://github.com/user-attachments/assets/4807d456-6b42-4972-ad31-a8fd9d3e17f5" alt="profileManager - allActive - mobile" width="250"/>
 
-## 📁 Folder Struct
+## 📁 Folder Structure
   ```
   Profile_manager/
   ├── serve/
@@ -52,9 +52,9 @@
   │   │   │   │           └── profileManager/
   │   │   │   │               ├── controller/
   │   │   │   │               ├── domain/
-  │   │   │   │               |   ├── user/
+  │   │   │   │               │   └── user/
   │   │   │   │               ├── infra/
-  │   │   │   │               |   ├── security/
+  │   │   │   │               │   └── security/
   │   │   │   │               └── services/
   │   │   │   └── resources/
   │   │   └── test/
@@ -63,16 +63,16 @@
   │   │               └── example/
   │   │                   └── profileManager/
   ├── frontend/
-  |   ├── messages/
+  │   ├── messages/
   │   ├── src/
   │   │   ├── app/
-  |   |       ├──[locale]
-  |   |          └──.../
+  │   │   │   └── [locale]/
+  │   │   │       └── .../
   │   │   ├── components/
   │   │   ├── i18n/
   │   │   ├── interface/
   │   │   ├── providers/
   │   │   ├── services/
   │   │   ├── styles/
-  └── └── └── utils/
+  │   │   └── utils/
   ```
