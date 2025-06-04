@@ -1,4 +1,4 @@
-<img src="https://github.com/user-attachments/assets/b4c4ca03-fc4f-499b-9595-ff1f0c9f3ddd" alt="portuguese" width="24"/> [portuguese]()
+<img src="https://github.com/user-attachments/assets/b4c4ca03-fc4f-499b-9595-ff1f0c9f3ddd" alt="portuguese" width="24"/> [portuguese](https://github.com/Rafael-Duarte-Silva/Profile_manager/blob/main/README-pt-BR.md)
 
 # Profile Manager
 
