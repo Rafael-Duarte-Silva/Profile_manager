@@ -11,7 +11,7 @@ export const useSearch = (
     let search = searchParams.get("search") || "";
     const [deferredSearch, setDeferredSearch] = useState<string>(search);
 
-    const handleSarchKeyboard = (e: React.KeyboardEvent) => {
+    const handleSearchKeyboard = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
             handleSearch();
         }
@@ -42,7 +42,7 @@ export const useSearch = (
     return {
         deferredSearch,
         setDeferredSearch,
-        handleSarchKeyboard,
+        handleSearchKeyboard,
         updateSearch,
         handleSearch,
     };

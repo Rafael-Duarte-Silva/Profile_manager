@@ -1,4 +1,4 @@
-package com.example.profileManager.infra.security;
+package com.example.profileManager.services;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

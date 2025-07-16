@@ -37,6 +37,7 @@ export const Sort = ({ className = "" }: { className?: string }) => {
                             className="Heading-item"
                         >
                             <Typography
+                                className="Heading-link"
                                 asChild
                                 variant="second"
                                 colors="DarkMedium"

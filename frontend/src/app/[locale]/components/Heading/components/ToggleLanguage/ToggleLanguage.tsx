@@ -43,6 +43,7 @@ export const ToggleLanguage = () => {
                             className="Heading-item"
                         >
                             <Typography
+                                className="Heading-link"
                                 asChild
                                 variant="second"
                                 colors="DarkMedium"

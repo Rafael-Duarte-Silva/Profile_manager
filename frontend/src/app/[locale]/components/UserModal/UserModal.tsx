@@ -2,6 +2,7 @@ import "./UserModal.scss";
 
 import { useTranslations } from "next-intl";
 
+import { IconClose } from "@/components/icons/iconClose";
 import { IconSend } from "@/components/icons/IconSend";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/Button";
@@ -106,8 +107,8 @@ export const UserModal = () => {
                                     : handleIsModalOpen
                             }
                         >
-                            {t("cancel")}
-                            <IconSend />
+                            {t("close")}
+                            <IconClose />
                         </Button>
                     </div>
                 </form>

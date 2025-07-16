@@ -20,7 +20,7 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
     const {
         deferredSearch,
         setDeferredSearch,
-        handleSarchKeyboard,
+        handleSearchKeyboard,
         updateSearch,
         handleSearch,
     } = useSearch(searchParams, isOpenSearchBar);
@@ -57,7 +57,7 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
                 deferredSearch,
                 handleSort,
                 handlePage,
-                handleSarchKeyboard,
+                handleSearchKeyboard,
                 updateSearch,
                 handleSearch,
                 isOpenSearchBar,

@@ -26,4 +26,8 @@
 
     background-color: transparent;
     border: 0;
+
+    &::placeholder {
+        color: var(--color-fourth);
+    }
 }

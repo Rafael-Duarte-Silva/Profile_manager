@@ -15,8 +15,6 @@
 }
 
 .Heading-item {
-    text-align: center;
-
     padding-block: var(--base-size-4);
 
     &:hover {
@@ -31,5 +29,10 @@
             border-radius: 0 0 10px 10px;
         }
     }
+}
+
+.Heading-link {
+    display: block;
+    text-align: center;
 }
 

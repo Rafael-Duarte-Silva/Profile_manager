@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
-const axiosiInstance = axios.create({
+const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
@@ -22,5 +22,5 @@ const api = (axios: AxiosInstance) => {
     };
 };
 
-export default api(axiosiInstance);
+export default api(axiosInstance);
 

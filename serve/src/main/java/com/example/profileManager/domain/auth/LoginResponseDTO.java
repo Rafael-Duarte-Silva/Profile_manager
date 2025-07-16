@@ -1,4 +1,4 @@
-package com.example.profileManager.domain.user;
+package com.example.profileManager.domain.auth;
 
 public record LoginResponseDTO(String token) {
 }

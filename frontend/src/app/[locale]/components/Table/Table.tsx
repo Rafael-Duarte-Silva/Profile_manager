@@ -164,6 +164,7 @@ export const Table = () => {
                                 <Typography asChild>
                                     <td className="Table-cell Table-cell--icons">
                                         <button
+                                            title={t("edit")}
                                             type="button"
                                             onClick={() =>
                                                 handleUserEdit(true, userData)
@@ -172,6 +173,7 @@ export const Table = () => {
                                             <IconEdit />
                                         </button>
                                         <button
+                                            title={t("delete")}
                                             type="button"
                                             onClick={() =>
                                                 handleUserDelete(

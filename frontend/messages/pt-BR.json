@@ -21,8 +21,10 @@
         "job": "cargo",
         "date": "data",
 
-        "send": "enviar",
         "edit": "editar",
-        "cancel": "cancelar"
+        "delete": "excluir",
+
+        "send": "enviar",
+        "close": "fechar"
     }
 }

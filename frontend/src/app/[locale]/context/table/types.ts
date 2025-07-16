@@ -14,7 +14,7 @@ export type TableContextProps = {
     handleSort(e: React.MouseEvent<HTMLAnchorElement>, sort: string): void;
     handlePage(page: string): void;
     data: UserData[] | undefined;
-    handleSarchKeyboard(e: React.KeyboardEvent): void;
+    handleSearchKeyboard(e: React.KeyboardEvent): void;
     updateSearch(e: React.ChangeEvent): void;
     handleSearch(e: React.MouseEvent): void;
     isOpenSearchBar: boolean;

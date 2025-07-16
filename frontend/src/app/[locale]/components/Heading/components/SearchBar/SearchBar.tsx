@@ -10,7 +10,7 @@ import { Typography } from "@/components/ui/Typography";
 export const SearchBar = () => {
     const {
         deferredSearch,
-        handleSarchKeyboard,
+        handleSearchKeyboard,
         handleSearch,
         updateSearch,
         isOpenSearchBar,
@@ -26,15 +26,15 @@ export const SearchBar = () => {
             variant="text"
             className={isOpenSearchBar ? "Heading-searchBar is-open" : ""}
             onClick={handleIsOpenSearchBar}
-            onKeyDown={handleSarchKeyboard}
+            onKeyDown={handleSearchKeyboard}
         >
             <label>
                 <IconSearch onClick={handleSearch} />
                 <Typography
                     asChild
-                    variant="second"
-                    colors="Medium"
+                    colors="DarkMedium"
                     className="Heading-input"
+                    variant="second"
                 >
                     <input
                         type="search"

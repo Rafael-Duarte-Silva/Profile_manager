@@ -7,25 +7,25 @@ import { usePagination } from "./hooks/usePagination";
 
 export const Pagination = () => {
     const { handlePage } = useTableContext();
-    const { length, calculateValue, classNameIsValid, formatToTwoDigits } =
+    const { length, calculatePageValue, classNameIsValid, formatToTwoDigits } =
         usePagination();
 
     return (
         <ol className="Pagination">
-            {new Array(length).fill(0).map((value, index) => {
-                value = calculateValue(index);
+            {new Array(length).fill(0).map((page, index) => {
+                page = calculatePageValue(index);
 
                 return (
                     <li
-                        key={value}
-                        onClick={() => handlePage(value)}
-                        className={`Pagination-item${classNameIsValid(value)}`}
+                        key={page}
+                        onClick={() => handlePage(page)}
+                        className={`Pagination-item${classNameIsValid(page)}`}
                     >
                         <Link
-                            href={`/?page${value}`}
+                            href={`/?page${page}`}
                             className="Pagination-link"
                         >
-                            {formatToTwoDigits(value)}
+                            {formatToTwoDigits(page)}
                         </Link>
                     </li>
                 );

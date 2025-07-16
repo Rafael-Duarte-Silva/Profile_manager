@@ -21,8 +21,10 @@
         "job": "job",
         "date": "date",
 
-        "send": "send",
         "edit": "edit",
-        "cancel": "cancel"
+        "delete": "delete",
+
+        "send": "send",
+        "close": "close"
     }
 }
