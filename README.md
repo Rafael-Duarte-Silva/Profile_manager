@@ -21,10 +21,10 @@
   ![Radix UI](https://img.shields.io/badge/Radix%20UI-161618.svg?style=for-the-badge&logo=Radix-UI&logoColor=white)
 
   ### Back-end
-  ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?style=for-the-badge&logo=Spring-Boot&logoColor=white)
-  ![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F.svg?style=for-the-badge&logo=Spring-Security&logoColor=white)
+  ![Nestjs](https://img.shields.io/badge/NestJS-E0234E.svg?style=for-the-badge&logo=NestJS&logoColor=white)
+  ![Nodejs](https://img.shields.io/badge/Node.js-5FA04E.svg?style=for-the-badge&logo=nodedotjs&logoColor=white)
   ![PostgresSQL](https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white)
-  ![Maven](https://img.shields.io/badge/Apache%20Maven-C71A36.svg?style=for-the-badge&logo=Apache-Maven&logoColor=white)
+  ![JWT](https://img.shields.io/badge/JSON%20Web%20Tokens-000000.svg?style=for-the-badge&logo=JSON-Web-Tokens&logoColor=white)
   
 ## Screenshots
 
@@ -43,36 +43,33 @@
 ## 📁 Folder Structure
   ```
   Profile_manager/
-  ├── serve/
-  │   ├── src/
-  │   │   ├── main/
-  │   │   │   ├── java/
-  │   │   │   │   └── com/
-  │   │   │   │       └── example/
-  │   │   │   │           └── profileManager/
-  │   │   │   │               ├── controller/
-  │   │   │   │               ├── domain/
-  │   │   │   │               │   └── user/
-  │   │   │   │               ├── infra/
-  │   │   │   │               │   └── security/
-  │   │   │   │               └── services/
-  │   │   │   └── resources/
-  │   │   └── test/
-  │   │       └── java/
-  │   │           └── com/
-  │   │               └── example/
-  │   │                   └── profileManager/
-  ├── frontend/
-  │   ├── messages/
-  │   ├── src/
-  │   │   ├── app/
-  │   │   │   └── [locale]/
-  │   │   │       └── .../
-  │   │   ├── components/
-  │   │   ├── i18n/
-  │   │   ├── interface/
-  │   │   ├── providers/
-  │   │   ├── services/
-  │   │   ├── styles/
-  │   │   └── utils/
+    ├── server/                         
+    │   ├── src/
+    │   │   ├── auth/
+    │   │   │   ├── dto/
+    │   │   │   └── guards/
+    │   │   ├── users/
+    │   │   │   ├── dto/
+    │   │   │   ├── entities/
+    │   │   │   └── enums/
+    │   │   ├── db/
+    │   │   │   └── migrations/
+    │   │   ├── shared/
+    │   │   │   └── utils/
+    │   │   ├── config/
+    │   ├── test/
+    │   │   └── ...
+    │
+    ├── frontend/                      
+    │   ├── messages/
+    │   ├── src/
+    │   │   ├── app/
+    │   │   │   └── [locale]/
+    │   │   ├── components/
+    │   │   ├── i18n/
+    │   │   ├── interface/
+    │   │   ├── providers/
+    │   │   ├── services/
+    │   │   ├── styles/
+    │   │   └── utils/
   ```

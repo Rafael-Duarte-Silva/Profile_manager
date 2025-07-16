@@ -1,0 +1,4 @@
+export enum UserStatus {
+  MANUALLY = 'MANUALLY',
+  AUTOMATICALLY = 'AUTOMATICALLY',
+}
