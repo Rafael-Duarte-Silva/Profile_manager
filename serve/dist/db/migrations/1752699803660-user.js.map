@@ -1,0 +1,1 @@
+{"version":3,"file":"1752699803660-user.js","sourceRoot":"","sources":["../../../src/db/migrations/1752699803660-user.ts"],"names":[],"mappings":";;;AAEA,MAAa,iBAAiB;IACrB,KAAK,CAAC,EAAE,CAAC,WAAwB;QACtC,MAAM,WAAW,CAAC,KAAK,CACrB;;;;;;;;;;;;;;WAcK,CACN,CAAC;IACJ,CAAC;IAEM,KAAK,CAAC,IAAI,CAAC,WAAwB;QACxC,MAAM,WAAW,CAAC,KAAK,CAAC,4BAA4B,CAAC,CAAC;IACxD,CAAC;CACF;AAxBD,8CAwBC"}
