@@ -3,6 +3,11 @@
 # Profile Manager
 
   This project implements a CRUD system with authentication, internationalization (i18n), serverless architecture, and JWT-based authorization.
+
+  ## How to log in
+
+    user: admin
+    password: 123
   
 ## Technologies
   ### Front-end
