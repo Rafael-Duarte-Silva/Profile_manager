@@ -11,13 +11,11 @@ export default async function middleware(request: NextRequest) {
         request.nextUrl.pathname.split("/")[1] ||
         request.cookies.get("NEXT_LOCALE")?.value;
 
-    if (request.nextUrl.pathname.endsWith("/login")) {
-        return intlMiddleware(request);
-    }
-
     if (!token) {
         return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
     }
+
+    return intlMiddleware(request);
 }
 
 export const config = {
