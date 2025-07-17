@@ -6,8 +6,8 @@
 
   ## Como fazer login
 
-    user: admin
-    password: 123
+    usuário: admin
+    senha: 123
   
 ## Tecnologias
   ### Front-end
