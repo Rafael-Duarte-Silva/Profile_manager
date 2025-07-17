@@ -8,6 +8,7 @@ import { setCookie } from "@/utils/setCookie";
 
 interface LoginPromise {
     token: string;
+    expiresIn: number;
 }
 
 const postData = (data: LoginData): AxiosPromise<LoginPromise> => {
@@ -22,7 +23,8 @@ export const useLoginMutate = () => {
         mutationFn: postData,
         retry: 2,
         onSuccess: (data) => {
-            setCookie("jwt", data.data.token, 2);
+            const response = data.data;
+            setCookie("jwt", response.token, response.expiresIn);
             router.push("/?sort=dateCreated&page=1");
         },
     });

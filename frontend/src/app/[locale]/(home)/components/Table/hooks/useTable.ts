@@ -1,4 +1,4 @@
-import { useTableContext } from "@/app/[locale]/context/table/TableContext";
+import { useTableContext } from "@/app/[locale]/(home)/context/table/TableContext";
 import { useLocale } from "next-intl";
 
 export const useTable = () => {

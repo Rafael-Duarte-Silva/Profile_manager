@@ -4,7 +4,7 @@ import "./Table.scss";
 
 import { useEffect } from "react";
 
-import { useTableContext } from "@/app/[locale]/context/table/TableContext";
+import { useTableContext } from "@/app/[locale]/(home)/context/table/TableContext";
 import { useTranslations } from "next-intl";
 
 import { Cell } from "./components/Cell";
@@ -14,7 +14,7 @@ import { IconDelete } from "@/components/icons/IconDelete";
 import { IconEdit } from "@/components/icons/IconEdit";
 import { Typography } from "@/components/ui/Typography";
 
-import { useAccessibilityKeyboard } from "../../hooks/useAccessibilityKeyboard";
+import { useAccessibilityKeyboard } from "../../../../../hooks/useAccessibilityKeyboard";
 import { useTable } from "./hooks/useTable";
 import { useUserDelete } from "./hooks/useUserDelete";
 

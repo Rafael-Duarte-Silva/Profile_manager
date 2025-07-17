@@ -4,11 +4,8 @@ import { AxiosPromise } from "axios";
 
 import { UserMutateSchema } from "../types/UserMutateSchema";
 
-const postData = async (data: UserMutateSchema): AxiosPromise<void> => {
-    const response = api.post<void, UserMutateSchema>(
-        "/auth/register/user",
-        data,
-    );
+const postData = (data: UserMutateSchema): AxiosPromise<void> => {
+    const response = api.post<void, UserMutateSchema>("/auth/register", data);
     return response;
 };
 

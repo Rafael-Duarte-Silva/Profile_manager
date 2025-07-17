@@ -7,7 +7,7 @@ import { getCookie } from "@/utils/getCookie";
 import { IsChecked } from "../../../context/table/hooks/useCheckbox";
 
 const deleteData = (ids: string[]): AxiosPromise<void> => {
-    const response = api.delete<void>("/user", {
+    const response = api.delete<void>("/users", {
         headers: {
             Authorization: `Bearer ${getCookie("jwt")}`,
         },

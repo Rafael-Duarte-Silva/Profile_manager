@@ -1,6 +1,6 @@
 import "./Pagination.scss";
 
-import { useTableContext } from "@/app/[locale]/context/table/TableContext";
+import { useTableContext } from "@/app/[locale]/(home)/context/table/TableContext";
 import { Link } from "@/i18n/routing";
 
 import { usePagination } from "./hooks/usePagination";

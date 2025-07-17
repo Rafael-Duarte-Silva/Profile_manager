@@ -19,7 +19,7 @@ export const useUserData = (
     page: string = "",
     sort: string = "",
 ) => {
-    const endpoint = `/user?search=${search}&page=${page}&sort=${sort}`;
+    const endpoint = `/users?search=${search}&page=${page}&sort=${sort}`;
 
     const query = useQuery({
         queryFn: () => fetchData(endpoint),
