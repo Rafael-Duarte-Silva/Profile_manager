@@ -16,9 +16,12 @@ import { User } from 'src/users/entities/user.entity';
         database: configService.get<string>('DB_NAME'),
         entities: [User],
         migrations: [__dirname + '/migrations/*.ts'],
-        ssl: {
-          rejectUnauthorized: false,
-        },
+        ssl:
+          configService.get<string>('NODE_ENV') === 'production'
+            ? {
+                rejectUnauthorized: false,
+              }
+            : false,
         synchronize: false,
       }),
       inject: [ConfigService],

@@ -26,7 +26,7 @@ let UsersController = class UsersController {
         this.usersService = usersService;
     }
     findAll(query) {
-        return this.usersService.findAll(query.page, query.search);
+        return this.usersService.findAll(query);
     }
     delete(id) {
         return this.usersService.deleteAllById(id);

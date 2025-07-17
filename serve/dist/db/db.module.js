@@ -28,9 +28,11 @@ exports.DbModule = DbModule = __decorate([
                     database: configService.get('DB_NAME'),
                     entities: [user_entity_1.User],
                     migrations: [__dirname + '/migrations/*.ts'],
-                    ssl: {
-                        rejectUnauthorized: false,
-                    },
+                    ssl: configService.get('NODE_ENV') === 'production'
+                        ? {
+                            rejectUnauthorized: false,
+                        }
+                        : false,
                     synchronize: false,
                 }),
                 inject: [config_1.ConfigService],

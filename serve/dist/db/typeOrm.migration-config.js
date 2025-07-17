@@ -15,9 +15,11 @@ const dataSourceOptions = {
     database: configService.get('DB_NAME'),
     entities: [user_entity_1.User],
     migrations: [__dirname + '/migrations/*.ts'],
-    ssl: {
-        rejectUnauthorized: false,
-    },
+    ssl: configService.get('NODE_ENV') === 'production'
+        ? {
+            rejectUnauthorized: false,
+        }
+        : false,
     synchronize: false,
 };
 exports.default = new typeorm_1.DataSource(dataSourceOptions);

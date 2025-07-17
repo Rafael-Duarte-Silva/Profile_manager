@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: profile-manager-db
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: profile-manager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123

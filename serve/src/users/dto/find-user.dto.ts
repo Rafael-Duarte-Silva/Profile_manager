@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import { UserSort } from '../enums/userSort.enum';
 
 export class FindUserDto {
   @IsOptional()
@@ -10,4 +11,8 @@ export class FindUserDto {
   @IsOptional()
   @IsString()
   search: string = '';
+
+  @IsOptional()
+  @IsEnum(UserSort, { message: 'field invalid' })
+  sort: UserSort = UserSort.DATE_CREATED;
 }

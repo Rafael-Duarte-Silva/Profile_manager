@@ -48,15 +48,16 @@ let UsersService = class UsersService {
     findByUsername(login) {
         return this.userRepository.findOneBy({ login });
     }
-    async findAll(page, search) {
+    async findAll({ page, search, sort }) {
+        const take = 8;
         const [users] = await this.userRepository.findAndCount({
-            order: { dateCreated: 'ASC' },
+            order: { [sort]: 'ASC' },
             where: {
                 role: userRole_enum_1.UserRole.USER,
                 login: (0, typeorm_2.Raw)((alias) => `LOWER(${alias}) LIKE LOWER('%${search}%')`),
             },
-            skip: page - 1,
-            take: 8,
+            skip: (page - 1) * take,
+            take,
         });
         if (users === null) {
             return;

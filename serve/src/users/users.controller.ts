@@ -21,7 +21,7 @@ export class UsersController {
   @Get()
   @Roles([UserRole.USER, UserRole.ADMIN])
   findAll(@Query() query: FindUserDto) {
-    return this.usersService.findAll(query.page, query.search);
+    return this.usersService.findAll(query);
   }
 
   @Delete()

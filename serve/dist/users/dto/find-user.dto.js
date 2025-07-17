@@ -12,9 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FindUserDto = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const userSort_enum_1 = require("../enums/userSort.enum");
 class FindUserDto {
     page = 1;
     search = '';
+    sort = userSort_enum_1.UserSort.DATE_CREATED;
 }
 exports.FindUserDto = FindUserDto;
 __decorate([
@@ -28,4 +30,9 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], FindUserDto.prototype, "search", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(userSort_enum_1.UserSort, { message: 'field invalid' }),
+    __metadata("design:type", String)
+], FindUserDto.prototype, "sort", void 0);
 //# sourceMappingURL=find-user.dto.js.map

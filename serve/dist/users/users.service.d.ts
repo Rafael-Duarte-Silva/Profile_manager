@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { ResponseUserDto } from './dto/response-user.dto';
 import { UserRole } from './enums/userRole.enum';
 import { UserStatus } from './enums/userStatus.enum';
+import { FindUserDto } from './dto/find-user.dto';
 export declare class UsersService {
     private readonly userRepository;
     constructor(userRepository: Repository<User>);
@@ -13,6 +14,6 @@ export declare class UsersService {
     deleteAllById(id: string[]): Promise<import("typeorm").DeleteResult>;
     findById(id: string): Promise<User | null>;
     findByUsername(login: string): Promise<User | null>;
-    findAll(page: number, search: string): Promise<ResponseUserDto[] | undefined>;
+    findAll({ page, search, sort }: FindUserDto): Promise<ResponseUserDto[] | undefined>;
     private response;
 }

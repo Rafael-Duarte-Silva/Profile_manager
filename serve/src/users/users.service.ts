@@ -7,6 +7,7 @@ import { ResponseUserDto } from './dto/response-user.dto';
 import { hashSync } from 'bcrypt';
 import { UserRole } from './enums/userRole.enum';
 import { UserStatus } from './enums/userStatus.enum';
+import { FindUserDto } from './dto/find-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -53,15 +54,16 @@ export class UsersService {
     return this.userRepository.findOneBy({ login });
   }
 
-  async findAll(page: number, search: string) {
+  async findAll({ page, search, sort }: FindUserDto) {
+    const take: number = 8;
     const [users] = await this.userRepository.findAndCount({
-      order: { dateCreated: 'ASC' },
+      order: { [sort]: 'ASC' },
       where: {
         role: UserRole.USER,
         login: Raw((alias) => `LOWER(${alias}) LIKE LOWER('%${search}%')`),
       },
-      skip: page - 1,
-      take: 8,
+      skip: (page - 1) * take,
+      take,
     });
     if (users === null) {
       return;
