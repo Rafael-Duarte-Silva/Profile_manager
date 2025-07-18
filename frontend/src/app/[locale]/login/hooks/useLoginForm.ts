@@ -1,3 +1,4 @@
+import { LoginData } from "@/interfaces/LoginData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -18,7 +19,9 @@ export const useLoginForm = () => {
         mode: "onBlur",
     });
 
-    const handleSendLoginData: SubmitHandler<LoginMutateSchema> = (data) => {
+    const handleSendLoginData: SubmitHandler<LoginMutateSchema> = (
+        data: LoginData,
+    ) => {
         mutate(data);
     };
 

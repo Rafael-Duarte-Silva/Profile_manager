@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
 
 import { useSearchParams } from "next/navigation";
 
@@ -11,31 +11,27 @@ import { useUserData } from "./hooks/useUserData";
 import { TableContext } from "./TableContext";
 
 export const TableProvider = ({ children }: { children: ReactNode }) => {
-    const searchParams = new URLSearchParams(useSearchParams().toString());
     const checkbox = useCheckbox();
 
+    const searchParams = new URLSearchParams(useSearchParams().toString());
     const { sort, setSort, handleSort } = useSort(searchParams);
-    const { handlePage, page, setPage } = usePage(searchParams);
-    const [isOpenSearchBar, setIsOpenSearchBar] = useState<boolean>(false);
+    const { page, handlePage, setPage } = usePage(searchParams);
     const {
         deferredSearch,
+        isOpenSearchBar,
         setDeferredSearch,
         handleSearchKeyboard,
         updateSearch,
         handleSearch,
-    } = useSearch(searchParams, isOpenSearchBar);
+        handleIsOpenSearchBar,
+        setIsOpenSearchBar,
+    } = useSearch(searchParams);
     const { data, refetch } = useUserData(deferredSearch, page, sort);
 
-    const handleIsOpenSearchBar = () => {
-        if (!isOpenSearchBar && window.screen.width <= 375) {
-            setIsOpenSearchBar(true);
-        }
-    };
-
     useEffect(() => {
-        const searchParam = searchParams.get("search") || "";
-        const sortParam = searchParams.get("sort") || "";
-        const pageParam = searchParams.get("page") || "";
+        const searchParam = searchParams.get("search") || deferredSearch;
+        const sortParam = searchParams.get("sort") || sort;
+        const pageParam = searchParams.get("page") || page;
 
         setDeferredSearch(searchParam);
         setPage(pageParam);
@@ -55,12 +51,12 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
                 page,
                 sort,
                 deferredSearch,
+                isOpenSearchBar,
                 handleSort,
                 handlePage,
                 handleSearchKeyboard,
                 updateSearch,
                 handleSearch,
-                isOpenSearchBar,
                 handleIsOpenSearchBar,
             }}
         >

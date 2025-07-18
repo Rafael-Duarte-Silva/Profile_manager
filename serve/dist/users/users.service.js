@@ -26,9 +26,9 @@ let UsersService = class UsersService {
         this.userRepository = userRepository;
     }
     async create(createUserDto, status, role) {
-        const userAlreadyRegistered = await this.findByUsername(createUserDto.login);
+        const userAlreadyRegistered = await this.findByUsername(createUserDto.username);
         if (userAlreadyRegistered) {
-            throw new common_1.ConflictException(`User '${createUserDto.login}' already registered`);
+            throw new common_1.ConflictException(`User '${createUserDto.username}' already registered`);
         }
         const dbUser = {
             ...createUserDto,
@@ -45,8 +45,8 @@ let UsersService = class UsersService {
     findById(id) {
         return this.userRepository.findOneBy({ id });
     }
-    findByUsername(login) {
-        return this.userRepository.findOneBy({ login });
+    findByUsername(username) {
+        return this.userRepository.findOneBy({ username });
     }
     async findAll({ page, search, sort }) {
         const take = 8;
@@ -54,7 +54,7 @@ let UsersService = class UsersService {
             order: { [sort]: 'ASC' },
             where: {
                 role: userRole_enum_1.UserRole.USER,
-                login: (0, typeorm_2.Raw)((alias) => `LOWER(${alias}) LIKE LOWER('%${search}%')`),
+                username: (0, typeorm_2.Raw)((alias) => `LOWER(${alias}) LIKE LOWER('%${search}%')`),
             },
             skip: (page - 1) * take,
             take,

@@ -1,5 +1,3 @@
-import "./ToggleLanguage.scss";
-
 import { Link, routing } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
@@ -7,9 +5,9 @@ import { IconLanguages } from "@/components/icons/IconLanguages";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
-import { useToggleLanguage } from "./hooks/useToggleLanguage";
+import { useToggleLanguage } from "../hooks/useToggleLanguage";
 
-export const ToggleLanguage = () => {
+export const HeadingToggleLanguage = () => {
     const { hrefWithoutLocale } = useToggleLanguage();
     const t = useTranslations("HomePage");
 

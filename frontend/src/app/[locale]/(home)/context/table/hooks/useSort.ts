@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { mappingSort } from "../constants/mappingSort";
-
 import { useQueryHandler } from "./useQueryHandler";
 
 export const useSort = (searchParams: URLSearchParams) => {
@@ -17,7 +15,7 @@ export const useSort = (searchParams: URLSearchParams) => {
     ) => {
         e.preventDefault();
         pathPush([
-            ["sort", mappingSort[sort]],
+            ["sort", sort],
             ["page", "1"],
         ]);
     };

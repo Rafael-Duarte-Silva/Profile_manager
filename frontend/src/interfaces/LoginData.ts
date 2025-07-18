@@ -1,5 +1,5 @@
 export interface LoginData {
     id?: number;
-    login: string;
+    username: string;
     password: string;
 }

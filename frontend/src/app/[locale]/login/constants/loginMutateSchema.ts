@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const loginMutateSchema = z.object({
-    login: z
+    username: z
         .string()
         .min(3, { message: "This field has to be filled." })
         .max(32, { message: "the max of characters are 15" }),

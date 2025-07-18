@@ -29,6 +29,7 @@ let UsersController = class UsersController {
         return this.usersService.findAll(query);
     }
     delete(id) {
+        console.log(id);
         return this.usersService.deleteAllById(id);
     }
 };

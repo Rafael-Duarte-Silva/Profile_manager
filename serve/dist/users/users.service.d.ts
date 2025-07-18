@@ -13,7 +13,7 @@ export declare class UsersService {
     }>;
     deleteAllById(id: string[]): Promise<import("typeorm").DeleteResult>;
     findById(id: string): Promise<User | null>;
-    findByUsername(login: string): Promise<User | null>;
+    findByUsername(username: string): Promise<User | null>;
     findAll({ page, search, sort }: FindUserDto): Promise<ResponseUserDto[] | undefined>;
     private response;
 }

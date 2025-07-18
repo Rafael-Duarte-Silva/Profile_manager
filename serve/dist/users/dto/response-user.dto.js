@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResponseUserDto = void 0;
 class ResponseUserDto {
     id;
-    login;
-    role;
+    username;
     fullName;
     email;
     job;
@@ -13,8 +12,7 @@ class ResponseUserDto {
     dateCreated;
     constructor(user) {
         this.id = user.id;
-        this.login = user.login;
-        this.role = user.role;
+        this.username = user.username;
         this.fullName = user.fullName;
         this.email = user.email;
         this.job = user.job;

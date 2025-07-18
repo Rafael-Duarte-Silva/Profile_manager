@@ -1,10 +1,8 @@
 import { User } from 'src/users/entities/user.entity';
-import { UserRole } from '../enums/userRole.enum';
 import { UserStatus } from '../enums/userStatus.enum';
 export declare class ResponseUserDto {
     id: string;
-    login: string;
-    role: UserRole;
+    username: string;
     fullName: string;
     email: string;
     job: string;

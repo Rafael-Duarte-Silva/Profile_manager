@@ -8,7 +8,7 @@ class User1752699803660 {
 
         CREATE TABLE users (
             id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-            login TEXT NOT NULL UNIQUE,
+            username TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
             role user_role NOT NULL,
             full_name TEXT NOT NULL,

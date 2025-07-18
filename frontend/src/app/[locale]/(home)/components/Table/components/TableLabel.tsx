@@ -2,11 +2,11 @@ import { useTranslations } from "next-intl";
 
 import { Typography } from "@/components/ui/Typography";
 
-type LabelProps = {
+type TableLabelProps = {
     label: string;
 };
 
-export const Label = ({ label = "" }: LabelProps) => {
+export const TableLabel = ({ label = "" }: TableLabelProps) => {
     const t = useTranslations("HomePage");
 
     return (

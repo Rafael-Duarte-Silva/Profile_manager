@@ -2,14 +2,12 @@ import { useState } from "react";
 
 import { useQueryHandler } from "./useQueryHandler";
 
-export const useSearch = (
-    searchParams: URLSearchParams,
-    isOpenSearchBar: boolean,
-) => {
+export const useSearch = (searchParams: URLSearchParams) => {
     const { pathPush } = useQueryHandler();
 
     let search = searchParams.get("search") || "";
     const [deferredSearch, setDeferredSearch] = useState<string>(search);
+    const [isOpenSearchBar, setIsOpenSearchBar] = useState<boolean>(false);
 
     const handleSearchKeyboard = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
@@ -17,13 +15,19 @@ export const useSearch = (
         }
     };
 
-    const updateSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        search = e.target.value;
+    const updateSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        search = event.target.value;
     };
 
-    const handleSearch = (e?: React.MouseEvent) => {
-        if (e) {
-            e.stopPropagation();
+    const handleIsOpenSearchBar = () => {
+        if (!isOpenSearchBar && window.screen.width <= 375) {
+            setIsOpenSearchBar(true);
+        }
+    };
+
+    const handleSearch = (event?: React.MouseEvent) => {
+        if (event) {
+            event.stopPropagation();
         }
 
         if (search !== searchParams.get("search")) {
@@ -41,10 +45,13 @@ export const useSearch = (
 
     return {
         deferredSearch,
+        isOpenSearchBar,
         setDeferredSearch,
         handleSearchKeyboard,
         updateSearch,
         handleSearch,
+        handleIsOpenSearchBar,
+        setIsOpenSearchBar,
     };
 };
 

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSort = void 0;
 var UserSort;
 (function (UserSort) {
-    UserSort["LOGIN"] = "login";
+    UserSort["USERNAME"] = "username";
     UserSort["PASSWORD"] = "password";
     UserSort["FULL_NAME"] = "fullName";
     UserSort["EMAIL"] = "email";

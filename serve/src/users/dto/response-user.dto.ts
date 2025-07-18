@@ -1,11 +1,9 @@
 import { User } from 'src/users/entities/user.entity';
-import { UserRole } from '../enums/userRole.enum';
 import { UserStatus } from '../enums/userStatus.enum';
 
 export class ResponseUserDto {
   id: string;
-  login: string;
-  role: UserRole;
+  username: string;
   fullName: string;
   email: string;
   job: string;
@@ -15,8 +13,7 @@ export class ResponseUserDto {
 
   constructor(user: User) {
     this.id = user.id;
-    this.login = user.login;
-    this.role = user.role;
+    this.username = user.username;
     this.fullName = user.fullName;
     this.email = user.email;
     this.job = user.job;

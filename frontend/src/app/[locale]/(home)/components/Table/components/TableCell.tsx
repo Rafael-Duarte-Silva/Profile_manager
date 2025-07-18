@@ -2,17 +2,17 @@ import { useTranslations } from "next-intl";
 
 import { Typography } from "@/components/ui/Typography";
 
-type CellProps = {
+type TableCellProps = {
     label: string;
     text: string;
     lowerCase?: boolean;
 };
 
-export const Cell = ({
+export const TableCell = ({
     label = "",
     text = "",
     lowerCase = false,
-}: CellProps) => {
+}: TableCellProps) => {
     const t = useTranslations("HomePage");
 
     return (

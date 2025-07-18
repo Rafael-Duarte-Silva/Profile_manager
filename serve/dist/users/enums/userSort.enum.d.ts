@@ -1,5 +1,5 @@
 export declare enum UserSort {
-    LOGIN = "login",
+    USERNAME = "username",
     PASSWORD = "password",
     FULL_NAME = "fullName",
     EMAIL = "email",

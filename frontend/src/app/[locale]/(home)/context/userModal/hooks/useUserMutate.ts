@@ -10,10 +10,10 @@ const postData = (data: UserMutateSchema): AxiosPromise<void> => {
 };
 
 export const useUserMutate = () => {
-    const mutate = useMutation({
+    const { mutate } = useMutation({
         mutationFn: postData,
         retry: 2,
     });
 
-    return mutate;
+    return { mutate };
 };

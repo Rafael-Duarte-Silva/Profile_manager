@@ -2,6 +2,8 @@
 
 import "./page.scss";
 
+import { useTranslations } from "next-intl";
+
 import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
@@ -11,6 +13,7 @@ import { useLoginForm } from "./hooks/useLoginForm";
 export default function Login() {
     const { handleSubmit, handleSendLoginData, isPending, register } =
         useLoginForm();
+    const t = useTranslations("HomePage");
 
     return (
         <div className="Login">
@@ -26,16 +29,16 @@ export default function Login() {
                 </Typography>
 
                 <Input
-                    {...register("login")}
-                    label="login"
-                    id="loginInput"
+                    {...register("username")}
+                    label={t("username")}
+                    id="usernameInput"
                     autoComplete="name"
                     placeholder="admin"
                     type="text"
                 />
                 <Input
                     {...register("password")}
-                    label="password"
+                    label={t("password")}
                     id="passwordInput"
                     autoComplete="current-password"
                     placeholder="********"
@@ -46,7 +49,7 @@ export default function Login() {
                     variant="primary"
                     type="submit"
                 >
-                    {isPending ? "sending..." : "login"}
+                    {isPending ? t("sending") : t("login")}
                 </Button>
             </form>
         </div>

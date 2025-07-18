@@ -8,7 +8,7 @@ export class FakerUntil {
     const fullName = `${firstName} ${lastName}`;
 
     const user: CreateUserDto = {
-      login: firstName,
+      username: firstName,
       password: faker.string.numeric({ length: { min: 5, max: 10 } }),
       fullName: fullName,
       email: faker.internet.email({

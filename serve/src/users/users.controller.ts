@@ -27,6 +27,7 @@ export class UsersController {
   @Delete()
   @Roles([UserRole.ADMIN])
   delete(@Body() id: string[]) {
+    console.log(id);
     return this.usersService.deleteAllById(id);
   }
 }

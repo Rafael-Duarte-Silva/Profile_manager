@@ -15,7 +15,7 @@ const userRole_enum_1 = require("../enums/userRole.enum");
 const userStatus_enum_1 = require("../enums/userStatus.enum");
 let User = class User {
     id;
-    login;
+    username;
     password;
     role;
     fullName;
@@ -33,7 +33,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: 'text', nullable: false, unique: true }),
     __metadata("design:type", String)
-], User.prototype, "login", void 0);
+], User.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'text', nullable: false }),
     __metadata("design:type", String)

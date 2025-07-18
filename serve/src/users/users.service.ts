@@ -22,12 +22,12 @@ export class UsersService {
     role: UserRole,
   ) {
     const userAlreadyRegistered = await this.findByUsername(
-      createUserDto.login,
+      createUserDto.username,
     );
 
     if (userAlreadyRegistered) {
       throw new ConflictException(
-        `User '${createUserDto.login}' already registered`,
+        `User '${createUserDto.username}' already registered`,
       );
     }
 
@@ -50,8 +50,8 @@ export class UsersService {
     return this.userRepository.findOneBy({ id });
   }
 
-  findByUsername(login: string) {
-    return this.userRepository.findOneBy({ login });
+  findByUsername(username: string) {
+    return this.userRepository.findOneBy({ username });
   }
 
   async findAll({ page, search, sort }: FindUserDto) {
@@ -60,7 +60,7 @@ export class UsersService {
       order: { [sort]: 'ASC' },
       where: {
         role: UserRole.USER,
-        login: Raw((alias) => `LOWER(${alias}) LIKE LOWER('%${search}%')`),
+        username: Raw((alias) => `LOWER(${alias}) LIKE LOWER('%${search}%')`),
       },
       skip: (page - 1) * take,
       take,

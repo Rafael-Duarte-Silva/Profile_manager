@@ -1,5 +1,3 @@
-import "./SearchBar.scss";
-
 import { useTableContext } from "@/app/[locale]/(home)/context/table/TableContext";
 import { useTranslations } from "next-intl";
 
@@ -7,7 +5,7 @@ import { IconSearch } from "@/components/icons/IconSearch";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
-export const SearchBar = () => {
+export const HeadingSearchBar = () => {
     const {
         deferredSearch,
         handleSearchKeyboard,

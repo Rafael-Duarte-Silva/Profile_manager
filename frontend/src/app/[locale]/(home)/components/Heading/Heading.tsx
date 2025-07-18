@@ -2,9 +2,8 @@ import "./Heading.scss";
 
 import { useTranslations } from "next-intl";
 
-import { SearchBar } from "./components/SearchBar";
-import { SelectAll } from "./components/SelectAll";
-import { ToggleLanguage } from "./components/ToggleLanguage";
+import { HeadingSearchBar } from "./components/HeadingSearchBar";
+import { HeadingToggleLanguage } from "./components/HeadingToggleLanguage";
 import { IconCreate } from "@/components/icons/IconCreate";
 import { IconGenerate } from "@/components/icons/IconGenerate";
 import { Button } from "@/components/ui/Button";
@@ -13,6 +12,7 @@ import { Typography } from "@/components/ui/Typography";
 import { useGenerate } from "./hooks/useGenerate";
 
 import { useUserModalContext } from "../../context/userModal/UserModalContext";
+import { SelectAll } from "../SelectAll";
 import { Sort } from "../Sort";
 
 export const Heading = () => {
@@ -31,8 +31,8 @@ export const Heading = () => {
                 </Typography>
 
                 <div className="Heading-containerButton">
-                    <SearchBar />
-                    <ToggleLanguage />
+                    <HeadingSearchBar />
+                    <HeadingToggleLanguage />
                 </div>
             </div>
             <div className="Heading Heading--button">

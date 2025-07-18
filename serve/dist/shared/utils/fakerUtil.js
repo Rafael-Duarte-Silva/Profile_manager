@@ -8,7 +8,7 @@ class FakerUntil {
         const lastName = faker_1.faker.person.lastName();
         const fullName = `${firstName} ${lastName}`;
         const user = {
-            login: firstName,
+            username: firstName,
             password: faker_1.faker.string.numeric({ length: { min: 5, max: 10 } }),
             fullName: fullName,
             email: faker_1.faker.internet.email({

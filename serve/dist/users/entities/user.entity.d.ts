@@ -2,7 +2,7 @@ import { UserRole } from '../enums/userRole.enum';
 import { UserStatus } from '../enums/userStatus.enum';
 export declare class User {
     id: string;
-    login: string;
+    username: string;
     password: string;
     role: UserRole;
     fullName: string;

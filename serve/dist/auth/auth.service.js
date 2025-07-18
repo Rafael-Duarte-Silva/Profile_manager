@@ -29,12 +29,12 @@ let AuthService = class AuthService {
         this.configService = configService;
         this.expiresIn = parseInt(this.configService.get('JWT_EXPIRATION_TIME') || '0');
     }
-    async login(username, password) {
+    async login({ username, password }) {
         const foundUser = await this.userService.findByUsername(username);
         if (!foundUser || !(0, bcrypt_1.compareSync)(password, foundUser.password)) {
             throw new common_1.UnauthorizedException();
         }
-        const payload = { sub: foundUser.id, username: foundUser.login };
+        const payload = { sub: foundUser.id, username: foundUser.username };
         const token = this.jwtService.sign(payload);
         return { token, expiresIn: this.expiresIn };
     }

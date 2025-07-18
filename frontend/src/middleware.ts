@@ -12,13 +12,11 @@ export default async function middleware(request: NextRequest) {
         request.cookies.get("NEXT_LOCALE")?.value ||
         routing.defaultLocale;
 
-    if (request.nextUrl.pathname.endsWith("/login")) {
+    if (request.nextUrl.pathname.endsWith("/login"))
         return intlMiddleware(request);
-    }
 
-    if (!token) {
+    if (!token)
         return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
-    }
 
     return intlMiddleware(request);
 }

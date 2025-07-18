@@ -1,4 +1,4 @@
-import { UserData } from "@/interface/UserData";
+import { UserData } from "@/interfaces/UserData";
 import api from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosPromise } from "axios";

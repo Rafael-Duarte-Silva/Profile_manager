@@ -6,17 +6,15 @@ import { AuthGuard } from './guards/auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { Roles } from './guards/roles.decorator';
 import { UserRole } from 'src/users/enums/userRole.enum';
+import { LoginUserDto } from 'src/users/dto/login-use.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  login(
-    @Body('username') username: string,
-    @Body('password') password: string,
-  ): Promise<AuthReponseDto> {
-    return this.authService.login(username, password);
+  login(@Body() body: LoginUserDto): Promise<AuthReponseDto> {
+    return this.authService.login(body);
   }
 
   @Post('register')

@@ -8,6 +8,7 @@ import { FakerUntil } from 'src/shared/utils/fakerUtil';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UserRole } from 'src/users/enums/userRole.enum';
 import { UserStatus } from 'src/users/enums/userStatus.enum';
+import { LoginUserDto } from 'src/users/dto/login-use.dto';
 
 @Injectable()
 export class AuthService {
@@ -22,14 +23,14 @@ export class AuthService {
     );
   }
 
-  async login(username: string, password: string): Promise<AuthReponseDto> {
+  async login({ username, password }: LoginUserDto): Promise<AuthReponseDto> {
     const foundUser = await this.userService.findByUsername(username);
 
     if (!foundUser || !compareSync(password, foundUser.password)) {
       throw new UnauthorizedException();
     }
 
-    const payload = { sub: foundUser.id, username: foundUser.login };
+    const payload = { sub: foundUser.id, username: foundUser.username };
 
     const token = this.jwtService.sign(payload);
 

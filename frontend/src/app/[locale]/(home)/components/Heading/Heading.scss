@@ -1,4 +1,6 @@
 @use "@/styles/settings/breakpoint" as *;
+@use "./components/HeadingSearchBar";
+@use "./components/HeadingToggleLanguage";
 
 .Heading {
     display: flex;

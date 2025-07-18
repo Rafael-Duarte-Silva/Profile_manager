@@ -2,9 +2,9 @@ import api from "@/services/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosPromise } from "axios";
 
-import { getCookie } from "@/utils/getCookie";
+import { IsChecked } from "@/types/IsChecked";
 
-import { IsChecked } from "../../../context/table/hooks/useCheckbox";
+import { getCookie } from "@/utils/getCookie";
 
 const deleteData = (ids: string[]): AxiosPromise<void> => {
     const response = api.delete<void>("/users", {
@@ -33,13 +33,9 @@ export const useUserDelete = () => {
     });
 
     const handleUserDelete = (position: number, isChecked: IsChecked[]) => {
-        const ids: string[] = [];
-
-        for (let i: number = 0; i < isChecked.length; i++) {
-            if (isChecked[i].checked || position === i) {
-                ids.push(isChecked[i].id);
-            }
-        }
+        const ids: string[] = isChecked
+            .filter((value, i) => value.checked || position === i)
+            .map((value) => value.id);
 
         mutate(ids);
     };

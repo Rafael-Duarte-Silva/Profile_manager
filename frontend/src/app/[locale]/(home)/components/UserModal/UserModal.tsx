@@ -49,10 +49,10 @@ export const UserModal = () => {
                         type="email"
                     />
                     <Input
-                        {...register("login")}
-                        label={t("login")}
-                        id="user-login"
-                        autoComplete="name"
+                        {...register("username")}
+                        label={t("username")}
+                        id="user-username"
+                        autoComplete="username"
                         placeholder="@barry"
                         type="text"
                     />

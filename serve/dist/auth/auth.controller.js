@@ -20,13 +20,14 @@ const auth_guard_1 = require("./guards/auth.guard");
 const roles_guard_1 = require("./guards/roles.guard");
 const roles_decorator_1 = require("./guards/roles.decorator");
 const userRole_enum_1 = require("../users/enums/userRole.enum");
+const login_use_dto_1 = require("../users/dto/login-use.dto");
 let AuthController = class AuthController {
     authService;
     constructor(authService) {
         this.authService = authService;
     }
-    login(username, password) {
-        return this.authService.login(username, password);
+    login(body) {
+        return this.authService.login(body);
     }
     register(createUserDto) {
         return this.authService.register(createUserDto);
@@ -41,10 +42,9 @@ let AuthController = class AuthController {
 exports.AuthController = AuthController;
 __decorate([
     (0, common_1.Post)('login'),
-    __param(0, (0, common_1.Body)('username')),
-    __param(1, (0, common_1.Body)('password')),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [login_use_dto_1.LoginUserDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 __decorate([

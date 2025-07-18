@@ -1,12 +1,10 @@
+import { userList } from "@/contants/userList";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 import { IconSort } from "@/components/icons/IconSort";
 import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
-
-import { labelList } from "./constants/labelList";
-import { mappingLabel } from "./constants/mappingLabel";
 
 import { useTableContext } from "../../context/table/TableContext";
 
@@ -20,9 +18,7 @@ export const Sort = ({ className = "" }: { className?: string }) => {
             className={`Heading-details${className ? ` ${className}` : ""}`}
         >
             <summary className="Heading-row Heading-row--filter">
-                <Typography colors="DarkMedium">
-                    {t(mappingLabel[sort])}
-                </Typography>
+                <Typography colors="DarkMedium">{t(sort)}</Typography>
                 <IconSort />
             </summary>
 
@@ -31,7 +27,7 @@ export const Sort = ({ className = "" }: { className?: string }) => {
                 className="Heading-modal"
             >
                 <ul>
-                    {labelList.map((value, index) => (
+                    {["username", ...userList].map((value, index) => (
                         <li
                             key={index}
                             className="Heading-item"

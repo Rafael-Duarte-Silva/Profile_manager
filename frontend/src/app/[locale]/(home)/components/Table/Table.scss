@@ -1,4 +1,6 @@
 @use "@/styles/settings/breakpoint" as *;
+@use "./components/TableCell";
+@use "./components/TableLabel";
 
 .Table-wrap {
     margin-block-start: var(--base-size-24);
@@ -22,24 +24,6 @@
 
     @media screen and (min-width: $breakpoint-xl) {
         display: table-header-group;
-    }
-}
-
-.Table-head-cell {
-    @media screen and (min-width: $breakpoint-xl) {
-        vertical-align: middle;
-        text-align: start;
-
-        padding-block: var(--base-size-16);
-
-        &--user {
-            display: flex;
-            align-items: center;
-
-            column-gap: var(--base-size-40);
-
-            padding-inline: var(--base-size-20);
-        }
     }
 }
 
@@ -77,58 +61,6 @@
         &.is-checked {
             background-color: var(--color-zero-light);
         }
-    }
-}
-
-.Table-cell {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-inline: var(--base-size-20);
-
-    @media screen and (min-width: $breakpoint-xl) {
-        vertical-align: middle;
-        display: table-cell;
-
-        padding: 0;
-        padding-block: var(--base-size-10);
-    }
-
-    &--user {
-        padding-block: var(--base-size-12);
-
-        border-bottom: var(--borderWidth-sm) solid var(--color-zero-dark);
-
-        @media screen and (min-width: $breakpoint-xl) {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: start;
-            column-gap: var(--base-size-40);
-
-            padding: 0;
-            padding-inline-start: var(--base-size-20);
-            padding-block: var(--base-size-10);
-
-            border-bottom: none;
-        }
-    }
-    &--icons {
-        justify-content: flex-end;
-        column-gap: var(--base-size-14);
-
-        @media screen and (min-width: $breakpoint-xl) {
-            display: flex;
-            column-gap: var(--base-size-40);
-
-            padding-inline-end: var(--base-size-20);
-        }
-    }
-}
-
-.Table-label {
-    @media screen and (min-width: $breakpoint-xl) {
-        display: none;
     }
 }
 

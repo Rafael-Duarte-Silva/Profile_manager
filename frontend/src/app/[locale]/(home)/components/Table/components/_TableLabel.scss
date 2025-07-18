@@ -1,0 +1,19 @@
+@use "@/styles/settings/breakpoint" as *;
+
+.Table-head-cell {
+    @media screen and (min-width: $breakpoint-xl) {
+        vertical-align: middle;
+        text-align: start;
+
+        padding-block: var(--base-size-16);
+
+        &--user {
+            display: flex;
+            align-items: center;
+
+            column-gap: var(--base-size-40);
+
+            padding-inline: var(--base-size-20);
+        }
+    }
+}

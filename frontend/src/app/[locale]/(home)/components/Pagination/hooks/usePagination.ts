@@ -4,9 +4,9 @@ export const usePagination = () => {
     const { page } = useTableContext();
 
     const length: number = 7;
-    const pageNumber: number = parseInt(page);
     const mid = Math.floor(length / 2);
 
+    const pageNumber: number = parseInt(page);
     const calculatePageValue = (index: number): string =>
         (pageNumber <= mid ? ++index : index - mid + pageNumber).toString();
 

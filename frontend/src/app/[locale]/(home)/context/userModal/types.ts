@@ -1,4 +1,4 @@
-import { UserData } from "@/interface/UserData";
+import { UserData } from "@/interfaces/UserData";
 import {
     FieldErrors,
     SubmitHandler,
@@ -7,7 +7,7 @@ import {
     UseFormSetValue,
 } from "react-hook-form";
 
-import { UserMutateSchema } from "../../components/UserModal/types/UserMutateSchema";
+import { UserMutateSchema } from "./types/UserMutateSchema";
 
 export type UserModalContextProps = {
     isEdit: boolean;

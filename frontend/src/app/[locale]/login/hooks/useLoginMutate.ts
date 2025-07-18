@@ -1,5 +1,5 @@
 import { useRouter } from "@/i18n/routing";
-import { LoginData } from "@/interface/LoginData";
+import { LoginData } from "@/interfaces/LoginData";
 import api from "@/services/api";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosPromise } from "axios";

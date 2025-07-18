@@ -13,7 +13,7 @@ export class User {
   id: string;
 
   @Column({ type: 'text', nullable: false, unique: true })
-  login: string;
+  username: string;
 
   @Column({ type: 'text', nullable: false })
   password: string;

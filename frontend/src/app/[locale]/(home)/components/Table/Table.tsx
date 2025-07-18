@@ -5,39 +5,21 @@ import "./Table.scss";
 import { useEffect } from "react";
 
 import { useTableContext } from "@/app/[locale]/(home)/context/table/TableContext";
-import { useTranslations } from "next-intl";
+import { userList } from "@/contants/userList";
+import { UserData } from "@/interfaces/UserData";
 
-import { Cell } from "./components/Cell";
-import { Label } from "./components/Label";
-import { IconCheckbox } from "@/components/icons/IconCheckbox";
-import { IconDelete } from "@/components/icons/IconDelete";
-import { IconEdit } from "@/components/icons/IconEdit";
-import { Typography } from "@/components/ui/Typography";
+import { TableCell } from "./components/TableCell";
+import { TableCellButtons } from "./components/TableCellButtons";
+import { TableCellUser } from "./components/TableCellUser";
+import { TableLabel } from "./components/TableLabel";
+import { TableLabelUser } from "./components/TableLabelUser";
 
-import { useAccessibilityKeyboard } from "../../../../../hooks/useAccessibilityKeyboard";
 import { useTable } from "./hooks/useTable";
-import { useUserDelete } from "./hooks/useUserDelete";
-
-import { fullNameInitials } from "./utils/fullNameInitials";
-
-import { useUserModalContext } from "../../context/userModal/UserModalContext";
-import { Sort } from "../Sort";
 
 export const Table = () => {
     const { data } = useTableContext();
-    const { handleUserDelete } = useUserDelete();
-    const {
-        initializeIsChecked,
-        allIsChecked,
-        handleAllIsChecked,
-        isChecked,
-        handleIsChecked,
-    } = useTableContext();
-    const { handleUserEdit } = useUserModalContext();
-    const { classNameIsChecked, inputIsChecked, formatDateToShort } =
-        useTable();
-    const { accessibilityKeyDown } = useAccessibilityKeyboard();
-    const t = useTranslations("HomePage");
+    const { initializeIsChecked } = useTableContext();
+    const { classNameIsChecked, formatDateToShort } = useTable();
 
     useEffect(() => {
         if (data) initializeIsChecked(data);
@@ -45,156 +27,59 @@ export const Table = () => {
 
     return (
         <div className="Table-wrap">
-            <table className="Table">
-                <thead className="Table-head">
-                    <tr>
-                        <th className="Table-head-cell Table-head-cell--user">
-                            <div>
-                                <input
-                                    className="Table-profile-input"
-                                    id={`profileAllInput`}
-                                    type="checkbox"
-                                    checked={allIsChecked}
-                                    onChange={handleAllIsChecked}
+            {data ? (
+                <table className="Table">
+                    <thead className="Table-head">
+                        <tr>
+                            <TableLabelUser />
+                            {userList.map((value) => (
+                                <TableLabel
+                                    key={value}
+                                    label={value}
                                 />
-                                <label
-                                    className="Table-profile-label"
-                                    htmlFor={`profileAllInput`}
-                                    tabIndex={0}
-                                    onKeyDown={accessibilityKeyDown}
-                                >
-                                    <IconCheckbox className="Table-iconProfile" />
-                                </label>
-                            </div>
-                            <Typography
-                                asChild
-                                colors="DarkMedium"
-                            >
-                                <span>{t("user")}</span>
-                            </Typography>
-
-                            <Sort className="Table-sort" />
-                        </th>
-                        <Label label="status" />
-                        <Label label="email" />
-                        <Label label="phone" />
-                        <Label label="job" />
-                        <Label label="date" />
-                    </tr>
-                </thead>
-                <tbody className="Table-body">
-                    {data ? (
-                        data?.map((userData, index) => (
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody className="Table-body">
+                        {data.map((userData, index) => (
                             <tr
                                 className={`Table-row${classNameIsChecked(index)}`}
                                 key={index}
                             >
-                                <Typography asChild>
-                                    <td className="Table-cell Table-cell--user">
-                                        <div className="Table-profile-wrape">
-                                            <div className="Table-avatar">
-                                                {fullNameInitials(
-                                                    userData.fullName,
-                                                )}
-                                            </div>
-
-                                            <div className="Table-profile-body">
-                                                <Typography
-                                                    asChild
-                                                    variant="primary"
-                                                >
-                                                    <div className="Table-profile-name">
-                                                        {userData.fullName}
-                                                    </div>
-                                                </Typography>
-
-                                                <Typography
-                                                    asChild
-                                                    colors="Medium"
-                                                >
-                                                    <div>{userData.login}</div>
-                                                </Typography>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <input
-                                                className="Table-profile-input"
-                                                id={`profileInput${index}`}
-                                                type="checkbox"
-                                                checked={inputIsChecked(index)}
-                                                onChange={() =>
-                                                    handleIsChecked(index)
-                                                }
-                                            />
-                                            <label
-                                                className="Table-profile-label"
-                                                htmlFor={`profileInput${index}`}
-                                                tabIndex={0}
-                                                onKeyDown={accessibilityKeyDown}
-                                            >
-                                                <IconCheckbox className="Table-iconProfile" />
-                                            </label>
-                                        </div>
-                                    </td>
-                                </Typography>
-                                <Cell
-                                    label="status"
-                                    text={userData.status}
+                                <TableCellUser
+                                    index={index}
+                                    userData={userData}
                                 />
-                                <Cell
-                                    label="email"
-                                    text={userData.email}
-                                    lowerCase
-                                />
-                                <Cell
-                                    label="phone"
-                                    text={userData.phone}
-                                />
-                                <Cell
-                                    label="job"
-                                    text={userData.job}
-                                />
-                                <Cell
-                                    label="date"
+                                {userList
+                                    .slice(0, userList.length - 1)
+                                    .map((value) => (
+                                        <TableCell
+                                            key={value}
+                                            label={value}
+                                            text={
+                                                userData[
+                                                    value as keyof UserData
+                                                ]
+                                            }
+                                        />
+                                    ))}
+                                <TableCell
+                                    label="dateCreated"
                                     text={formatDateToShort(
                                         userData.dateCreated,
                                     )}
                                 />
-                                <Typography asChild>
-                                    <td className="Table-cell Table-cell--icons">
-                                        <button
-                                            title={t("edit")}
-                                            type="button"
-                                            onClick={() =>
-                                                handleUserEdit(true, userData)
-                                            }
-                                        >
-                                            <IconEdit />
-                                        </button>
-                                        <button
-                                            title={t("delete")}
-                                            type="button"
-                                            onClick={() =>
-                                                handleUserDelete(
-                                                    index,
-                                                    isChecked,
-                                                )
-                                            }
-                                        >
-                                            <IconDelete />
-                                        </button>
-                                    </td>
-                                </Typography>
+                                <TableCellButtons
+                                    index={index}
+                                    userData={userData}
+                                />
                             </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td>Not found</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <div>Not found</div>
+            )}
         </div>
     );
 };
