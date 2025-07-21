@@ -25,7 +25,7 @@ export const useLoginMutate = () => {
         onSuccess: (data) => {
             const response = data.data;
             setCookie("jwt", response.token, response.expiresIn);
-            router.push("/?sort=dateCreated&page=1");
+            router.push("/");
         },
     });
 

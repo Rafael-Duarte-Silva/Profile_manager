@@ -1,0 +1,38 @@
+@use "@/styles/settings/breakpoint" as *;
+
+.DashboardPagination {
+    display: flex;
+    justify-content: center;
+    column-gap: var(--base-size-8);
+
+    margin-block: var(--base-size-16);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        column-gap: var(--base-size-12);
+    }
+}
+
+.DashboardPagination-item {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--base-size-8);
+
+    &.is-valid {
+        background-color: var(--color-zero-light);
+
+        border: var(--borderWidth-md) solid var(--color-zero-dark);
+        border-radius: var(--borderRadius-md);
+    }
+
+    @media screen and (min-width: $breakpoint-xl) {
+        padding: var(--base-size-10);
+    }
+}
+
+.DashboardPagination-link {
+    color: var(--color-negative);
+}

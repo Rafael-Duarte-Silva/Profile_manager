@@ -1,0 +1,57 @@
+@use "@/styles/settings/breakpoint" as *;
+
+.DashboardUserModal-wrap {
+    z-index: 1;
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #00000050;
+}
+
+.DashboardUserModal {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--base-size-20);
+
+    width: 26.25rem;
+    height: 100%;
+
+    padding: var(--base-size-24) var(--base-size-28);
+
+    background-color: var(--color-zero);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        row-gap: var(--base-size-28);
+
+        border-radius: var(--borderRadius-lg) 0 0 var(--borderRadius-lg);
+    }
+}
+
+.DashboardUserModal-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--base-size-4);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        row-gap: var(--base-size-8);
+    }
+}
+
+.DashboardUserModal-containerButton {
+    align-self: center;
+
+    display: flex;
+    column-gap: var(--base-size-36);
+
+    margin-top: var(--base-size-20);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        margin-top: var(--base-size-24);
+    }
+}

@@ -1,0 +1,63 @@
+@use "@/styles/settings/breakpoint" as *;
+
+.DashboardTable-wrap {
+    margin-block-start: var(--base-size-24);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        margin-block-start: var(--base-size-16);
+
+        background-color: var(--color-zero);
+
+        border: var(--borderWidth-sm) solid var(--color-zero-dark);
+        border-radius: var(--borderRadius-lg);
+    }
+}
+
+.DashboardTable {
+    width: 100%;
+}
+
+.DashboardTable-head {
+    display: none;
+
+    @media screen and (min-width: $breakpoint-xl) {
+        display: table-header-group;
+    }
+}
+
+.DashboardTable-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--base-size-8);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        display: table-row-group;
+    }
+}
+
+.DashboardTable-row {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--base-size-20);
+
+    padding-block: var(--base-size-14) var(--base-size-20);
+
+    background-color: var(--color-zero);
+
+    border-radius: var(--borderRadius-md);
+
+    @media screen and (min-width: $breakpoint-xl) {
+        display: table-row;
+
+        padding: 0;
+
+        background-color: transparent;
+        border-top: var(--borderWidth-sm) solid var(--color-zero-dark);
+
+        border-radius: 0;
+
+        &.is-checked {
+            background-color: var(--color-zero-light);
+        }
+    }
+}

@@ -4,8 +4,8 @@ import "./page.scss";
 
 import { useTranslations } from "next-intl";
 
-import { Input } from "@/components/Input";
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 import { Typography } from "@/components/ui/Typography";
 
 import { useLoginForm } from "./hooks/useLoginForm";

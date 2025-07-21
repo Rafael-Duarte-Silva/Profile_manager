@@ -1,0 +1,44 @@
+@use "@/styles/settings/breakpoint" as *;
+
+.DashboardHeading {
+    display: flex;
+    justify-content: space-between;
+
+    &--button {
+        justify-content: initial;
+        column-gap: var(--base-size-12);
+
+        margin-block-start: var(--base-size-20);
+
+        @media screen and (min-width: $breakpoint-xl) {
+            justify-content: flex-end;
+
+            margin-block-start: var(--base-size-16);
+        }
+    }
+
+    &--filter {
+        margin-block-start: var(--base-size-28);
+
+        @media screen and (min-width: $breakpoint-xl) {
+            display: none;
+        }
+    }
+}
+
+.DashboardHeading-containerButton {
+    display: flex;
+    column-gap: var(--base-size-12);
+}
+
+.DashboardHeading-details {
+    position: relative;
+}
+
+.DashboardHeading-button {
+    flex: 1 1 0;
+
+    @media screen and (min-width: $breakpoint-xl) {
+        flex: 0 1 0;
+    }
+}

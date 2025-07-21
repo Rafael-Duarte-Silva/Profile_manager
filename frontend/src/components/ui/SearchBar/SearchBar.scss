@@ -1,0 +1,33 @@
+@use "@/styles/settings/breakpoint" as *;
+
+.SearchBar {
+    @media screen and (max-width: $breakpoint-xl) {
+        &.is-open {
+            position: absolute;
+            left: var(--base-size-16);
+
+            background-color: var(--color-zero);
+
+            &.Button {
+                justify-content: flex-start;
+
+                .Typography {
+                    display: inline;
+                }
+            }
+        }
+    }
+}
+
+.SearchBar-input {
+    height: max-content;
+
+    text-transform: capitalize;
+
+    background-color: transparent;
+    border: 0;
+
+    &::placeholder {
+        color: var(--color-fourth);
+    }
+}

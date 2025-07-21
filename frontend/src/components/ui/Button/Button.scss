@@ -37,13 +37,12 @@
         }
     }
 
-    &--w-max-h-md {
+    &--md {
         width: max-content;
-        height: var(--base-size-48);
+        height: max-content;
+        padding: var(--base-size-12) var(--base-size-12);
 
         @media screen and (min-width: $breakpoint-xl) {
-            height: max-content;
-
             padding: var(--base-size-16) var(--base-size-12);
         }
     }

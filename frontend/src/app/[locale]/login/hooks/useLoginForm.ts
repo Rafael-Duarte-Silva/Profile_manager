@@ -2,9 +2,10 @@ import { LoginData } from "@/interfaces/LoginData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { loginMutateSchema } from "../constants/loginMutateSchema";
-
-import { LoginMutateSchema } from "../types/LoginMutateSchema";
+import {
+    loginMutateSchema,
+    LoginMutateSchema,
+} from "@/schemas/LoginMutateSchema";
 
 import { useLoginMutate } from "./useLoginMutate";
 

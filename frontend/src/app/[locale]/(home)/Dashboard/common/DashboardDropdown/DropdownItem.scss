@@ -1,0 +1,22 @@
+.DropdownItem-item {
+    padding-block: var(--base-size-4);
+
+    &:hover {
+        color: var(--color-primary);
+        background-color: var(--color-second);
+
+        &:nth-child(1) {
+            border-radius: 10px 10px 0 0;
+        }
+
+        &:nth-last-child(1) {
+            border-radius: 0 0 10px 10px;
+        }
+    }
+}
+
+.DropdownItem-link {
+    display: block;
+    text-align: center;
+}
+

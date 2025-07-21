@@ -12,7 +12,7 @@ const button = cva("Button", {
             text: "Button--text",
         },
         size: {
-            maxMd: "Button--w-max-h-md",
+            md: "Button--md",
         },
     },
 });
