@@ -9,8 +9,8 @@ export declare class AuthService {
     private readonly userService;
     private readonly jwtService;
     private readonly configService;
-    private expiresIn;
-    private isSecure;
+    private readonly expiresIn;
+    private readonly isSecure;
     constructor(userService: UsersService, jwtService: JwtService, configService: ConfigService);
     login({ username, password }: LoginUserDto, response: Response): Promise<AuthReponseDto>;
     register(createUserDto: CreateUserDto): Promise<{

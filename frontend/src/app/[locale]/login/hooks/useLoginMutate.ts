@@ -19,8 +19,7 @@ export const useLoginMutate = () => {
     const mutate = useMutation({
         mutationFn: postData,
         retry: 2,
-        onSuccess: (data) => {
-            console.log(data.data.message);
+        onSuccess: () => {
             router.push("/");
         },
     });

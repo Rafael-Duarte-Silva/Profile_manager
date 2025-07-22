@@ -13,8 +13,8 @@ import { Response } from 'express';
 
 @Injectable()
 export class AuthService {
-  private expiresIn: number;
-  private isSecure: boolean;
+  private readonly expiresIn: number;
+  private readonly isSecure: boolean;
   constructor(
     private readonly userService: UsersService,
     private readonly jwtService: JwtService,
@@ -44,6 +44,10 @@ export class AuthService {
       signed: true,
       secure: this.isSecure,
       sameSite: this.isSecure ? 'none' : 'lax',
+      maxAge: this.expiresIn * 1000,
+    });
+
+    response.cookie('isLoggedIn', 'true', {
       maxAge: this.expiresIn * 1000,
     });
 

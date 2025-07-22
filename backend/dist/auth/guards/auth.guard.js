@@ -17,15 +17,18 @@ let AuthGuard = class AuthGuard {
     jwtService;
     configService;
     jwtSecret;
+    expiresIn;
     constructor(jwtService, configService) {
         this.jwtService = jwtService;
         this.configService = configService;
         this.jwtSecret = this.configService.get('JWT_SECRET') ?? '';
+        this.expiresIn = parseInt(this.configService.get('JWT_EXPIRATION_TIME') || '0');
     }
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
         const token = request.signedCookies['jwt'];
         if (!token) {
+            this.setCookieIsLoggedIn(context);
             throw new common_1.UnauthorizedException();
         }
         try {
@@ -35,9 +38,16 @@ let AuthGuard = class AuthGuard {
             request['user'] = payload;
         }
         catch {
+            this.setCookieIsLoggedIn(context);
             throw new common_1.UnauthorizedException();
         }
         return true;
+    }
+    setCookieIsLoggedIn(context) {
+        const response = context.switchToHttp().getResponse();
+        response.cookie('isLoggedIn', 'false', {
+            maxAge: this.expiresIn * 1000,
+        });
     }
 };
 exports.AuthGuard = AuthGuard;
