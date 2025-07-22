@@ -4,8 +4,10 @@ import api from "@/services/api";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosPromise } from "axios";
 
+import { setCookie } from "@/utils/setCookie";
+
 interface LoginPromise {
-    message: string;
+    expiresIn: number;
 }
 
 const postData = (data: LoginData): AxiosPromise<LoginPromise> => {
@@ -19,7 +21,9 @@ export const useLoginMutate = () => {
     const mutate = useMutation({
         mutationFn: postData,
         retry: 2,
-        onSuccess: () => {
+        onSuccess: (data) => {
+            const response: LoginPromise = data.data;
+            setCookie("isLoggedIn", "true", response.expiresIn);
             router.push("/");
         },
     });

@@ -1,3 +1,3 @@
 export class AuthReponseDto {
-  message: string;
+  expiresIn: number;
 }

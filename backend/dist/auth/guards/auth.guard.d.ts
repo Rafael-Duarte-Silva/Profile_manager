@@ -5,9 +5,6 @@ export declare class AuthGuard implements CanActivate {
     private readonly jwtService;
     private readonly configService;
     private readonly jwtSecret;
-    private readonly expiresIn;
-    private readonly isSecure;
     constructor(jwtService: JwtService, configService: ConfigService);
     canActivate(context: ExecutionContext): Promise<boolean>;
-    private setCookieIsLoggedIn;
 }

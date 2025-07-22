@@ -45,12 +45,7 @@ let AuthService = class AuthService {
             sameSite: this.isSecure ? 'none' : 'lax',
             maxAge: this.expiresIn * 1000,
         });
-        response.cookie('isLoggedIn', 'true', {
-            maxAge: this.expiresIn * 1000,
-            secure: this.isSecure,
-            sameSite: this.isSecure ? 'none' : 'lax',
-        });
-        return { message: 'authorized' };
+        return { expiresIn: this.expiresIn };
     }
     register(createUserDto) {
         return this.userService.create(createUserDto, userStatus_enum_1.UserStatus.MANUALLY, userRole_enum_1.UserRole.USER);
