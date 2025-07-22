@@ -4,13 +4,8 @@ import { AxiosPromise } from "axios";
 
 import { IsChecked } from "@/types/IsChecked";
 
-import { getCookie } from "@/utils/getCookie";
-
 const deleteData = (ids: string[]): AxiosPromise<void> => {
     const response = api.delete<void>("/users", {
-        headers: {
-            Authorization: `Bearer ${getCookie("jwt")}`,
-        },
         data: ids,
     });
     return response;

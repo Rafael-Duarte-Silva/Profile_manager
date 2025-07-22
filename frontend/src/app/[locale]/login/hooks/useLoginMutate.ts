@@ -4,11 +4,8 @@ import api from "@/services/api";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosPromise } from "axios";
 
-import { setCookie } from "@/utils/setCookie";
-
 interface LoginPromise {
-    token: string;
-    expiresIn: number;
+    message: string;
 }
 
 const postData = (data: LoginData): AxiosPromise<LoginPromise> => {
@@ -23,8 +20,7 @@ export const useLoginMutate = () => {
         mutationFn: postData,
         retry: 2,
         onSuccess: (data) => {
-            const response = data.data;
-            setCookie("jwt", response.token, response.expiresIn);
+            console.log(data.data.message);
             router.push("/");
         },
     });

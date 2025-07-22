@@ -3,14 +3,8 @@ import api from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosPromise } from "axios";
 
-import { getCookie } from "@/utils/getCookie";
-
 const fetchData = (endpoint: string): AxiosPromise<UserData[]> => {
-    const response = api.get<UserData[]>(endpoint, {
-        headers: {
-            Authorization: `Bearer ${getCookie("jwt")}`,
-        },
-    });
+    const response = api.get<UserData[]>(endpoint);
     return response;
 };
 
