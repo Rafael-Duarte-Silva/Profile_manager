@@ -18,11 +18,13 @@ let AuthGuard = class AuthGuard {
     configService;
     jwtSecret;
     expiresIn;
+    isSecure;
     constructor(jwtService, configService) {
         this.jwtService = jwtService;
         this.configService = configService;
         this.jwtSecret = this.configService.get('JWT_SECRET') ?? '';
         this.expiresIn = parseInt(this.configService.get('JWT_EXPIRATION_TIME') || '0');
+        this.isSecure = this.configService.get('NODE_ENV') === 'production';
     }
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
@@ -47,6 +49,8 @@ let AuthGuard = class AuthGuard {
         const response = context.switchToHttp().getResponse();
         response.cookie('isLoggedIn', 'false', {
             maxAge: this.expiresIn * 1000,
+            secure: this.isSecure,
+            sameSite: this.isSecure ? 'none' : 'lax',
         });
     }
 };

@@ -12,6 +12,7 @@ import { ConfigService } from '@nestjs/config';
 export class AuthGuard implements CanActivate {
   private readonly jwtSecret: string;
   private readonly expiresIn: number;
+  private readonly isSecure: boolean;
 
   constructor(
     private readonly jwtService: JwtService,
@@ -21,6 +22,7 @@ export class AuthGuard implements CanActivate {
     this.expiresIn = parseInt(
       this.configService.get<string>('JWT_EXPIRATION_TIME') || '0',
     );
+    this.isSecure = this.configService.get<string>('NODE_ENV') === 'production';
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -49,6 +51,8 @@ export class AuthGuard implements CanActivate {
     const response: Response = context.switchToHttp().getResponse();
     response.cookie('isLoggedIn', 'false', {
       maxAge: this.expiresIn * 1000,
+      secure: this.isSecure,
+      sameSite: this.isSecure ? 'none' : 'lax',
     });
   }
 }

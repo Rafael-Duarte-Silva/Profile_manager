@@ -47,6 +47,8 @@ let AuthService = class AuthService {
         });
         response.cookie('isLoggedIn', 'true', {
             maxAge: this.expiresIn * 1000,
+            secure: this.isSecure,
+            sameSite: this.isSecure ? 'none' : 'lax',
         });
         return { message: 'authorized' };
     }
