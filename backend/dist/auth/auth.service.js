@@ -40,8 +40,10 @@ let AuthService = class AuthService {
         const token = this.jwtService.sign(payload);
         response.cookie('jwt', token, {
             httpOnly: true,
+            signed: this.isSecure,
             secure: this.isSecure,
             maxAge: this.expiresIn * 1000,
+            sameSite: 'none',
         });
         return { message: 'authorized' };
     }
