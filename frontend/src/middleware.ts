@@ -7,6 +7,7 @@ export const intlMiddleware = createMiddleware(routing);
 
 export default async function middleware(request: NextRequest) {
     const token = request.cookies.get("jwt")?.value;
+    console.log(token);
     const locale =
         request.nextUrl.pathname.split("/")[1] ||
         request.cookies.get("NEXT_LOCALE")?.value ||

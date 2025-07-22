@@ -41,10 +41,10 @@ export class AuthService {
 
     response.cookie('jwt', token, {
       httpOnly: true,
-      signed: this.isSecure,
+      signed: true,
       secure: this.isSecure,
+      sameSite: this.isSecure ? 'none' : 'lax',
       maxAge: this.expiresIn * 1000,
-      sameSite: 'none',
     });
 
     return { message: 'authorized' };

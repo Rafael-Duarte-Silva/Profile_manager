@@ -17,18 +17,14 @@ let AuthGuard = class AuthGuard {
     jwtService;
     configService;
     jwtSecret;
-    isSecure;
     constructor(jwtService, configService) {
         this.jwtService = jwtService;
         this.configService = configService;
         this.jwtSecret = this.configService.get('JWT_SECRET') ?? '';
-        this.isSecure = this.configService.get('NODE_ENV') === 'production';
     }
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
-        const token = this.isSecure
-            ? request.signedCookies['jwt']
-            : request.cookies['jwt'];
+        const token = request.signedCookies['jwt'];
         if (!token) {
             throw new common_1.UnauthorizedException();
         }
