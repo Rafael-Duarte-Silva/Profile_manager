@@ -1,4 +1,10 @@
 {
+    "LoginPage": {
+        "login": "login",
+        "sending": "sending...",
+        "username": "user",
+        "password": "password"
+    },
     "HomePage": {
         "title": "profile manager",
         "create": "create",
@@ -10,8 +16,6 @@
         "createUser": "create a user",
         "editUser": "edit a user",
 
-        "login": "login",
-        "sending": "sending...",
         "username": "user",
         "fullName": "full name",
         "password": "password",

@@ -1,6 +1,6 @@
 import { UserData } from "@/interfaces/UserData";
 
-import { IsChecked } from "@/types/IsChecked";
+import { IsChecked } from "@/types/IsCheckedType";
 
 export type TableContextProps = {
     initializeIsChecked: (data: UserData[]) => void;

@@ -61,3 +61,44 @@
         }
     }
 }
+
+.DashboardTable-cell-wrap {
+    display: flex;
+    column-gap: var(--base-size-12);
+}
+
+.DashboardTable-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.4375rem;
+    height: 2.4375rem;
+
+    text-transform: uppercase;
+    color: var(--color-zero);
+
+    background-color: var(--color-primary);
+
+    border-radius: 50%;
+}
+
+.DashboardTable-cell-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (min-width: $breakpoint-xl) {
+        text-align: start;
+    }
+}
+
+.DashboardTable-name {
+    text-transform: capitalize;
+}
+
+.DashboardTable-label {
+    @media screen and (min-width: $breakpoint-xl) {
+        display: none;
+    }
+}

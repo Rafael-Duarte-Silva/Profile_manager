@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { UserData } from "@/interfaces/UserData";
 
-import { IsChecked } from "@/types/IsChecked";
+import { IsChecked } from "@/types/IsCheckedType";
 
 export const useCheckbox = () => {
     const [allIsChecked, setAllIsChecked] = useState<boolean>(false);

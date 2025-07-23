@@ -1,2 +1,0 @@
-export { DashboardHeading } from "./DashboardHeading";
-

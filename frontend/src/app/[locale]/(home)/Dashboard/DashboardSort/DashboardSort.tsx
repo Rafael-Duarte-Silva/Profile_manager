@@ -6,9 +6,10 @@ import { useTranslations } from "next-intl";
 import { IconSort } from "@/components/icons/IconSort";
 import { Typography } from "@/components/ui/Typography";
 
-import { userList } from "../contants/userList";
+import { userList } from "../constants";
+
 import { useTableContext } from "../context/table/TableContext";
-import { DashboardDropdown } from "./DashboardDropdown";
+import { DashboardDropdown } from "../DashboardDropdown";
 
 export const DashboardSort = () => {
     const { handleSort, sort } = useTableContext();
@@ -40,3 +41,4 @@ export const DashboardSort = () => {
         </DashboardDropdown.Root>
     );
 };
+

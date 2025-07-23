@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Typography } from "@/components/ui/Typography";
 
-import { useUserModalContext } from "../context/userModal/UserModalContext";
+import { useUserModalContext } from "./context/userModal/UserModalContext";
 
 export const DashboardUserModal = () => {
     const {

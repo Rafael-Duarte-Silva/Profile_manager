@@ -1,2 +1,0 @@
-export { DashboardPagination } from "./DashboardPagination";
-

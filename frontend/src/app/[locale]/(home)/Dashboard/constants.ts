@@ -7,4 +7,3 @@ export const userList: (keyof UserData)[] = [
     "job",
     "dateCreated",
 ];
-

@@ -1,8 +1,0 @@
-@use "@/styles/settings/breakpoint" as *;
-
-.DashboardCell-label {
-    @media screen and (min-width: $breakpoint-xl) {
-        display: none;
-    }
-}
-

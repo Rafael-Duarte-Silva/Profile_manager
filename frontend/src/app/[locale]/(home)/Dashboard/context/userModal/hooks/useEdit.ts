@@ -5,7 +5,7 @@ import { UseFormSetValue } from "react-hook-form";
 
 import { UserMutateSchema } from "@/schemas/UserMutateSchema";
 
-import { userList } from "../../../contants/userList";
+import { userList } from "../../../constants";
 
 export const useEdit = (
     setValue: UseFormSetValue<UserMutateSchema>,

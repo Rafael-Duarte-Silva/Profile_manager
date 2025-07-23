@@ -1,4 +1,10 @@
 {
+    "LoginPage": {
+        "login": "entrar",
+        "sending": "enviando...",
+        "username": "usuário",
+        "password": "senha"
+    },
     "HomePage": {
         "title": "gerenciador de perfil",
         "create": "criar",
@@ -10,8 +16,6 @@
         "createUser": "criar um usuário",
         "editUser": "editar um usuário",
 
-        "login": "entrar",
-        "sending": "enviando...",
         "username": "usuário",
         "fullName": "nome completo",
         "password": "senha",

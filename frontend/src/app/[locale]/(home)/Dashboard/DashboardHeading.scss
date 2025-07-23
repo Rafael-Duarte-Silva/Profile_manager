@@ -42,3 +42,10 @@
         flex: 0 1 0;
     }
 }
+
+.DashboardHeading-selectAll {
+    display: flex;
+    align-items: center;
+
+    column-gap: var(--base-size-8);
+}
