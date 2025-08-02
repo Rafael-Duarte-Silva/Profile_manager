@@ -15,7 +15,6 @@ export const DashboardSort = memo(function DashboardSort() {
     const { sort, handleSort } = useTableContext();
 
     const t = useTranslations("HomePage");
-    console.log("re-render");
 
     return (
         <DashboardDropdown.Root variant="primary">

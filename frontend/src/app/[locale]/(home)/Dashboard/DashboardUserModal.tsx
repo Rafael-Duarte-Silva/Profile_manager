@@ -1,6 +1,10 @@
 import "./DashboardUserModal.scss";
 
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
+import { SubmitHandler } from "react-hook-form";
+
+import { UserMutateSchema } from "@/schemas/UserMutateSchema";
 
 import { IconClose } from "@/components/icons/iconClose";
 import { IconSend } from "@/components/icons/IconSend";
@@ -9,18 +13,36 @@ import { Input } from "@/components/ui/Input";
 import { Typography } from "@/components/ui/Typography";
 
 import { useUserModalContext } from "./context/userModal/UserModalContext";
+import { postUserRegister } from "./DashboardUserModalAPI";
 
 export const DashboardUserModal = () => {
     const {
+        isEdit,
         isModalOpen,
         handleIsModalOpen,
         handleUserEdit,
         register,
         handleSubmit,
-        handleSendUserData,
-        isEdit,
     } = useUserModalContext();
     const t = useTranslations("HomePage");
+
+    const queryClient = useQueryClient();
+
+    const { mutate } = useMutation({
+        mutationFn: postUserRegister,
+        retry: 2,
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["users"],
+            });
+        },
+    });
+
+    const handleSendUserData: SubmitHandler<UserMutateSchema> = (data) => {
+        console.log(data);
+        mutate(data);
+        handleIsModalOpen();
+    };
 
     if (!isModalOpen) {
         return;
