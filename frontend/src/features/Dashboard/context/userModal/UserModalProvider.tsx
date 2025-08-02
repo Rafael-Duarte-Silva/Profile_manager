@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 
 import { useModal } from "./hooks/useModal";
 import { useUserForm } from "./hooks/useUserForm";
@@ -11,13 +11,16 @@ export const UserModalProvider = ({ children }: { children: ReactNode }) => {
     const { setValue, ...userFormRest } = userForm;
     const modal = useModal(setValue);
 
+    const contextValue = useMemo(
+        () => ({
+            ...modal,
+            ...userFormRest,
+        }),
+        [modal.isEdit, modal.isModalOpen],
+    );
+
     return (
-        <UserModalContext.Provider
-            value={{
-                ...modal,
-                ...userFormRest,
-            }}
-        >
+        <UserModalContext.Provider value={contextValue}>
             {children}
         </UserModalContext.Provider>
     );

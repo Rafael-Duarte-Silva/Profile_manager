@@ -1,6 +1,6 @@
 import "./page.scss";
 
-import { DashBoard } from "./Dashboard";
+import { DashBoard } from "@/features/Dashboard";
 
 export default function Home() {
     return (

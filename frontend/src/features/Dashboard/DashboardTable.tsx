@@ -22,7 +22,7 @@ import { IsChecked } from "@/types/IsCheckedType";
 
 import { useTableContext } from "./context/table/TableContext";
 import { useUserModalContext } from "./context/userModal/UserModalContext";
-import { DashboardSort } from "./DashboardSort/DashboardSort";
+import { DashboardSort } from "./DashboardSort";
 import { deleteUser } from "./DashboardTableAPI";
 
 export const DashboardTable = () => {

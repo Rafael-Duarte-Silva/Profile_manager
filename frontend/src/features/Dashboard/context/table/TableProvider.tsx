@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 
 import { useSearchParams } from "next/navigation";
 
@@ -21,23 +21,26 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
         searchParams.toString() || `page=${page}&sort=${sort}`,
     );
 
+    const contextValue = useMemo(
+        () => ({
+            ...checkbox,
+            ...search,
+            data,
+            page,
+            sort,
+            handleSort,
+            handlePage,
+        }),
+        [sort, page, search, checkbox.allIsChecked, checkbox.isChecked],
+    );
+
     useEffect(() => {
         setIsOpenSearchBar(false);
         refetch();
     }, [searchParams.toString()]);
 
     return (
-        <TableContext.Provider
-            value={{
-                ...checkbox,
-                ...search,
-                data,
-                page,
-                sort,
-                handleSort,
-                handlePage,
-            }}
-        >
+        <TableContext.Provider value={contextValue}>
             {children}
         </TableContext.Provider>
     );

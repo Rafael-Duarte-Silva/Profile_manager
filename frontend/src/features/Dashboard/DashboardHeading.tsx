@@ -17,7 +17,7 @@ import { useTableContext } from "./context/table/TableContext";
 import { useUserModalContext } from "./context/userModal/UserModalContext";
 import { DashboardDropdown } from "./DashboardDropdown";
 import { postUserGenerate } from "./DashboardHeadingAPI";
-import { DashboardSort } from "./DashboardSort/DashboardSort";
+import { DashboardSort } from "./DashboardSort";
 
 export const DashboardHeading = () => {
     const { handleIsModalOpen } = useUserModalContext();

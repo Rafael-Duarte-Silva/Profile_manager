@@ -8,8 +8,8 @@ import { useTranslations } from "next-intl";
 import { IconSort } from "@/components/icons/IconSort";
 import { Typography } from "@/components/ui/Typography";
 
-import { useTableContext } from "../context/table/TableContext";
-import { DashboardDropdown } from "../DashboardDropdown";
+import { useTableContext } from "./context/table/TableContext";
+import { DashboardDropdown } from "./DashboardDropdown";
 
 export const DashboardSort = memo(function DashboardSort() {
     const { sort, handleSort } = useTableContext();
