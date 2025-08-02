@@ -2,9 +2,8 @@
 
 import "./DashboardTable.scss";
 
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 
-import { UserData } from "@/interfaces/UserData";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -13,8 +12,6 @@ import { IconEdit } from "@/components/icons/IconEdit";
 import { TableCell, TableLabel } from "@/components/prefabs/Table";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Typography } from "@/components/ui/Typography";
-
-import { userList } from "./constants";
 
 import {
     DashboardCellButtonProps,
@@ -32,11 +29,11 @@ export const DashboardTable = () => {
     const t = useTranslations("HomePage");
 
     const { data, isChecked, initializeIsChecked } = useTableContext();
-    const locale = useLocale();
 
     const classNameIsChecked = (index: number): string =>
         isChecked[index] ? (isChecked[index].checked ? " is-checked" : "") : "";
 
+    const locale = useLocale();
     const formatDateToShort = (isoDateStr: string): string => {
         const date = new Date(isoDateStr);
         return date.toLocaleDateString(locale, {
@@ -57,9 +54,11 @@ export const DashboardTable = () => {
                     <thead className="DashboardTable-head">
                         <tr>
                             <DashboardLabelUser />
-                            {userList.map((value) => (
-                                <TableLabel key={value}>{t(value)}</TableLabel>
-                            ))}
+                            <TableLabel>{t("status")}</TableLabel>
+                            <TableLabel>{t("email")}</TableLabel>
+                            <TableLabel>{t("phone")}</TableLabel>
+                            <TableLabel>{t("job")}</TableLabel>
+                            <TableLabel>{t("dateCreated")}</TableLabel>
                         </tr>
                     </thead>
                     <tbody className="DashboardTable-body">
@@ -72,19 +71,22 @@ export const DashboardTable = () => {
                                     index={index}
                                     userData={userData}
                                 />
-                                {userList
-                                    .slice(0, userList.length - 1)
-                                    .map((value) => (
-                                        <DashboardCell
-                                            key={value}
-                                            label={value}
-                                            text={
-                                                userData[
-                                                    value as keyof UserData
-                                                ]
-                                            }
-                                        />
-                                    ))}
+                                <DashboardCell
+                                    label="status"
+                                    text={userData.status}
+                                />
+                                <DashboardCell
+                                    label="email"
+                                    text={userData.email}
+                                />
+                                <DashboardCell
+                                    label="phone"
+                                    text={userData.phone}
+                                />
+                                <DashboardCell
+                                    label="job"
+                                    text={userData.job}
+                                />
                                 <DashboardCell
                                     label="dateCreated"
                                     text={formatDateToShort(
@@ -106,7 +108,10 @@ export const DashboardTable = () => {
     );
 };
 
-const DashboardCell = ({ label = "", text = "" }: DashboardCellProps) => {
+const DashboardCell = memo(function DashboardCell({
+    label = "",
+    text = "",
+}: DashboardCellProps) {
     const t = useTranslations("HomePage");
 
     return (
@@ -123,7 +128,7 @@ const DashboardCell = ({ label = "", text = "" }: DashboardCellProps) => {
             </>
         </TableCell>
     );
-};
+});
 
 const DashboardCellButton = ({ userData, index }: DashboardCellButtonProps) => {
     const t = useTranslations("HomePage");

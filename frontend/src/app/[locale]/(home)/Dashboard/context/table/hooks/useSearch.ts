@@ -5,18 +5,15 @@ import { useUserFilters } from "./useUserFilters";
 export const useSearch = (searchParams: URLSearchParams) => {
     const { pathPush } = useUserFilters();
 
-    const search = useRef<string>("");
-    const deferredSearch: string = searchParams.get("search") || "";
+    const searchRef = useRef<HTMLInputElement>(null);
+    const searchDefaultValue = searchParams.get("search") || "";
+
     const [isOpenSearchBar, setIsOpenSearchBar] = useState<boolean>(false);
 
     const handleSearchKeyboard = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
             handleSearch();
         }
-    };
-
-    const updateSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-        search.current = event.target.value;
     };
 
     const handleIsOpenSearchBar = () => {
@@ -30,13 +27,13 @@ export const useSearch = (searchParams: URLSearchParams) => {
             event.stopPropagation();
         }
 
-        if (search.current !== searchParams.get("search")) {
+        if (searchRef.current?.value !== searchParams.get("search")) {
             if (
                 (window.screen.width <= 1200 && isOpenSearchBar) ||
                 window.screen.width > 1200
             ) {
                 pathPush([
-                    ["search", search.current],
+                    ["search", searchRef.current?.value || ""],
                     ["page", "1"],
                 ]);
             }
@@ -44,10 +41,10 @@ export const useSearch = (searchParams: URLSearchParams) => {
     };
 
     return {
-        deferredSearch,
+        ref: searchRef,
+        searchDefaultValue,
         isOpenSearchBar,
         handleSearchKeyboard,
-        updateSearch,
         handleSearch,
         handleIsOpenSearchBar,
         setIsOpenSearchBar,

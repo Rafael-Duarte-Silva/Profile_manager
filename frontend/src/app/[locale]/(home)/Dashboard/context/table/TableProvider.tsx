@@ -16,9 +16,10 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
     const searchParams = new URLSearchParams(useSearchParams().toString());
     const { sort, handleSort } = useSort(searchParams);
     const { page, handlePage } = usePage(searchParams);
-    const { setIsOpenSearchBar, deferredSearch, ...search } =
-        useSearch(searchParams);
-    const { data, refetch } = useUserData(deferredSearch, page, sort);
+    const { setIsOpenSearchBar, ...search } = useSearch(searchParams);
+    const { data, refetch } = useUserData(
+        searchParams.toString() || `page=${page}&sort=${sort}`,
+    );
 
     useEffect(() => {
         setIsOpenSearchBar(false);
@@ -30,7 +31,6 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
             value={{
                 ...checkbox,
                 ...search,
-                deferredSearch,
                 data,
                 page,
                 sort,

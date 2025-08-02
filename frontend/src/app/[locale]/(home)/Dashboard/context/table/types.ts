@@ -1,23 +1,25 @@
+import { Ref } from "react";
+
 import { UserData } from "@/interfaces/UserData";
 
 import { IsChecked } from "@/types/IsCheckedType";
 
 export type TableContextProps = {
-    initializeIsChecked: (data: UserData[]) => void;
-    allIsChecked: boolean;
-    handleAllIsChecked: () => void;
+    ref: Ref<HTMLInputElement>;
+    searchDefaultValue: string;
     isChecked: IsChecked[];
-    handleIsChecked: (position: number) => void;
+    allIsChecked: boolean;
     page: string;
     sort: string;
-    deferredSearch: string;
+    data: UserData[] | undefined;
+    isOpenSearchBar: boolean;
+    initializeIsChecked: (data: UserData[]) => void;
+    handleAllIsChecked: () => void;
+    handleIsChecked: (position: number) => void;
     handleSort(e: React.MouseEvent<HTMLAnchorElement>, sort: string): void;
     handlePage(page: string): void;
-    data: UserData[] | undefined;
     handleSearchKeyboard(e: React.KeyboardEvent): void;
-    updateSearch(e: React.ChangeEvent): void;
     handleSearch(e: React.MouseEvent): void;
-    isOpenSearchBar: boolean;
     handleIsOpenSearchBar(): void;
 };
 

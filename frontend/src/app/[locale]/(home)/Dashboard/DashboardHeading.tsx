@@ -22,11 +22,11 @@ import { DashboardSort } from "./DashboardSort/DashboardSort";
 export const DashboardHeading = () => {
     const { handleIsModalOpen } = useUserModalContext();
     const {
-        deferredSearch,
+        ref,
+        searchDefaultValue,
         isOpenSearchBar,
         handleSearchKeyboard,
         handleSearch,
-        updateSearch,
         handleIsOpenSearchBar,
     } = useTableContext();
     const t = useTranslations("HomePage");
@@ -54,9 +54,9 @@ export const DashboardHeading = () => {
 
                 <div className="DashboardHeading-containerButton">
                     <SearchBar
-                        deferredSearch={deferredSearch}
+                        ref={ref}
+                        deferredSearch={searchDefaultValue}
                         isOpenSearchBar={isOpenSearchBar}
-                        onChange={updateSearch}
                         onKeyDown={handleSearchKeyboard}
                         onClickButton={handleIsOpenSearchBar}
                         onclickIcon={handleSearch}

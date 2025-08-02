@@ -5,8 +5,6 @@ import { UseFormSetValue } from "react-hook-form";
 
 import { UserMutateSchema } from "@/schemas/UserMutateSchema";
 
-import { userList } from "../../../constants";
-
 export const useEdit = (
     setValue: UseFormSetValue<UserMutateSchema>,
     handleIsModalOpen: () => void,
@@ -17,7 +15,14 @@ export const useEdit = (
         setIsEdit(isEdit);
         handleIsModalOpen();
 
-        [...userList, "fullName", "username"].forEach((key) => {
+        [
+            "username",
+            "fullName",
+            "email",
+            "phone",
+            "job",
+            "dateCreated",
+        ].forEach((key) => {
             setValue(
                 key as keyof UserMutateSchema,
                 userData ? userData[key as keyof UserData] : "",

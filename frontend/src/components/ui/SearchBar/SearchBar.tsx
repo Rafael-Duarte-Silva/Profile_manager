@@ -1,5 +1,7 @@
 import "./SearchBar.scss";
 
+import { Ref } from "react";
+
 import { useTranslations } from "next-intl";
 
 import { IconSearch } from "@/components/icons/IconSearch";
@@ -7,23 +9,25 @@ import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 
 type SearchBarProps = {
+    ref: Ref<HTMLInputElement>;
+    deferredSearch?: string;
+    isOpenSearchBar: boolean;
+    name: string;
     onClickButton(): void;
     onclickIcon(e: React.MouseEvent<Element, MouseEvent>): void;
     onKeyDown(e: React.KeyboardEvent): void;
-    onChange(e: React.ChangeEvent<Element>): void;
-    deferredSearch: string;
-    isOpenSearchBar: boolean;
-    name: string;
+    onChange?(e: React.ChangeEvent<Element>): void;
 };
 
 export const SearchBar = ({
+    ref,
     deferredSearch,
     isOpenSearchBar,
+    name,
     onClickButton,
     onclickIcon,
     onChange,
     onKeyDown,
-    name,
 }: SearchBarProps) => {
     const t = useTranslations("HomePage");
 
@@ -46,6 +50,7 @@ export const SearchBar = ({
                     variant="second"
                 >
                     <input
+                        ref={ref}
                         type="search"
                         placeholder={t("search")}
                         onChange={onChange}

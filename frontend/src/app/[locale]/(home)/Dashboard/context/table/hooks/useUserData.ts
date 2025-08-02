@@ -11,15 +11,9 @@ const getUserData = (
     return response;
 };
 
-export const useUserData = (
-    search: string = "",
-    page: string = "",
-    sort: string = "",
-) => {
-    const endpoint = `/users?search=${search}&page=${page}&sort=${sort}`;
-
+export const useUserData = (endpoint: string) => {
     const query = useQuery({
-        queryFn: ({ signal }) => getUserData(endpoint, signal),
+        queryFn: ({ signal }) => getUserData(`users/?${endpoint}`, signal),
         queryKey: ["users"],
         retry: 2,
     });

@@ -1,20 +1,21 @@
 import "./DashboardSort.scss";
 
+import { memo } from "react";
+
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 import { IconSort } from "@/components/icons/IconSort";
 import { Typography } from "@/components/ui/Typography";
 
-import { userList } from "../constants";
-
 import { useTableContext } from "../context/table/TableContext";
 import { DashboardDropdown } from "../DashboardDropdown";
 
-export const DashboardSort = () => {
-    const { handleSort, sort } = useTableContext();
+export const DashboardSort = memo(function DashboardSort() {
+    const { sort, handleSort } = useTableContext();
 
     const t = useTranslations("HomePage");
+    console.log("re-render");
 
     return (
         <DashboardDropdown.Root variant="primary">
@@ -23,7 +24,14 @@ export const DashboardSort = () => {
                 <IconSort />
             </DashboardDropdown.Trigger>
             <DashboardDropdown.Content>
-                {["username", ...userList].map((value, index) => (
+                {[
+                    "username",
+                    "status",
+                    "email",
+                    "phone",
+                    "job",
+                    "dateCreated",
+                ].map((value, index) => (
                     <DashboardDropdown.Item
                         key={index}
                         id={index}
@@ -40,5 +48,5 @@ export const DashboardSort = () => {
             </DashboardDropdown.Content>
         </DashboardDropdown.Root>
     );
-};
+});
 
