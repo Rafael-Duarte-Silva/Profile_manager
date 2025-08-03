@@ -8,11 +8,11 @@ export type DashboardCellProps = {
 
 export type DashboardCellButtonProps = {
     userData: UserData;
-    index: number;
+    id: string;
 };
 
 export type DashboardCellUserProps = {
     userData: Pick<UserData, "fullName" | "username">;
-    index: number;
+    id: string;
 };
 

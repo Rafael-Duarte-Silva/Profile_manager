@@ -18,7 +18,6 @@ import {
     DashboardCellProps,
     DashboardCellUserProps,
 } from "./types";
-import { IsChecked } from "@/types/IsCheckedType";
 
 import { useCheckboxContext } from "./context/checkbox/CheckboxContext";
 import { useTableContext } from "./context/table/TableContext";
@@ -32,8 +31,8 @@ export const DashboardTable = () => {
     const { data } = useTableContext();
     const { isChecked, initializeIsChecked } = useCheckboxContext();
 
-    const classNameIsChecked = (index: number): string =>
-        isChecked[index] ? (isChecked[index].checked ? " is-checked" : "") : "";
+    const classNameIsChecked = (id: string): string =>
+        isChecked.get(id) ? " is-checked" : "";
 
     const locale = useLocale();
     const formatDateToShort = (isoDateStr: string): string => {
@@ -64,13 +63,13 @@ export const DashboardTable = () => {
                         </tr>
                     </thead>
                     <tbody className="DashboardTable-body">
-                        {data.map((userData, index) => (
+                        {data.map((userData) => (
                             <tr
-                                className={`DashboardTable-row${classNameIsChecked(index)}`}
-                                key={index}
+                                className={`DashboardTable-row${classNameIsChecked(userData.id)}`}
+                                key={userData.id}
                             >
                                 <DashboardCellUser
-                                    index={index}
+                                    id={userData.id}
                                     userData={userData}
                                 />
                                 <DashboardCell
@@ -96,7 +95,7 @@ export const DashboardTable = () => {
                                     )}
                                 />
                                 <DashboardCellButton
-                                    index={index}
+                                    id={userData.id}
                                     userData={userData}
                                 />
                             </tr>
@@ -132,7 +131,7 @@ const DashboardCell = memo(function DashboardCell({
     );
 });
 
-const DashboardCellButton = ({ userData, index }: DashboardCellButtonProps) => {
+const DashboardCellButton = ({ userData, id }: DashboardCellButtonProps) => {
     const t = useTranslations("HomePage");
     const { handleUserEdit } = useUserModalContext();
     const { isChecked } = useCheckboxContext();
@@ -151,10 +150,11 @@ const DashboardCellButton = ({ userData, index }: DashboardCellButtonProps) => {
         },
     });
 
-    const handleUserDelete = (position: number, isChecked: IsChecked[]) => {
-        const ids: string[] = isChecked
-            .filter((value, i) => value.checked || position === i)
-            .map((value) => value.id);
+    const handleUserDelete = () => {
+        const ids: string[] = [...isChecked]
+            .filter(([userId, checked]) => userId === id || checked)
+            .flatMap(([userId]) => userId);
+        console.log(ids);
 
         mutate(ids);
     };
@@ -171,7 +171,7 @@ const DashboardCellButton = ({ userData, index }: DashboardCellButtonProps) => {
             <button
                 title={t("delete")}
                 type="button"
-                onClick={() => handleUserDelete(index, isChecked)}
+                onClick={() => handleUserDelete()}
             >
                 <IconDelete />
             </button>
@@ -186,7 +186,7 @@ const DashboardLabelUser = () => {
     return (
         <TableLabel variant="user">
             <Checkbox
-                index={-1}
+                id="AllTable"
                 onchange={handleAllIsChecked}
                 checked={allIsChecked}
             />
@@ -204,12 +204,11 @@ const DashboardLabelUser = () => {
 
 const DashboardCellUser = ({
     userData: { fullName, username },
-    index,
+    id,
 }: DashboardCellUserProps) => {
     const { handleIsChecked, isChecked } = useCheckboxContext();
 
-    const inputIsChecked = (index: number): boolean =>
-        isChecked[index] ? isChecked[index].checked : false;
+    const inputIsChecked = (id: string): boolean => isChecked.get(id) || false;
 
     const fullNameInitials = (fullName: string | undefined): string => {
         return fullName
@@ -245,9 +244,9 @@ const DashboardCellUser = ({
             </div>
 
             <Checkbox
-                onchange={() => handleIsChecked(index)}
-                index={index}
-                checked={inputIsChecked(index)}
+                onchange={() => handleIsChecked(id)}
+                id={id}
+                checked={inputIsChecked(id)}
             />
         </TableCell>
     );

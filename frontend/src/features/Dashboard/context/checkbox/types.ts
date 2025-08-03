@@ -1,12 +1,10 @@
 import { UserData } from "@/interfaces/UserData";
 
-import { IsChecked } from "@/types/IsCheckedType";
-
 export type CheckboxContextProps = {
-    isChecked: IsChecked[];
+    isChecked: Map<string, boolean>;
     allIsChecked: boolean;
     initializeIsChecked: (data: UserData[]) => void;
     handleAllIsChecked: () => void;
-    handleIsChecked: (position: number) => void;
+    handleIsChecked: (id: string) => void;
 };
 

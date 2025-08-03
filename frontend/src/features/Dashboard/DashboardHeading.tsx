@@ -145,7 +145,7 @@ const DashBoardSelectAll = () => {
     return (
         <div className="DashboardHeading-selectAll">
             <Checkbox
-                index={-1}
+                id="AllHeading"
                 onchange={handleAllIsChecked}
                 checked={allIsChecked}
             />
