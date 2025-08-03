@@ -1,7 +1,5 @@
 import "./DashboardSort.scss";
 
-import { memo } from "react";
-
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
@@ -11,7 +9,7 @@ import { Typography } from "@/components/ui/Typography";
 import { useTableContext } from "./context/table/TableContext";
 import { DashboardDropdown } from "./DashboardDropdown";
 
-export const DashboardSort = memo(function DashboardSort() {
+export const DashboardSort = () => {
     const { sort, handleSort } = useTableContext();
 
     const t = useTranslations("HomePage");
@@ -32,7 +30,7 @@ export const DashboardSort = memo(function DashboardSort() {
                     "dateCreated",
                 ].map((value, index) => (
                     <DashboardDropdown.Item
-                        key={index}
+                        key={value}
                         id={index}
                     >
                         <Link
@@ -47,5 +45,5 @@ export const DashboardSort = memo(function DashboardSort() {
             </DashboardDropdown.Content>
         </DashboardDropdown.Root>
     );
-});
+};
 

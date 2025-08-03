@@ -1,8 +1,7 @@
-import { useUserFilters } from "./useUserFilters";
-
-export const useSort = (searchParams: URLSearchParams) => {
-    const { pathPush } = useUserFilters();
-
+export const useSort = (
+    searchParams: URLSearchParams,
+    pathPush: (queryList: string[][]) => void,
+) => {
     const sort = searchParams.get("sort") || "dateCreated";
 
     const handleSort = (

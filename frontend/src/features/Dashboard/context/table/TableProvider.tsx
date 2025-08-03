@@ -1,29 +1,24 @@
 import { ReactNode, useEffect, useMemo } from "react";
 
-import { useSearchParams } from "next/navigation";
-
-import { useCheckbox } from "./hooks/useCheckbox";
 import { usePage } from "./hooks/usePage";
 import { useSearch } from "./hooks/useSearch";
 import { useSort } from "./hooks/useSort";
 import { useUserData } from "./hooks/useUserData";
+import { useUserFilters } from "./hooks/useUserFilters";
 
 import { TableContext } from "./TableContext";
 
 export const TableProvider = ({ children }: { children: ReactNode }) => {
-    const checkbox = useCheckbox();
-
-    const searchParams = new URLSearchParams(useSearchParams().toString());
-    const { sort, handleSort } = useSort(searchParams);
-    const { page, handlePage } = usePage(searchParams);
-    const { setIsOpenSearchBar, ...search } = useSearch(searchParams);
+    const { pathPush, searchParams } = useUserFilters();
+    const { sort, handleSort } = useSort(searchParams, pathPush);
+    const { page, handlePage } = usePage(searchParams, pathPush);
+    const { setIsOpenSearchBar, ...search } = useSearch(searchParams, pathPush);
     const { data, refetch } = useUserData(
         searchParams.toString() || `page=${page}&sort=${sort}`,
     );
 
     const contextValue = useMemo(
         () => ({
-            ...checkbox,
             ...search,
             data,
             page,
@@ -31,7 +26,7 @@ export const TableProvider = ({ children }: { children: ReactNode }) => {
             handleSort,
             handlePage,
         }),
-        [sort, page, search, checkbox.allIsChecked, checkbox.isChecked],
+        [sort, page, search],
     );
 
     useEffect(() => {

@@ -1,8 +1,7 @@
-import { useUserFilters } from "./useUserFilters";
-
-export const usePage = (searchParams: URLSearchParams) => {
-    const { pathPush } = useUserFilters();
-
+export const usePage = (
+    searchParams: URLSearchParams,
+    pathPush: (queryList: string[][]) => void,
+) => {
     const page = searchParams.get("page") || "1";
 
     const handlePage = (page: string) => {

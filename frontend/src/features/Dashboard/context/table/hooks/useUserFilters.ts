@@ -26,6 +26,6 @@ export const useUserFilters = () => {
         router.push(`${pathname}?${setFilters(queryList)}`);
     };
 
-    return { pathPush };
+    return { pathPush, searchParams };
 };
 

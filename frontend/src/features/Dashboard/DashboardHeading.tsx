@@ -13,6 +13,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { SearchBar } from "@/components/ui/SearchBar/SearchBar";
 import { Typography } from "@/components/ui/Typography";
 
+import { useCheckboxContext } from "./context/checkbox/CheckboxContext";
 import { useTableContext } from "./context/table/TableContext";
 import { useUserModalContext } from "./context/userModal/UserModalContext";
 import { DashboardDropdown } from "./DashboardDropdown";
@@ -138,7 +139,7 @@ const DashboardLanguage = () => {
 };
 
 const DashBoardSelectAll = () => {
-    const { allIsChecked, handleAllIsChecked } = useTableContext();
+    const { allIsChecked, handleAllIsChecked } = useCheckboxContext();
     const t = useTranslations("HomePage");
 
     return (

@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
 
-import { useUserFilters } from "./useUserFilters";
-
-export const useSearch = (searchParams: URLSearchParams) => {
-    const { pathPush } = useUserFilters();
-
+export const useSearch = (
+    searchParams: URLSearchParams,
+    pathPush: (queryList: string[][]) => void,
+) => {
     const searchRef = useRef<HTMLInputElement>(null);
     const searchDefaultValue = searchParams.get("search") || "";
 

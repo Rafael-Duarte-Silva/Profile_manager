@@ -20,6 +20,7 @@ import {
 } from "./types";
 import { IsChecked } from "@/types/IsCheckedType";
 
+import { useCheckboxContext } from "./context/checkbox/CheckboxContext";
 import { useTableContext } from "./context/table/TableContext";
 import { useUserModalContext } from "./context/userModal/UserModalContext";
 import { DashboardSort } from "./DashboardSort";
@@ -28,7 +29,8 @@ import { deleteUser } from "./DashboardTableAPI";
 export const DashboardTable = () => {
     const t = useTranslations("HomePage");
 
-    const { data, isChecked, initializeIsChecked } = useTableContext();
+    const { data } = useTableContext();
+    const { isChecked, initializeIsChecked } = useCheckboxContext();
 
     const classNameIsChecked = (index: number): string =>
         isChecked[index] ? (isChecked[index].checked ? " is-checked" : "") : "";
@@ -133,7 +135,7 @@ const DashboardCell = memo(function DashboardCell({
 const DashboardCellButton = ({ userData, index }: DashboardCellButtonProps) => {
     const t = useTranslations("HomePage");
     const { handleUserEdit } = useUserModalContext();
-    const { isChecked } = useTableContext();
+    const { isChecked } = useCheckboxContext();
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
@@ -178,7 +180,7 @@ const DashboardCellButton = ({ userData, index }: DashboardCellButtonProps) => {
 };
 
 const DashboardLabelUser = () => {
-    const { allIsChecked, handleAllIsChecked } = useTableContext();
+    const { allIsChecked, handleAllIsChecked } = useCheckboxContext();
     const t = useTranslations("HomePage");
 
     return (
@@ -204,7 +206,7 @@ const DashboardCellUser = ({
     userData: { fullName, username },
     index,
 }: DashboardCellUserProps) => {
-    const { handleIsChecked, isChecked } = useTableContext();
+    const { handleIsChecked, isChecked } = useCheckboxContext();
 
     const inputIsChecked = (index: number): boolean =>
         isChecked[index] ? isChecked[index].checked : false;

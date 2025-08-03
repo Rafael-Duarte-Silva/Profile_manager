@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckboxProvider } from "./context/checkbox/CheckboxProvider";
 import { TableProvider } from "./context/table/TableProvider";
 import { UserModalProvider } from "./context/userModal/UserModalProvider";
 import { DashboardHeading } from "./DashboardHeading";
@@ -13,8 +14,10 @@ export const DashBoard = () => {
             <div>
                 <UserModalProvider>
                     <DashboardUserModal />
-                    <DashboardHeading />
-                    <DashboardTable />
+                    <CheckboxProvider>
+                        <DashboardHeading />
+                        <DashboardTable />
+                    </CheckboxProvider>
                 </UserModalProvider>
                 <DashboardPagination />
             </div>
