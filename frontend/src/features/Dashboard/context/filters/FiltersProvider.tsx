@@ -9,15 +9,17 @@ import { FiltersContext } from "./FiltersContext";
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
     const { pathPush, searchParams } = useUserFilters();
-    const sort = useSort(searchParams, pathPush);
-    const page = usePage(searchParams, pathPush);
+    const { sort, ...restSort } = useSort(searchParams, pathPush);
+    const { page, ...restPage } = usePage(searchParams, pathPush);
     const search = useSearch(searchParams, pathPush);
 
     const contextValue = useMemo(
         () => ({
             ...search,
-            ...page,
-            ...sort,
+            page,
+            ...restPage,
+            sort,
+            ...restSort,
             endpoint: searchParams.toString() || `page=${page}&sort=${sort}`,
         }),
         [sort, page, search],
