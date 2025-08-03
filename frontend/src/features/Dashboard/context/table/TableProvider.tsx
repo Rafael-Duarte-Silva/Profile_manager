@@ -1,38 +1,42 @@
 import { ReactNode, useEffect, useMemo } from "react";
 
-import { usePage } from "./hooks/usePage";
-import { useSearch } from "./hooks/useSearch";
-import { useSort } from "./hooks/useSort";
-import { useUserData } from "./hooks/useUserData";
-import { useUserFilters } from "./hooks/useUserFilters";
+import { UserData } from "@/interfaces/UserData";
+import api from "@/services/api";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosPromise } from "axios";
+import { useSearchParams } from "next/navigation";
 
+import { useFiltersContext } from "../filters/FiltersContext";
 import { TableContext } from "./TableContext";
 
+const getUserData = (
+    endpoint: string,
+    signal: AbortSignal,
+): AxiosPromise<UserData[]> => {
+    const response = api.get<UserData[]>(endpoint, { signal });
+    return response;
+};
+
 export const TableProvider = ({ children }: { children: ReactNode }) => {
-    const { pathPush, searchParams } = useUserFilters();
-    const { sort, handleSort } = useSort(searchParams, pathPush);
-    const { page, handlePage } = usePage(searchParams, pathPush);
-    const { setIsOpenSearchBar, ...search } = useSearch(searchParams, pathPush);
-    const { data, refetch } = useUserData(
-        searchParams.toString() || `page=${page}&sort=${sort}`,
-    );
+    const searchParams = useSearchParams();
+    const { endpoint } = useFiltersContext();
+    const { refetch, ...query } = useQuery({
+        queryFn: ({ signal }) => getUserData(`users/?${endpoint}`, signal),
+        queryKey: ["users"],
+        retry: 2,
+    });
+
+    useEffect(() => {
+        refetch();
+    }, [searchParams.toString()]);
 
     const contextValue = useMemo(
         () => ({
-            ...search,
-            data,
-            page,
-            sort,
-            handleSort,
-            handlePage,
+            ...query,
+            data: query.data?.data,
         }),
-        [sort, page, search],
+        [query.data?.data],
     );
-
-    useEffect(() => {
-        setIsOpenSearchBar(false);
-        refetch();
-    }, [searchParams.toString()]);
 
     return (
         <TableContext.Provider value={contextValue}>

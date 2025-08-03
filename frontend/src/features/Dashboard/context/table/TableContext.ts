@@ -10,7 +10,7 @@ export const useTableContext = () => {
     const tableContext = useContext(TableContext);
 
     if (!tableContext) {
-        throw new Error("Pagination must be used within a TableProvider");
+        throw new Error("Data must be used within a FiltersProvider");
     }
 
     return tableContext;

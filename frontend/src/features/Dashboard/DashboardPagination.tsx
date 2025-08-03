@@ -2,12 +2,10 @@ import "./DashboardPagination.scss";
 
 import { Link } from "@/i18n/routing";
 
-import { useTableContext } from "./context/table/TableContext";
+import { useFiltersContext } from "./context/filters/FiltersContext";
 
 export const DashboardPagination = () => {
-    const { handlePage } = useTableContext();
-
-    const { page } = useTableContext();
+    const { page, handlePage } = useFiltersContext();
     const length: number = 7;
     const mid = Math.floor(length / 2);
 

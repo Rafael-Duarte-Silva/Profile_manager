@@ -35,6 +35,7 @@ export const useSearch = (
                     ["search", searchRef.current?.value || ""],
                     ["page", "1"],
                 ]);
+                setIsOpenSearchBar(false);
             }
         }
     };
@@ -46,7 +47,6 @@ export const useSearch = (
         handleSearchKeyboard,
         handleSearch,
         handleIsOpenSearchBar,
-        setIsOpenSearchBar,
     };
 };
 

@@ -14,7 +14,7 @@ import { SearchBar } from "@/components/ui/SearchBar/SearchBar";
 import { Typography } from "@/components/ui/Typography";
 
 import { useCheckboxContext } from "./context/checkbox/CheckboxContext";
-import { useTableContext } from "./context/table/TableContext";
+import { useFiltersContext } from "./context/filters/FiltersContext";
 import { useUserModalContext } from "./context/userModal/UserModalContext";
 import { DashboardDropdown } from "./DashboardDropdown";
 import { postUserGenerate } from "./DashboardHeadingAPI";
@@ -29,7 +29,7 @@ export const DashboardHeading = () => {
         handleSearchKeyboard,
         handleSearch,
         handleIsOpenSearchBar,
-    } = useTableContext();
+    } = useFiltersContext();
     const t = useTranslations("HomePage");
 
     const queryClient = useQueryClient();

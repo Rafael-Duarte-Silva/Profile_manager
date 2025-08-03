@@ -6,11 +6,11 @@ import { useTranslations } from "next-intl";
 import { IconSort } from "@/components/icons/IconSort";
 import { Typography } from "@/components/ui/Typography";
 
-import { useTableContext } from "./context/table/TableContext";
+import { useFiltersContext } from "./context/filters/FiltersContext";
 import { DashboardDropdown } from "./DashboardDropdown";
 
 export const DashboardSort = () => {
-    const { sort, handleSort } = useTableContext();
+    const { sort, handleSort } = useFiltersContext();
 
     const t = useTranslations("HomePage");
 
