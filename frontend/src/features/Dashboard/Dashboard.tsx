@@ -2,7 +2,6 @@
 
 import { CheckboxProvider } from "./context/checkbox/CheckboxProvider";
 import { FiltersProvider } from "./context/filters/FiltersProvider";
-import { TableProvider } from "./context/table/TableProvider";
 import { UserModalProvider } from "./context/userModal/UserModalProvider";
 import { DashboardHeading } from "./DashboardHeading";
 import { DashboardPagination } from "./DashboardPagination";
@@ -17,9 +16,7 @@ export const DashBoard = () => {
                     <DashboardUserModal />
                     <CheckboxProvider>
                         <DashboardHeading />
-                        <TableProvider>
-                            <DashboardTable />
-                        </TableProvider>
+                        <DashboardTable />
                     </CheckboxProvider>
                 </UserModalProvider>
                 <DashboardPagination />

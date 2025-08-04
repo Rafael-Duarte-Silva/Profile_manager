@@ -4,8 +4,9 @@ import "./DashboardTable.scss";
 
 import { memo, useEffect } from "react";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 
 import { IconDelete } from "@/components/icons/IconDelete";
 import { IconEdit } from "@/components/icons/IconEdit";
@@ -20,16 +21,31 @@ import {
 } from "./types";
 
 import { useCheckboxContext } from "./context/checkbox/CheckboxContext";
-import { useTableContext } from "./context/table/TableContext";
+import { useFiltersContext } from "./context/filters/FiltersContext";
 import { useUserModalContext } from "./context/userModal/UserModalContext";
 import { DashboardSort } from "./DashboardSort";
-import { deleteUser } from "./DashboardTableAPI";
+import { deleteUser, getUserData } from "./DashboardTableAPI";
 
 export const DashboardTable = () => {
     const t = useTranslations("HomePage");
 
-    const { data } = useTableContext();
+    const searchParams = useSearchParams();
+    const { endpoint } = useFiltersContext();
+    const { refetch, data: dataPromise } = useQuery({
+        queryFn: ({ signal }) => getUserData(`users/?${endpoint}`, signal),
+        queryKey: ["users"],
+        retry: 2,
+    });
+    const data = dataPromise?.data;
+
+    useEffect(() => {
+        refetch();
+    }, [searchParams.toString()]);
+
     const { isChecked, initializeIsChecked } = useCheckboxContext();
+    useEffect(() => {
+        if (data) initializeIsChecked(data);
+    }, [data]);
 
     const classNameIsChecked = (id: string): string =>
         isChecked.get(id) ? " is-checked" : "";
@@ -43,10 +59,6 @@ export const DashboardTable = () => {
             year: "2-digit",
         });
     };
-
-    useEffect(() => {
-        if (data) initializeIsChecked(data);
-    }, [data]);
 
     return (
         <div className="DashboardTable-wrap">
@@ -154,7 +166,6 @@ const DashboardCellButton = ({ userData, id }: DashboardCellButtonProps) => {
         const ids: string[] = [...isChecked]
             .filter(([userId, checked]) => userId === id || checked)
             .flatMap(([userId]) => userId);
-        console.log(ids);
 
         mutate(ids);
     };

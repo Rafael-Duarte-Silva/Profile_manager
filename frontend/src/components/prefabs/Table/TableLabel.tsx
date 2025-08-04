@@ -1,6 +1,6 @@
 import "./TableLabel.scss";
 
-import { ReactNode, TableHTMLAttributes } from "react";
+import { memo, ReactNode, TableHTMLAttributes } from "react";
 
 import { cva, VariantProps } from "class-variance-authority";
 
@@ -21,12 +21,12 @@ interface TableLabelProps
     children: ReactNode;
 }
 
-export const TableLabel = ({
+export const TableLabel = memo(function TableLabel({
     variant,
     className = "",
     children,
     ...props
-}: TableLabelProps) => {
+}: TableLabelProps) {
     return (
         <Typography
             asChild
@@ -37,5 +37,5 @@ export const TableLabel = ({
             <th>{children}</th>
         </Typography>
     );
-};
+});
 

@@ -1,5 +1,7 @@
 import "./DashboardSort.scss";
 
+import { memo } from "react";
+
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
@@ -9,7 +11,7 @@ import { Typography } from "@/components/ui/Typography";
 import { useFiltersContext } from "./context/filters/FiltersContext";
 import { DashboardDropdown } from "./DashboardDropdown";
 
-export const DashboardSort = () => {
+export const DashboardSort = memo(function DashboardSort() {
     const { sort, handleSort } = useFiltersContext();
 
     const t = useTranslations("HomePage");
@@ -45,5 +47,5 @@ export const DashboardSort = () => {
             </DashboardDropdown.Content>
         </DashboardDropdown.Root>
     );
-};
+});
 
