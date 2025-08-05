@@ -8,8 +8,8 @@ export const DashboardPagination = () => {
     const { page, handlePage } = useFiltersContext();
     const length: number = 7;
     const mid = Math.floor(length / 2);
-
     const pageNumber: number = parseInt(page);
+
     const calculatePageValue = (index: number): string =>
         (pageNumber <= mid ? ++index : index - mid + pageNumber).toString();
 

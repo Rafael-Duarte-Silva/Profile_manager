@@ -36,13 +36,13 @@ export const DashboardTable = () => {
         queryKey: ["users"],
         retry: 2,
     });
-    const data = dataPromise?.data;
 
     useEffect(() => {
         refetch();
     }, [searchParams.toString()]);
 
     const { isChecked, initializeIsChecked } = useCheckboxContext();
+    const data = dataPromise?.data;
     useEffect(() => {
         if (data) initializeIsChecked(data);
     }, [data]);

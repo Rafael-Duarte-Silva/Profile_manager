@@ -21,7 +21,8 @@ import { postUserGenerate } from "./DashboardHeadingAPI";
 import { DashboardSort } from "./DashboardSort";
 
 export const DashboardHeading = () => {
-    const { handleIsModalOpen } = useUserModalContext();
+    const t = useTranslations("HomePage");
+
     const {
         ref,
         searchDefaultValue,
@@ -30,7 +31,8 @@ export const DashboardHeading = () => {
         handleSearch,
         handleIsOpenSearchBar,
     } = useFiltersContext();
-    const t = useTranslations("HomePage");
+
+    const { handleIsModalOpen } = useUserModalContext();
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
@@ -42,6 +44,8 @@ export const DashboardHeading = () => {
             });
         },
     });
+
+    const { allIsChecked, handleAllIsChecked } = useCheckboxContext();
 
     return (
         <div>
@@ -89,7 +93,14 @@ export const DashboardHeading = () => {
                 </Button>
             </div>
             <div className="DashboardHeading  DashboardHeading--filter">
-                <DashBoardSelectAll />
+                <div className="DashboardHeading-selectAll">
+                    <Checkbox
+                        id="AllHeading"
+                        onchange={handleAllIsChecked}
+                        checked={allIsChecked}
+                    />
+                    <Typography colors="DarkMedium">{t("select")}</Typography>
+                </div>
                 <DashboardSort />
             </div>
         </div>
@@ -135,21 +146,5 @@ const DashboardLanguage = () => {
                 ))}
             </DashboardDropdown.Content>
         </DashboardDropdown.Root>
-    );
-};
-
-const DashBoardSelectAll = () => {
-    const { allIsChecked, handleAllIsChecked } = useCheckboxContext();
-    const t = useTranslations("HomePage");
-
-    return (
-        <div className="DashboardHeading-selectAll">
-            <Checkbox
-                id="AllHeading"
-                onchange={handleAllIsChecked}
-                checked={allIsChecked}
-            />
-            <Typography colors="DarkMedium">{t("select")}</Typography>
-        </div>
     );
 };

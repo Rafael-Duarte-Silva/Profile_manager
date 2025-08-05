@@ -6,9 +6,7 @@ import { useUserForm } from "./hooks/useUserForm";
 import { UserModalContext } from "./UserModalContext";
 
 export const UserModalProvider = ({ children }: { children: ReactNode }) => {
-    const userForm = useUserForm();
-
-    const { setValue, ...userFormRest } = userForm;
+    const { setValue, ...userFormRest } = useUserForm();
     const modal = useModal(setValue);
 
     const contextValue = useMemo(

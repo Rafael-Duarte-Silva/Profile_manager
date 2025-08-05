@@ -52,7 +52,7 @@ export default function Login() {
     return (
         <div className="Login">
             <form
-                className="Login-wrap"
+                className="Login-form"
                 onSubmit={handleSubmit(handleSendLoginData)}
             >
                 <Typography
