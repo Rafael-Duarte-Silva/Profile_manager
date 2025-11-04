@@ -41,6 +41,10 @@ export default function Login() {
     const { register, handleSubmit } = useForm<LoginMutateSchema>({
         resolver: zodResolver(loginMutateSchema),
         mode: "onBlur",
+        defaultValues: {
+            username: "admin",
+            password: "123",
+        },
     });
 
     const handleSendLoginData: SubmitHandler<LoginMutateSchema> = (
