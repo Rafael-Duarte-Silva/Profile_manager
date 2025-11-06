@@ -53,6 +53,7 @@ export const DashboardHeading = () => {
                 <Typography
                     asChild
                     variant="fourth"
+                    text="upperCase"
                 >
                     <h1>{t("title")}</h1>
                 </Typography>

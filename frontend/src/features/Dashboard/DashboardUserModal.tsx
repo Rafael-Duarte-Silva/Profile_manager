@@ -54,6 +54,7 @@ export const DashboardUserModal = () => {
                 <Typography
                     asChild
                     variant="fourth"
+                    text="upperCase"
                 >
                     <h1>{isEdit ? t("editUser") : t("createUser")}</h1>
                 </Typography>
