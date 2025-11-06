@@ -3,7 +3,7 @@ import { UserData } from "@/interfaces/UserData";
 export type DashboardCellProps = {
     label: string;
     text: string;
-    lowerCase?: boolean;
+    upperCase?: boolean;
 };
 
 export type DashboardCellButtonProps = {

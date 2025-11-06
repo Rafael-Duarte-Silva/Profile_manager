@@ -31,6 +31,7 @@ export const TableLabel = memo(function TableLabel({
         <Typography
             asChild
             colors="DarkMedium"
+            text="upperCase"
             className={tableLabel({ variant, className })}
             {...props}
         >

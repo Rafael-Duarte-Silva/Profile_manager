@@ -97,6 +97,7 @@ export const DashboardTable = () => {
                                     text={userData.phone}
                                 />
                                 <DashboardCell
+                                    upperCase
                                     label="job"
                                     text={userData.job}
                                 />
@@ -124,11 +125,12 @@ export const DashboardTable = () => {
 const DashboardCell = memo(function DashboardCell({
     label = "",
     text = "",
+    upperCase = false,
 }: DashboardCellProps) {
     const t = useTranslations("HomePage");
 
     return (
-        <TableCell>
+        <TableCell upperCase={upperCase}>
             <>
                 <Typography
                     asChild
@@ -204,6 +206,7 @@ const DashboardLabelUser = () => {
             <Typography
                 asChild
                 colors="DarkMedium"
+                text="upperCase"
             >
                 <span>{t("username")}</span>
             </Typography>

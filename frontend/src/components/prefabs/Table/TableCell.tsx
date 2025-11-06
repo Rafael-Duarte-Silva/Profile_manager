@@ -18,14 +18,14 @@ const tableCell = cva("TableCell", {
 interface TableCellProps
     extends TableHTMLAttributes<HTMLTableCellElement>,
         VariantProps<typeof tableCell> {
-    lowerCase?: boolean;
+    upperCase?: boolean;
     className?: string;
     children: ReactNode;
 }
 
 export const TableCell = ({
     variant,
-    lowerCase = false,
+    upperCase = false,
     className = "",
     children,
     ...props
@@ -33,7 +33,7 @@ export const TableCell = ({
     return (
         <Typography
             asChild
-            {...(lowerCase ? { text: "lowerCase" } : {})}
+            {...(upperCase ? { text: "upperCase" } : {})}
         >
             <td
                 className={tableCell({ variant, className })}

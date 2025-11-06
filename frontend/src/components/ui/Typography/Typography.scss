@@ -4,8 +4,10 @@
     line-height: 1.5;
     color: var(--color-negative);
 
-    &::first-letter {
-        text-transform: uppercase;
+    &--upperCase {
+        &::first-letter {
+            text-transform: uppercase;
+        }
     }
 
     &--lowerCase {

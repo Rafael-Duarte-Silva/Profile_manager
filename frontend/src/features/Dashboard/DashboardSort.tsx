@@ -19,7 +19,12 @@ export const DashboardSort = memo(function DashboardSort() {
     return (
         <DashboardDropdown.Root variant="primary">
             <DashboardDropdown.Trigger className="Sort-summary">
-                <Typography colors="DarkMedium">{t(sort)}</Typography>
+                <Typography
+                    colors="DarkMedium"
+                    text="upperCase"
+                >
+                    {t(sort)}
+                </Typography>
                 <IconSort />
             </DashboardDropdown.Trigger>
             <DashboardDropdown.Content>

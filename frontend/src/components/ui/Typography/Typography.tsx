@@ -19,6 +19,7 @@ const typography = cva("Typography", {
             DarkMedium: "Typography--color-darkMedium",
         },
         text: {
+            upperCase: "Typography--upperCase",
             lowerCase: "Typography--lowerCase",
         },
     },
