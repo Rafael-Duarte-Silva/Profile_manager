@@ -16,6 +16,7 @@ export const Input = ({ label = "", id = "", ...rest }: InputProps) => {
                 asChild
                 variant="second"
                 colors="DarkMedium"
+                text="upperCase"
             >
                 <label htmlFor={id}>{label}</label>
             </Typography>
