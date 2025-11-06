@@ -22,12 +22,11 @@
 .SearchBar-input {
     height: max-content;
 
-    text-transform: capitalize;
-
     background-color: transparent;
     border: 0;
 
     &::placeholder {
+        text-transform: capitalize;
         color: var(--color-fourth);
     }
 }
