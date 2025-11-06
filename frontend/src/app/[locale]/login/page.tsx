@@ -62,6 +62,7 @@ export default function Login() {
                 <Typography
                     asChild
                     variant="fourth"
+                    text="upperCase"
                 >
                     <h1>login</h1>
                 </Typography>
