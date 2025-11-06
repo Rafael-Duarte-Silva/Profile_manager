@@ -14,7 +14,7 @@ export class FakerUntil {
       email: faker.internet.email({
         firstName: firstName,
         lastName: lastName,
-        provider: '@example.com',
+        provider: 'example.com',
       }),
       phone: faker.phone.number({ style: 'human' }),
       job: faker.person.jobArea(),

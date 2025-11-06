@@ -14,7 +14,7 @@ class FakerUntil {
             email: faker_1.faker.internet.email({
                 firstName: firstName,
                 lastName: lastName,
-                provider: '@example.com',
+                provider: 'example.com',
             }),
             phone: faker_1.faker.phone.number({ style: 'human' }),
             job: faker_1.faker.person.jobArea(),
