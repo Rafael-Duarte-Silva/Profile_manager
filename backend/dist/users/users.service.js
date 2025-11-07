@@ -39,6 +39,9 @@ let UsersService = class UsersService {
         await this.userRepository.save(dbUser);
         return { status: 'created' };
     }
+    update(user) {
+        return this.userRepository.update({ id: user.id }, user);
+    }
     deleteAllById(id) {
         return this.userRepository.delete(id);
     }

@@ -135,6 +135,7 @@ const DashboardCell = memo(function DashboardCell({
                 <Typography
                     asChild
                     colors="Medium"
+                    text="upperCase"
                     className="DashboardTable-label"
                 >
                     <span>{t(label)}</span>

@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Put,
   Query,
   UseGuards,
 } from '@nestjs/common';
@@ -12,6 +13,7 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { UserRole } from './enums/userRole.enum';
 import { Roles } from 'src/auth/guards/roles.decorator';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 @UseGuards(AuthGuard, RolesGuard)
@@ -22,6 +24,12 @@ export class UsersController {
   @Roles([UserRole.USER, UserRole.ADMIN])
   findAll(@Query() query: FindUserDto) {
     return this.usersService.findAll(query);
+  }
+
+  @Put()
+  @Roles([UserRole.USER, UserRole.ADMIN])
+  update(@Body() user: UpdateUserDto) {
+    return this.usersService.update(user);
   }
 
   @Delete()

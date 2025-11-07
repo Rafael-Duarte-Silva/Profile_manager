@@ -6,6 +6,7 @@ import { UseFormSetValue } from "react-hook-form";
 import { UserMutateSchema } from "@/schemas/UserMutateSchema";
 
 export const useModal = (setValue: UseFormSetValue<UserMutateSchema>) => {
+    const [userData, setUserData] = useState<UserData | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isEdit, setIsEdit] = useState<boolean>(false);
 
@@ -15,7 +16,7 @@ export const useModal = (setValue: UseFormSetValue<UserMutateSchema>) => {
 
     const handleUserEdit = (isEdit: boolean, userData?: UserData) => {
         setIsEdit(isEdit);
-        handleIsModalOpen();
+        setUserData(userData ?? null);
 
         [
             "username",
@@ -30,8 +31,10 @@ export const useModal = (setValue: UseFormSetValue<UserMutateSchema>) => {
                 userData ? userData[key as keyof UserData] : "",
             );
         });
+
+        handleIsModalOpen();
     };
 
-    return { isModalOpen, isEdit, handleIsModalOpen, handleUserEdit };
+    return { userData, isModalOpen, isEdit, handleIsModalOpen, handleUserEdit };
 };
 

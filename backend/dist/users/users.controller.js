@@ -20,6 +20,7 @@ const auth_guard_1 = require("../auth/guards/auth.guard");
 const roles_guard_1 = require("../auth/guards/roles.guard");
 const userRole_enum_1 = require("./enums/userRole.enum");
 const roles_decorator_1 = require("../auth/guards/roles.decorator");
+const update_user_dto_1 = require("./dto/update-user.dto");
 let UsersController = class UsersController {
     usersService;
     constructor(usersService) {
@@ -27,6 +28,9 @@ let UsersController = class UsersController {
     }
     findAll(query) {
         return this.usersService.findAll(query);
+    }
+    update(user) {
+        return this.usersService.update(user);
     }
     delete(id) {
         return this.usersService.deleteAllById(id);
@@ -41,6 +45,14 @@ __decorate([
     __metadata("design:paramtypes", [find_user_dto_1.FindUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Put)(),
+    (0, roles_decorator_1.Roles)([userRole_enum_1.UserRole.USER, userRole_enum_1.UserRole.ADMIN]),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_user_dto_1.UpdateUserDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(),
     (0, roles_decorator_1.Roles)([userRole_enum_1.UserRole.ADMIN]),

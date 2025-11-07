@@ -5,12 +5,14 @@ import { ResponseUserDto } from './dto/response-user.dto';
 import { UserRole } from './enums/userRole.enum';
 import { UserStatus } from './enums/userStatus.enum';
 import { FindUserDto } from './dto/find-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersService {
     private readonly userRepository;
     constructor(userRepository: Repository<User>);
     create(createUserDto: CreateUserDto, status: UserStatus, role: UserRole): Promise<{
         status: string;
     }>;
+    update(user: UpdateUserDto): Promise<import("typeorm").UpdateResult>;
     deleteAllById(id: string[]): Promise<import("typeorm").DeleteResult>;
     findById(id: string): Promise<User | null>;
     findByUsername(username: string): Promise<User | null>;

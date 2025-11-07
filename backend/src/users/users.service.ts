@@ -8,6 +8,7 @@ import { hashSync } from 'bcrypt';
 import { UserRole } from './enums/userRole.enum';
 import { UserStatus } from './enums/userStatus.enum';
 import { FindUserDto } from './dto/find-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -40,6 +41,10 @@ export class UsersService {
 
     await this.userRepository.save(dbUser);
     return { status: 'created' };
+  }
+
+  update(user: UpdateUserDto) {
+    return this.userRepository.update({ id: user.id }, user);
   }
 
   deleteAllById(id: string[]) {

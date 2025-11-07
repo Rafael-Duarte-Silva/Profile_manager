@@ -14,7 +14,7 @@ export const UserModalProvider = ({ children }: { children: ReactNode }) => {
             ...modal,
             ...userFormRest,
         }),
-        [modal.isEdit, modal.isModalOpen],
+        [modal.userData, modal.isEdit, modal.isModalOpen],
     );
 
     return (

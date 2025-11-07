@@ -8,6 +8,7 @@ import {
 import { UserMutateSchema } from "@/schemas/UserMutateSchema";
 
 export type UserModalContextProps = {
+    userData: UserData | null;
     isEdit: boolean;
     isModalOpen: boolean;
     errors: FieldErrors<UserMutateSchema>;

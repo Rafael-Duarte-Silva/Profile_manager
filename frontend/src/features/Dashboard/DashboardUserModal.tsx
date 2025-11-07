@@ -13,10 +13,11 @@ import { Input } from "@/components/ui/Input";
 import { Typography } from "@/components/ui/Typography";
 
 import { useUserModalContext } from "./context/userModal/UserModalContext";
-import { postUserRegister } from "./DashboardUserModalAPI";
+import { postUserRegister, putUserData } from "./DashboardUserModalAPI";
 
 export const DashboardUserModal = () => {
     const {
+        userData,
         isEdit,
         isModalOpen,
         handleIsModalOpen,
@@ -32,16 +33,26 @@ export const DashboardUserModal = () => {
         mutationFn: postUserRegister,
         retry: 2,
         onSuccess: () => {
+            handleIsModalOpen();
             queryClient.invalidateQueries({
                 queryKey: ["users"],
             });
         },
     });
 
-    const handleSendUserData: SubmitHandler<UserMutateSchema> = (data) => {
-        console.log(data);
+    const handleSendUserData: SubmitHandler<UserMutateSchema> = async (
+        data,
+    ) => {
+        if (isEdit && userData) {
+            await putUserData({ ...userData, ...data });
+            handleIsModalOpen();
+            queryClient.invalidateQueries({
+                queryKey: ["users"],
+            });
+            return;
+        }
+
         mutate(data);
-        handleIsModalOpen();
     };
 
     if (!isModalOpen) {
