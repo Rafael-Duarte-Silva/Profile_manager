@@ -32,7 +32,7 @@ export const DashboardHeading = () => {
         handleIsOpenSearchBar,
     } = useFiltersContext();
 
-    const { handleIsModalOpen } = useUserModalContext();
+    const { handleIsCreateModalOpen } = useUserModalContext();
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
@@ -77,7 +77,7 @@ export const DashboardHeading = () => {
                     size="md"
                     type="button"
                     variant="primary"
-                    onClick={handleIsModalOpen}
+                    onClick={handleIsCreateModalOpen}
                 >
                     {t("create")}
                     <IconCreate />

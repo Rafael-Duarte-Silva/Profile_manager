@@ -6,14 +6,18 @@ import { UserModalProvider } from "./context/userModal/UserModalProvider";
 import { DashboardHeading } from "./DashboardHeading";
 import { DashboardPagination } from "./DashboardPagination";
 import { DashboardTable } from "./DashboardTable";
-import { DashboardUserModal } from "./DashboardUserModal";
+import {
+    DashboardUserModalCreate,
+    DashboardUserModalEdit,
+} from "./DashboardUserModal";
 
 export const DashBoard = () => {
     return (
         <div>
             <FiltersProvider>
                 <UserModalProvider>
-                    <DashboardUserModal />
+                    <DashboardUserModalCreate />
+                    <DashboardUserModalEdit />
                     <CheckboxProvider>
                         <DashboardHeading />
                         <DashboardTable />

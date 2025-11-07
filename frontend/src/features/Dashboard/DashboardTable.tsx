@@ -148,7 +148,7 @@ const DashboardCell = memo(function DashboardCell({
 
 const DashboardCellButton = ({ userData, id }: DashboardCellButtonProps) => {
     const t = useTranslations("HomePage");
-    const { handleUserEdit } = useUserModalContext();
+    const { handleIsEditModalOpen } = useUserModalContext();
     const { isChecked } = useCheckboxContext();
 
     const queryClient = useQueryClient();
@@ -178,7 +178,7 @@ const DashboardCellButton = ({ userData, id }: DashboardCellButtonProps) => {
             <button
                 title={t("edit")}
                 type="button"
-                onClick={() => handleUserEdit(true, userData)}
+                onClick={() => handleIsEditModalOpen(userData)}
             >
                 <IconEdit />
             </button>

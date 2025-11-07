@@ -1,10 +1,14 @@
 import "./DashboardUserModal.scss";
 
+import { useEffect } from "react";
+
+import { UserData } from "@/interfaces/UserData";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm, UseFormRegister } from "react-hook-form";
 
-import { UserMutateSchema } from "@/schemas/UserMutateSchema";
+import { userMutateSchema, UserMutateSchema } from "@/schemas/UserMutateSchema";
 
 import { IconClose } from "@/components/icons/iconClose";
 import { IconSend } from "@/components/icons/IconSend";
@@ -15,45 +19,24 @@ import { Typography } from "@/components/ui/Typography";
 import { useUserModalContext } from "./context/userModal/UserModalContext";
 import { postUserRegister, putUserData } from "./DashboardUserModalAPI";
 
-export const DashboardUserModal = () => {
-    const {
-        userData,
-        isEdit,
-        isModalOpen,
-        handleIsModalOpen,
-        handleUserEdit,
-        register,
-        handleSubmit,
-    } = useUserModalContext();
+type DashboardUserModalProps = {
+    isModalOpen: boolean;
+    titleText: string;
+    onSubmit(): void;
+    submitText: string;
+    onClickClose(): void;
+    register: UseFormRegister<UserMutateSchema>;
+};
+
+export const DashboardUserModal = ({
+    isModalOpen,
+    onClickClose,
+    onSubmit,
+    submitText,
+    titleText,
+    register,
+}: DashboardUserModalProps) => {
     const t = useTranslations("HomePage");
-
-    const queryClient = useQueryClient();
-
-    const { mutate } = useMutation({
-        mutationFn: postUserRegister,
-        retry: 2,
-        onSuccess: () => {
-            handleIsModalOpen();
-            queryClient.invalidateQueries({
-                queryKey: ["users"],
-            });
-        },
-    });
-
-    const handleSendUserData: SubmitHandler<UserMutateSchema> = async (
-        data,
-    ) => {
-        if (isEdit && userData) {
-            await putUserData({ ...userData, ...data });
-            handleIsModalOpen();
-            queryClient.invalidateQueries({
-                queryKey: ["users"],
-            });
-            return;
-        }
-
-        mutate(data);
-    };
 
     if (!isModalOpen) {
         return;
@@ -67,12 +50,12 @@ export const DashboardUserModal = () => {
                     variant="fourth"
                     text="upperCase"
                 >
-                    <h1>{isEdit ? t("editUser") : t("createUser")}</h1>
+                    <h1>{titleText}</h1>
                 </Typography>
 
                 <form
                     className="DashboardUserModal-form"
-                    onSubmit={handleSubmit(handleSendUserData)}
+                    onSubmit={onSubmit}
                 >
                     <Input
                         {...register("email")}
@@ -128,18 +111,14 @@ export const DashboardUserModal = () => {
                             size="md"
                             type="submit"
                         >
-                            {isEdit ? t("edit") : t("send")}
+                            {submitText}
                             <IconSend />
                         </Button>
                         <Button
                             variant="primary"
                             size="md"
                             type="button"
-                            onClick={
-                                isEdit
-                                    ? () => handleUserEdit(false)
-                                    : handleIsModalOpen
-                            }
+                            onClick={onClickClose}
                         >
                             {t("close")}
                             <IconClose />
@@ -148,5 +127,93 @@ export const DashboardUserModal = () => {
                 </form>
             </div>
         </div>
+    );
+};
+
+export const DashboardUserModalCreate = () => {
+    const { isCreateModalOpen, handleIsCreateModalOpen } =
+        useUserModalContext();
+    const t = useTranslations("HomePage");
+    const queryClient = useQueryClient();
+
+    const { register, handleSubmit } = useForm<UserMutateSchema>({
+        resolver: zodResolver(userMutateSchema),
+        mode: "onBlur",
+    });
+
+    const { mutate } = useMutation({
+        mutationFn: postUserRegister,
+        retry: 2,
+        onSuccess: () => {
+            handleIsCreateModalOpen();
+            queryClient.invalidateQueries({
+                queryKey: ["users"],
+            });
+        },
+    });
+
+    const handleSendUserData: SubmitHandler<UserMutateSchema> = (data) => {
+        mutate(data);
+    };
+
+    return (
+        <DashboardUserModal
+            isModalOpen={isCreateModalOpen}
+            titleText={t("createUser")}
+            submitText={t("send")}
+            onClickClose={handleIsCreateModalOpen}
+            onSubmit={handleSubmit(handleSendUserData)}
+            register={register}
+        />
+    );
+};
+export const DashboardUserModalEdit = () => {
+    const { userData, isEditModalOpen, handleIsEditModalOpen } =
+        useUserModalContext();
+    const t = useTranslations("HomePage");
+    const queryClient = useQueryClient();
+
+    const { register, handleSubmit, setValue } = useForm<UserMutateSchema>({
+        resolver: zodResolver(userMutateSchema),
+        mode: "onBlur",
+    });
+
+    const handleSendUserData: SubmitHandler<UserMutateSchema> = async (
+        data,
+    ) => {
+        if (!userData) return;
+
+        await putUserData({ ...userData, ...data });
+        handleIsEditModalOpen();
+        queryClient.invalidateQueries({
+            queryKey: ["users"],
+        });
+    };
+
+    useEffect(() => {
+        [
+            "username",
+            "fullName",
+            "email",
+            "phone",
+            "job",
+            "dateCreated",
+        ].forEach((key) => {
+            setValue(
+                key as keyof UserMutateSchema,
+                userData ? userData[key as keyof UserData] : "",
+            );
+        });
+    }, [isEditModalOpen]);
+
+    return (
+        <DashboardUserModal
+            isModalOpen={isEditModalOpen}
+            titleText={t("editUser")}
+            submitText={t("edit")}
+            onClickClose={handleIsEditModalOpen}
+            onSubmit={handleSubmit(handleSendUserData)}
+            register={register}
+        />
     );
 };

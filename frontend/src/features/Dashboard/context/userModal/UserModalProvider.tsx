@@ -1,20 +1,32 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo, useState } from "react";
 
-import { useModal } from "./hooks/useModal";
-import { useUserForm } from "./hooks/useUserForm";
+import { UserData } from "@/interfaces/UserData";
 
 import { UserModalContext } from "./UserModalContext";
 
 export const UserModalProvider = ({ children }: { children: ReactNode }) => {
-    const { setValue, ...userFormRest } = useUserForm();
-    const modal = useModal(setValue);
+    const [userData, setUserData] = useState<UserData | null>(null);
+    const [isCreateModalOpen, setIsModalCreateOpen] = useState<boolean>(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+
+    const handleIsCreateModalOpen = () => {
+        setIsModalCreateOpen(!isCreateModalOpen);
+    };
+
+    const handleIsEditModalOpen = (userData?: UserData) => {
+        setIsEditModalOpen(!isEditModalOpen);
+        setUserData(userData ?? null);
+    };
 
     const contextValue = useMemo(
         () => ({
-            ...modal,
-            ...userFormRest,
+            userData,
+            isCreateModalOpen,
+            isEditModalOpen,
+            handleIsCreateModalOpen,
+            handleIsEditModalOpen,
         }),
-        [modal.userData, modal.isEdit, modal.isModalOpen],
+        [userData, isCreateModalOpen, isEditModalOpen],
     );
 
     return (
