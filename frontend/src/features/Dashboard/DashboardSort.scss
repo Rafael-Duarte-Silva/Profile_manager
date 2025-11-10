@@ -1,6 +1,6 @@
 .Sort-summary {
     display: flex;
     align-items: center;
-
-    column-gap: var(--base-size-12);
+    justify-content: space-between;
 }
+

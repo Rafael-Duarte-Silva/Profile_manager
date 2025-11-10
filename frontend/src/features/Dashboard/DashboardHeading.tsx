@@ -119,7 +119,7 @@ const DashboardLanguage = () => {
     };
 
     return (
-        <DashboardDropdown.Root variant="primary">
+        <DashboardDropdown.Root>
             <DashboardDropdown.Trigger variant="button">
                 <IconLanguages />
                 <Typography
