@@ -10,7 +10,7 @@ export type FiltersContextProps = {
     handleSort(e: React.MouseEvent<HTMLAnchorElement>, sort: string): void;
     handlePage(page: string): void;
     handleSearchKeyboard(e: React.KeyboardEvent): void;
-    handleSearch(e: React.MouseEvent): void;
+    handleSearch(): void;
     handleIsOpenSearchBar(): void;
 };
 

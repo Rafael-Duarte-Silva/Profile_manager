@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const useSearch = (
     searchParams: URLSearchParams,
@@ -21,24 +21,22 @@ export const useSearch = (
         }
     };
 
-    const handleSearch = (event?: React.MouseEvent) => {
-        if (event) {
-            event.stopPropagation();
-        }
-
-        if (searchRef.current?.value !== searchParams.get("search")) {
-            if (
-                (window.screen.width <= 1200 && isOpenSearchBar) ||
-                window.screen.width > 1200
-            ) {
-                pathPush([
-                    ["search", searchRef.current?.value || ""],
-                    ["page", "1"],
-                ]);
-                setIsOpenSearchBar(false);
-            }
+    const handleSearch = () => {
+        if (
+            searchRef.current?.value !== searchParams.get("search") ||
+            (window.screen.width <= 1200 && isOpenSearchBar) ||
+            window.screen.width > 1200
+        ) {
+            pathPush([
+                ["search", searchRef.current?.value || ""],
+                ["page", "1"],
+            ]);
         }
     };
+
+    useEffect(() => {
+        setIsOpenSearchBar(false);
+    }, [searchParams.toString()]);
 
     return {
         ref: searchRef,

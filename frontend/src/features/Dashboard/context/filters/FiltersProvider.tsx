@@ -22,7 +22,7 @@ export const FiltersProvider = ({ children }: { children: ReactNode }) => {
             ...restSort,
             endpoint: searchParams.toString() || `page=${page}&sort=${sort}`,
         }),
-        [searchParams.toString()],
+        [search.isOpenSearchBar, searchParams.toString()],
     );
 
     return (
